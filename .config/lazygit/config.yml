@@ -1,0 +1,30 @@
+git:
+  paging:
+    # colorArg: never
+    pager: delta --paging=never --syntax-theme='tokyonight_night'
+    useConfig: false
+gui:
+  nerdFontsVersion: "3"
+  theme:
+    activeBorderColor:
+      - "#4fd6be"
+      - bold
+    inactiveBorderColor:
+      - "#394b70"
+    optionsTextColor:
+      - "#89b4fa"
+    selectedLineBgColor:
+      - "#fca7ea"
+    cherryPickedCommitBgColor:
+      - "#ff007c"
+    cherryPickedCommitFgColor:
+      - "#65bcff"
+    unstagedChangesColor:
+      - "#ff757f"
+    defaultFgColor:
+      - "#c8d3f5"
+    searchingActiveBorderColor:
+      - "#ffc777"
+
+  authorColors:
+    "*": "#86e1fc"
