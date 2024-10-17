@@ -225,6 +225,7 @@ return {
         "shellcheck",
         "shfmt",
         "flake8",
+        "deno",
         -- "typescript-language-server",
         "tailwindcss-language-server",
         "prettier",
@@ -264,8 +265,8 @@ return {
       },
       config = function()
         local lspconfig = require("lspconfig")
-        lspconfig.sourcekit.setup({
-        })
+        lspconfig.sourcekit.setup({})
+        vim.g.markdown_fenced_languages = { "ts=typescript" }
       end,
       setup = {
         eslint = function()
