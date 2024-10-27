@@ -1,6 +1,7 @@
 # TODO: make brew or apt install based on OS
 
 export EDITOR="nvim"
+export EZA_CONFIG_DIR="$HOME/.config/eza"
 # nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -128,3 +129,7 @@ zle -N zle-line-init
 
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 precmd() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+
+# eza
+alias ls="eza --long --all --icons=\"always\" --show-symlinks"
+alias tree="eza --tree --all --icons=\"always\" --show-symlinks"
