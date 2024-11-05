@@ -149,3 +149,6 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
   --color=separator:#ff9e64 \
   --color=spinner:#ff007c \
 "
+
+# Zellij auto-attach to session
+eval "$(zellij setup --generate-auto-start zsh)"
