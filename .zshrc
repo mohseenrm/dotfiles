@@ -150,8 +150,5 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
   --color=spinner:#ff007c \
 "
 
-# Zellij auto-attach to session
-eval "$(zellij setup --generate-auto-start zsh)"
-
 # Start fastfetch
 fastfetch
