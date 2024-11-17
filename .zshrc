@@ -150,5 +150,7 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
   --color=spinner:#ff007c \
 "
 
+alias aq="asciiquarium"
+
 # Start fastfetch
 fastfetch
