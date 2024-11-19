@@ -1,6 +1,7 @@
 return {
   "nvimdev/dashboard-nvim",
   event = "VimEnter",
+  enabled = false,
   opts = function()
     local lolcat = vim.fn.executable("lolcat") == 1
     local opts = {
