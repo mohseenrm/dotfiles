@@ -4,6 +4,11 @@ export EZA_CONFIG_DIR="$HOME/.config/eza"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+
+eval "$(pyenv virtualenv-init -)"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
@@ -30,10 +35,14 @@ if [[ $(uname) == "Darwin" ]]; then
   source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
   alias aq="asciiquarium"
 else
+  source ~/antigen.zsh
   # zsh-syntax-highlighting
   source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
   # zsh-autosuggestions
   antigen bundle zsh-users/zsh-autosuggestions
+  antigen apply
+
+  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 fi
 
 # starship

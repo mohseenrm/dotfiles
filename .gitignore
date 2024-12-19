@@ -3,3 +3,21 @@ configstore
 gatsby
 github-copilot
 .config/raycast
+
+# Ubuntu specific
+.config/dconf
+.config/evolution
+.config/gnome-session
+.config/goa-1.0
+.config/google-chrome
+.config/gtk-3.0
+.config/gtk-4.0
+.config/ibus
+.config/pulse
+
+.config/.gsd*
+.config/gnome*
+.config/mimeapps.list
+.config/monitors.xml
+.config/user-dirs.dirs
+.config/user-dirs.locale
