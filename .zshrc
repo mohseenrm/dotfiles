@@ -1,5 +1,3 @@
-# TODO: make brew or apt install based on OS
-
 export EDITOR="nvim"
 export EZA_CONFIG_DIR="$HOME/.config/eza"
 # nvm
@@ -9,23 +7,37 @@ export NVM_DIR="$HOME/.nvm"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
-export OWL="/Users/mmukaddam/Projects/owl"
-eval "$("$OWL/bin/owl" init -)"
+if [[ $(uname) == "Darwin" ]]; then
+  export OWL="/Users/mmukaddam/Projects/owl"
+  eval "$("$OWL/bin/owl" init -)"
+  function aws-login() {  eval $( $OWL/bin/owl aws-login $@ ) ; };
 
-function aws-login() {  eval $( $OWL/bin/owl aws-login $@ ) ; };
+  function aws-ec2() {
+    LINES=${LINES} COLUMNS=${COLUMNS} ${OWL}/command/pellets/ec2/scripts/login-wrapper "${@}"
+  };
 
-function aws-ec2() {
-LINES=${LINES} COLUMNS=${COLUMNS} ${OWL}/command/pellets/ec2/scripts/login-wrapper "${@}"
-};
+  # sdkman
+  export SDKMAN_DIR="$HOME/.sdkman"
+  [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-# sdkman
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+  # postgresql
+  export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+
+  # zsh-syntax-highlighting
+  source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+  # zsh-autosuggestions
+  source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+  alias aq="asciiquarium"
+else
+  # zsh-syntax-highlighting
+  source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  # zsh-autosuggestions
+  antigen bundle zsh-users/zsh-autosuggestions
+fi
 
 # starship
 eval "$(starship init zsh)"
-# postgresql
-export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 # Zoxide
 eval "$(zoxide init --cmd cd zsh)"
 
@@ -47,10 +59,6 @@ setopt INC_APPEND_HISTORY         # Write to the history file immediately, not w
 setopt SHARE_HISTORY              # Share history between all sessions.
 SHELL_SESSION_HISTORY=0           # Disable pert-terminal-session
 
-# zsh-syntax-highlighting
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# zsh-autosuggestions
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 zmodload -i zsh/complist
 
@@ -149,8 +157,6 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
   --color=separator:#ff9e64 \
   --color=spinner:#ff007c \
 "
-
-alias aq="asciiquarium"
 
 # Start fastfetch
 fastfetch
