@@ -12,6 +12,7 @@ eval "$(pyenv virtualenv-init -)"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
+# Mac OS
 if [[ $(uname) == "Darwin" ]]; then
   export OWL="/Users/mmukaddam/Projects/owl"
   eval "$("$OWL/bin/owl" init -)"
@@ -34,6 +35,7 @@ if [[ $(uname) == "Darwin" ]]; then
   # zsh-autosuggestions
   source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
   alias aq="asciiquarium"
+# Ubuntu
 else
   source ~/antigen.zsh
   # zsh-syntax-highlighting
