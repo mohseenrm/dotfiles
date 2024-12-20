@@ -10,10 +10,10 @@
   "logo": {
     "source": "~/.config/nvim/logo/fastfetch.txt",
     // "type": "chafa",
-    "height": 80,
+    //"height": 80,
     "position": "left",
     "padding": {
-      "top": 6,
+      "top": 11,
     },
   },
   "display": {
@@ -113,6 +113,11 @@
       "type": "monitor",
       "key": " └  ",
       "keyColor": "33",
+    },
+    "break",
+    {
+      "type": "colors",
+      "symbol": "circle",
     },
     "break",
     "break",
