@@ -14,3 +14,9 @@ vim.api.nvim_set_keymap(
   [[<cmd>lua require('telescope.builtin').find_files({ cwd = require("telescope.utils").buffer_dir() })<cr>]],
   {}
 )
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>fr",
+  [[<cmd>lua require('telescope.builtin').oldfiles({ cwd = require("telescope.utils").buffer_dir() })<cr>]],
+  {}
+)
