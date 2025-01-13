@@ -1,16 +1,16 @@
 local wk = require("which-key")
 wk.add({
   {
-    "<leader>o",
+    "<leader>O",
     group = "Obsidian",
     name = "Obsidian",
     desc = "Obsidian",
     icon = "📝",
   },
-  { "<leader>on", "<cmd>ObsidianNew<cr>", desc = "New Note", mode = "n" },
+  { "<leader>On", "<cmd>ObsidianNew<cr>", desc = "New Note", mode = "n" },
   { "<leader>os", "<cmd>ObsidianSearch<cr>", desc = "Search Notes", mode = "n" },
-  { "<leader>ow", "<cmd>ObsidianWorkspace<cr>", desc = "Change Workspace", mode = "n" },
-  { "<leader>oo", "<cmd>ObsidianOpen<cr>", desc = "Open (needs to be open in buffer)", mode = "n" },
+  { "<leader>Ow", "<cmd>ObsidianWorkspace<cr>", desc = "Change Workspace", mode = "n" },
+  { "<leader>Oo", "<cmd>ObsidianOpen<cr>", desc = "Open (needs to be open in buffer)", mode = "n" },
 })
 vim.keymap.set("n", "gf", function()
   if require("obsidian").util.cursor_on_markdown_link() then
