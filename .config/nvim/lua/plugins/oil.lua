@@ -22,6 +22,15 @@ return {
       ["g."] = { "actions.toggle_hidden", mode = "n" },
       ["g\\"] = { "actions.toggle_trash", mode = "n" },
     },
+    columns = {
+      "icon",
+      "permissions",
+      "size",
+      "mtime",
+    },
+    view_options = {
+      show_hidden = true,
+    },
   },
   -- Optional dependencies
   dependencies = { { "echasnovski/mini.icons", opts = {} } },
