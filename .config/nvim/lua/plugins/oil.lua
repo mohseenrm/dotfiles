@@ -13,7 +13,7 @@ return {
       ["<C-l>"] = "actions.refresh",
       ["h"] = { "actions.parent", mode = "n" },
       ["l"] = "actions.select",
-      ["p"] = "actions.preview",
+      ["<C-p>"] = "actions.preview",
       ["_"] = { "actions.open_cwd", mode = "n" },
       ["`"] = { "actions.cd", mode = "n" },
       ["~"] = { "actions.cd", opts = { scope = "tab" }, mode = "n" },
