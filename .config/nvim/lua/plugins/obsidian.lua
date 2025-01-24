@@ -8,7 +8,7 @@ wk.add({
     icon = "📝",
   },
   { "<leader>On", "<cmd>ObsidianNew<cr>", desc = "New Note", mode = "n" },
-  { "<leader>os", "<cmd>ObsidianSearch<cr>", desc = "Search Notes", mode = "n" },
+  { "<leader>Os", "<cmd>ObsidianSearch<cr>", desc = "Search Notes", mode = "n" },
   { "<leader>Ow", "<cmd>ObsidianWorkspace<cr>", desc = "Change Workspace", mode = "n" },
   { "<leader>Oo", "<cmd>ObsidianOpen<cr>", desc = "Open (needs to be open in buffer)", mode = "n" },
 })
