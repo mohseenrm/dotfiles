@@ -3,7 +3,7 @@ return {
   event = "VeryLazy",
   enabled = false,
   lazy = true,
-  cmd = "TyprStats",
   dependencies = "nvzone/volt",
   opts = {},
+  cmd = { "Typr", "TyprStats" },
 }
