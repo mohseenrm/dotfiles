@@ -37,6 +37,7 @@ if [[ $(uname) == "Darwin" ]]; then
   alias aq="asciiquarium"
 # Ubuntu
 else
+  alias update="sudo apt update; sudo apt upgrade -y"
   source ~/antigen.zsh
   # zsh-syntax-highlighting
   source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
