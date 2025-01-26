@@ -35,6 +35,7 @@ if [[ $(uname) == "Darwin" ]]; then
   # zsh-autosuggestions
   source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
   alias aq="asciiquarium"
+  alias update="brew update && brew upgrade"
 # Ubuntu
 else
   alias update="sudo apt update; sudo apt upgrade -y"
