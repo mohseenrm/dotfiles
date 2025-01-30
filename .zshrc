@@ -143,7 +143,7 @@ precmd() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 # eza
 alias ls="eza --long --all --icons=\"always\" --show-symlinks"
 alias tree="eza --tree --all --icons=\"always\" --show-symlinks"
-alias cat="bat"
+alias cat="bat --style=plain"
 
 # fzf
 source <(fzf --zsh)
