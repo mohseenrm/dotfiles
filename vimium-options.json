@@ -5,15 +5,11 @@
   "exclusionRules": [
     {
       "passKeys": "",
-      "pattern": "https?://mail.google.com/*"
-    },
-    {
-      "passKeys": "",
       "pattern": "https?://localhost:3000/*"
     },
     {
       "passKeys": "",
-      "pattern": "https?://www.youtube.com/*"
+      "pattern": "https?://app.coderpad.io/*"
     }
   ]
 }
