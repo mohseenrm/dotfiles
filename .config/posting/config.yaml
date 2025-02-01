@@ -1,0 +1,10 @@
+theme: tokyonight
+editor: nvim
+layout: horizontal
+animation: full
+
+theme_directory: /home/momo/.config/posting/themes
+
+keymap:
+  help: question_mark
+  jump: ctrl+f
