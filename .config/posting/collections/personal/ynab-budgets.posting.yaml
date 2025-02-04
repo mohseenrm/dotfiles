@@ -1,0 +1,7 @@
+name: YNAB Budgets
+description: |-
+  YNAB BUDGET API
+url: https://api.ynab.com/v1/budgets
+headers:
+  - name: Authorization
+    value: Bearer

@@ -1,0 +1,7 @@
+name: YNAB Categories
+description: |-
+  YNAB Categories API
+url: https://api.ynab.com/v1/budgets/28871f0b-6863-4748-b5b1-b5b8f1aa3634/categories
+headers:
+  - name: Authorization
+    value: Bearer
