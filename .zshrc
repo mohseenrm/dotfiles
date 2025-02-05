@@ -145,8 +145,6 @@ alias ls="eza --long --all --icons=\"always\" --show-symlinks"
 alias tree="eza --tree --all --icons=\"always\" --show-symlinks"
 # bat
 alias cat="bat --style=plain"
-# posting
-alias post="posting"
 
 # fzf
 source <(fzf --zsh)
