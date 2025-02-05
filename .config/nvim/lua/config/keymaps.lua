@@ -22,12 +22,5 @@ vim.api.nvim_set_keymap("n", "<leader>qs", [[<cmd>lua require("persistence").loa
 -- restore the last session
 vim.api.nvim_set_keymap("n", "<leader>ql", [[<cmd>lua require("persistence").load({ last = true })<cr>]], {})
 
-vim.api.nvim_set_keymap(
-  "n",
-  "<leader>xfG",
-  [[<cmd>lua require('telescope.builtin').find_files({ cwd = require("telescope.utils").buffer_dir() })<cr>]],
-  {}
-)
-
 -- start oil
 vim.api.nvim_set_keymap("n", "<leader>o", [[<cmd>Oil<cr>]], { desc = "Start Oil" })
