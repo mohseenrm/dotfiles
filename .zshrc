@@ -72,7 +72,6 @@ setopt INC_APPEND_HISTORY         # Write to the history file immediately, not w
 setopt SHARE_HISTORY              # Share history between all sessions.
 SHELL_SESSION_HISTORY=0           # Disable pert-terminal-session
 
-
 zmodload -i zsh/complist
 
 # zsh vi mode
@@ -96,6 +95,7 @@ bindkey -M menuselect 'left' vi-backward-char
 bindkey -M menuselect 'down' vi-down-line-or-history
 bindkey -M menuselect 'up' vi-up-line-or-history
 bindkey -M menuselect 'right' vi-forward-char
+
 # Fix backspace bug when switching modes
 bindkey "^?" backward-delete-char
 
