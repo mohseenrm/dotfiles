@@ -14,7 +14,7 @@ eval "$(pyenv virtualenv-init -)"
 
 # Mac OS
 if [[ $(uname) == "Darwin" ]]; then
-  export OWL="/Users/mmukaddam/Projects/owl"
+  export OWL="$HOME/Projects/owl"
   eval "$("$OWL/bin/owl" init -)"
   function aws-login() {  eval $( $OWL/bin/owl aws-login $@ ) ; };
 
