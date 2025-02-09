@@ -27,3 +27,8 @@ github-copilot
 .config/ulauncher
 .config/monitors.xml~
 .config/enchant
+.config/uv
+
+.config/*terminals.list
+.aider*
+!.aider.conf.yml
