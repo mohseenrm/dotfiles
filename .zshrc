@@ -1,4 +1,7 @@
 export EDITOR="nvim"
+export AIDER_EDITOR="nvim"
+export OLLAMA_API_BASE=http://127.0.0.1:11434
+
 export EZA_CONFIG_DIR="$HOME/.config/eza"
 # nvm
 export NVM_DIR="$HOME/.nvm"
@@ -145,6 +148,10 @@ alias ls="eza --long --all --icons=\"always\" --show-symlinks"
 alias tree="eza --tree --all --icons=\"always\" --show-symlinks"
 # bat
 alias cat="bat --style=plain"
+# AI Reasoning model
+alias air="aider --model ollama_chat/deepseek-r1:70b"
+# AI Coding model
+alias aic="aider --model ollama_chat/deepseek-coder-v2"
 
 # fzf
 source <(fzf --zsh)
