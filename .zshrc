@@ -149,9 +149,9 @@ alias tree="eza --tree --all --icons=\"always\" --show-symlinks"
 # bat
 alias cat="bat --style=plain"
 # AI Reasoning model
-alias air="aider --model ollama_chat/deepseek-r1:70b"
+alias air="aider --model ollama_chat/deepseek-r1:70b --config $HOME/aider.config.yaml"
 # AI Coding model
-alias aic="aider --model ollama_chat/deepseek-coder-v2"
+alias aic="aider --model ollama_chat/deepseek-coder-v2 --config $HOME/aider.config.yaml"
 
 # fzf
 source <(fzf --zsh)

@@ -1,0 +1,17 @@
+dark-mode: true
+# color-theme: monokai
+auto-commits: false
+
+vim: true
+verbose: true
+editor: nvim
+
+user-input-color: "#86e1fc"
+tool-error-color: "#db4b4b"
+tool-warning-color: "#faba4a"
+# assistant-output-color:
+completion-menu-color: "#c0caf5"
+completion-menu-bg-color: "#0C0E14"
+completion-menu-current-color: "#0C0E14"
+completion-menu-current-bg-color: "#4fd6be"
+code-theme: monokai

@@ -1,7 +1,0 @@
-dark-mode: true
-# color-theme: monokai
-auto-commits: false
-
-vim: true
-verbose: true
-editor: nvim
