@@ -14,4 +14,4 @@ completion-menu-color: "#c0caf5"
 completion-menu-bg-color: "#0C0E14"
 completion-menu-current-color: "#0C0E14"
 completion-menu-current-bg-color: "#4fd6be"
-code-theme: one-dark
+code-theme: monokai
