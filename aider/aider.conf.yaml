@@ -3,7 +3,7 @@ dark-mode: true
 auto-commits: false
 
 vim: true
-verbose: true
+verbose: false
 editor: nvim
 
 user-input-color: "#86e1fc"
@@ -14,4 +14,4 @@ completion-menu-color: "#c0caf5"
 completion-menu-bg-color: "#0C0E14"
 completion-menu-current-color: "#0C0E14"
 completion-menu-current-bg-color: "#4fd6be"
-code-theme: monokai
+code-theme: one-dark
