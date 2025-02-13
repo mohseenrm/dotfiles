@@ -39,7 +39,7 @@ vim.api.nvim_set_keymap("v", "L", "$", { desc = "Move to end of line" })
 -- copy file path to clipboard
 local function insertFullPath()
   local filepath = vim.fn.expand("%")
-  vim.fn.setreg("+", filepath) -- write to clippoard
+  vim.fn.setreg("+", filepath) -- write to clipboard
 end
 
 vim.keymap.set("n", "<leader>fp", insertFullPath, { noremap = true, silent = true })
