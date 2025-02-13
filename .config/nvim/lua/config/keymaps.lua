@@ -24,3 +24,7 @@ vim.api.nvim_set_keymap("n", "<leader>ql", [[<cmd>lua require("persistence").loa
 
 -- start oil
 vim.api.nvim_set_keymap("n", "<leader>o", [[<cmd>Oil<cr>]], { desc = "Start Oil" })
+
+-- movement, center cursor when moving half page up/down
+vim.api.nvim_set_keymap("n", "<C-d>", "<C-d>zz", { desc = "Move half page down, centered" })
+vim.api.nvim_set_keymap("n", "<C-u>", "<C-u>zz", { desc = "Move half page up, centered" })
