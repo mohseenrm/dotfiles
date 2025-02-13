@@ -25,6 +25,21 @@ vim.api.nvim_set_keymap("n", "<leader>ql", [[<cmd>lua require("persistence").loa
 -- start oil
 vim.api.nvim_set_keymap("n", "<leader>o", [[<cmd>Oil<cr>]], { desc = "Start Oil" })
 
--- movement, center cursor when moving half page up/down
+-- movement
 vim.api.nvim_set_keymap("n", "<C-d>", "<C-d>zz", { desc = "Move half page down, centered" })
 vim.api.nvim_set_keymap("n", "<C-u>", "<C-u>zz", { desc = "Move half page up, centered" })
+vim.api.nvim_set_keymap("v", "<C-d>", "<C-d>zz", { desc = "Move half page down, centered" })
+vim.api.nvim_set_keymap("v", "<C-u>", "<C-u>zz", { desc = "Move half page up, centered" })
+
+vim.api.nvim_set_keymap("n", "H", "0", { desc = "Move to start of line" })
+vim.api.nvim_set_keymap("n", "L", "$", { desc = "Move to end of line" })
+vim.api.nvim_set_keymap("v", "H", "0", { desc = "Move to start of line" })
+vim.api.nvim_set_keymap("v", "L", "$", { desc = "Move to end of line" })
+
+-- copy file path to clipboard
+local function insertFullPath()
+  local filepath = vim.fn.expand("%")
+  vim.fn.setreg("+", filepath) -- write to clippoard
+end
+
+vim.keymap.set("n", "<leader>fp", insertFullPath, { noremap = true, silent = true })
