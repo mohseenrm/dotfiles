@@ -3,6 +3,6 @@ return {
   -- name = "marko.nvim",
   -- dev = { true },
   dir = "~/Projects/marko.nvim",
-  enabled = false,
+  enabled = true,
   opts = {},
 }
