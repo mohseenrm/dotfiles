@@ -7,6 +7,10 @@ return {
     },
     grep = {
       hidden = true,
+      oldfiles = {
+        cwd_only = true,
+        include_current_session = true,
+      },
     },
     keymap = {
       fzf = {
