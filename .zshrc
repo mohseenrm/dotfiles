@@ -154,6 +154,8 @@ alias cat="bat --style=plain"
 alias air="aider --model anthropic/claude-3-7-sonnet-20250219 --config $HOME/aider.conf.yaml"
 # AI Coding model
 alias aic="aider --model ollama_chat/deepseek-coder-v2 --config $HOME/aider.conf.yaml"
+# Claude Code
+alias cc="claude"
 
 # fzf
 source <(fzf --zsh)
