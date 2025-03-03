@@ -42,4 +42,4 @@ local function insertFullPath()
   vim.fn.setreg("+", filepath) -- write to clipboard
 end
 
-vim.keymap.set("n", "<leader>fp", insertFullPath, { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>fp", insertFullPath, { noremap = true })
