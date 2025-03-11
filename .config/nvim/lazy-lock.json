@@ -1,5 +1,5 @@
 {
-  "CopilotChat.nvim": { "branch": "main", "commit": "335b3eaf3bcb5446e4d9439b240d12fcd7d2fd13" },
+  "CopilotChat.nvim": { "branch": "main", "commit": "371620e550efda53fa97cf177448b46dbd100c63" },
   "LazyVim": { "branch": "main", "commit": "3f034d0a7f58031123300309f2efd3bb0356ee21" },
   "LuaSnip": { "branch": "master", "commit": "c9b9a22904c97d0eb69ccb9bab76037838326817" },
   "SchemaStore.nvim": { "branch": "main", "commit": "e03b50ce453b1ce9f6b7805239c52db604d740dc" },
@@ -59,7 +59,7 @@
   "persistence.nvim": { "branch": "main", "commit": "166a79a55bfa7a4db3e26fc031b4d92af71d0b51" },
   "plenary.nvim": { "branch": "master", "commit": "857c5ac632080dba10aae49dba902ce3abf91b35" },
   "precognition.nvim": { "branch": "main", "commit": "35c402c19a10e524d5378c9c0a5151ff5d847b06" },
-  "render-markdown.nvim": { "branch": "main", "commit": "1a73fa4195316faec9e028911a122df9dfd7f9dd" },
+  "render-markdown.nvim": { "branch": "main", "commit": "c065031d030955e1d071a7fcdd8c59e0fd2f0343" },
   "rustaceanvim": { "branch": "master", "commit": "88bd72511ab3f175d12a64b91ef1eba5c20b53e6" },
   "snacks.nvim": { "branch": "main", "commit": "bc0630e43be5699bb94dadc302c0d21615421d93" },
   "supermaven-nvim": { "branch": "main", "commit": "07d20fce48a5629686aefb0a7cd4b25e33947d50" },
