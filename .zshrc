@@ -40,8 +40,8 @@ if [[ $(uname) == "Darwin" ]]; then
   source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
   alias aq="asciiquarium"
   alias update="brew update && brew upgrade"
-  alias otcf="owl tubes render stargate console console-funnel identity -x console-funnel --stage"
-  alias otmc="owl tubes render stargate console messaging-monkey-backend messaging-console --stage"
+  alias cf="owl tubes render stargate console console-funnel identity -x console-funnel --stage"
+  alias mc="owl tubes render stargate console messaging-monkey-backend messaging-console --stage"
 # Ubuntu
 else
   alias update="sudo apt update; sudo apt upgrade -y"
