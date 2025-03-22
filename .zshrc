@@ -15,9 +15,9 @@ eval "$(pyenv virtualenv-init -)"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
-# Mac OS
-if [[ $(uname) == "Darwin" ]]; then
-  export PATH="$HOME/.local/bin:$PATH"
+if [[ $(id -un) == "momo" ]]; then
+else
+  # Work computer
   export OWL="$HOME/Projects/owl"
   eval "$("$OWL/bin/owl" init -)"
   function aws-login() {  eval $( $OWL/bin/owl aws-login $@ ) ; };
@@ -32,6 +32,13 @@ if [[ $(uname) == "Darwin" ]]; then
 
   # postgresql
   export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+  alias cf="owl tubes render stargate console console-funnel identity -x console-funnel --stage"
+  alias mc="owl tubes render stargate console messaging-monkey-backend messaging-console --stage"
+fi
+
+# Mac OS
+if [[ $(uname) == "Darwin" ]]; then
+  export PATH="$HOME/.local/bin:$PATH"
 
   # zsh-syntax-highlighting
   source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -40,8 +47,6 @@ if [[ $(uname) == "Darwin" ]]; then
   source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
   alias aq="asciiquarium"
   alias update="brew update && brew upgrade"
-  alias cf="owl tubes render stargate console console-funnel identity -x console-funnel --stage"
-  alias mc="owl tubes render stargate console messaging-monkey-backend messaging-console --stage"
 # Ubuntu
 else
   alias update="sudo apt update; sudo apt upgrade -y"
@@ -187,4 +192,4 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
 "
 
 # Start fastfetch
-lolcat ~/.config/nvim/logo/fastfetch.txt | lolcat -p 1 --force | fastfetch --raw - --logo-width 55
+#lolcat ~/.config/nvim/logo/fastfetch.txt | lolcat -p 1 --force | fastfetch --raw - --logo-width 55
