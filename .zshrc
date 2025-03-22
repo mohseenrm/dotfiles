@@ -192,4 +192,4 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
 "
 
 # Start fastfetch
-#lolcat ~/.config/nvim/logo/fastfetch.txt | lolcat -p 1 --force | fastfetch --raw - --logo-width 55
+lolcat ~/.config/nvim/logo/fastfetch.txt | lolcat -p 1 --force | fastfetch --raw - --logo-width 55
