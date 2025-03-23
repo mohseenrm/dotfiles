@@ -16,6 +16,9 @@ eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
 if [[ $(id -un) == "momo" ]]; then
+  # INFO: battery cli tool to maintain battery level
+  battery maintain 80
+  # battery marinain stop
 else
   # Work computer
   export OWL="$HOME/Projects/owl"
