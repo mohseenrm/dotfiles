@@ -128,7 +128,7 @@ style = "bg:#ffafcc fg:#1a1b26"
 format = '[ $symbol ($version) ]($style)'
 
 [rust]
-symbol = ""
+symbol = ""
 style = "bg:#ffafcc fg:#1a1b26"
 format = '[ $symbol ($version) ]($style)'
 
