@@ -31,9 +31,9 @@ vim.api.nvim_set_keymap("n", "<C-u>", "<C-u>zz", { desc = "Move half page up, ce
 vim.api.nvim_set_keymap("v", "<C-d>", "<C-d>zz", { desc = "Move half page down, centered" })
 vim.api.nvim_set_keymap("v", "<C-u>", "<C-u>zz", { desc = "Move half page up, centered" })
 
-vim.api.nvim_set_keymap("n", "H", "0", { desc = "Move to start of line" })
+vim.api.nvim_set_keymap("n", "H", "^", { desc = "Move to start of line" })
 vim.api.nvim_set_keymap("n", "L", "$", { desc = "Move to end of line" })
-vim.api.nvim_set_keymap("v", "H", "0", { desc = "Move to start of line" })
+vim.api.nvim_set_keymap("v", "H", "^", { desc = "Move to start of line" })
 vim.api.nvim_set_keymap("v", "L", "$", { desc = "Move to end of line" })
 
 -- copy file path to clipboard
