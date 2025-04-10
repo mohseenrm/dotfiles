@@ -33,6 +33,14 @@ else
   export SDKMAN_DIR="$HOME/.sdkman"
   [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
+  # pnpm
+  export PNPM_HOME="/Users/mmukaddam/Library/pnpm"
+  case ":$PATH:" in
+    *":$PNPM_HOME:"*) ;;
+    *) export PATH="$PNPM_HOME:$PATH" ;;
+  esac
+  # pnpm end
+
   # postgresql
   export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
   alias cf="owl tubes render stargate console console-funnel identity -x console-funnel --stage"
