@@ -1,6 +1,7 @@
 export EDITOR="nvim"
 export AIDER_EDITOR="nvim"
 export OLLAMA_API_BASE=http://127.0.0.1:11434
+export MANPAGER="nvim +Man!"
 
 export EZA_CONFIG_DIR="$HOME/.config/eza"
 # nvm
