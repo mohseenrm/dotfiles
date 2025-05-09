@@ -218,7 +218,8 @@ return {
 
   -- add any tools you want to have installed below
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
+    version = "^1.0.0",
     opts = {
       ensure_installed = {
         "stylua",
@@ -234,7 +235,7 @@ return {
       },
     },
   },
-  { "williamboman/mason-lspconfig.nvim" },
+  { "mason-org/mason-lspconfig.nvim", version = "^1.0.0" },
   {
     "neovim/nvim-lspconfig",
     -- other settings removed for brevity
