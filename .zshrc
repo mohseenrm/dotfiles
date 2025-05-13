@@ -48,7 +48,7 @@ else
   export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
   alias cf="owl tubes render stargate console console-funnel identity -x console-funnel --stage"
   alias mc="owl tubes render stargate console messaging-monkey-backend messaging-console --stage"
-  alias email="echo \"mmukaddam+$id@twilio.com\""
+  alias email="echo \"mmukaddam+$id@twilio.com\" ; echo \"mmukaddam+$id@twilio.com\" | pbcopy"
 fi
 
 # Mac OS
