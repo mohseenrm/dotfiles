@@ -43,10 +43,12 @@ else
   esac
   # pnpm end
 
+  id=$(uuidgen | sed 's/-/+/g')
   # postgresql
   export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
   alias cf="owl tubes render stargate console console-funnel identity -x console-funnel --stage"
   alias mc="owl tubes render stargate console messaging-monkey-backend messaging-console --stage"
+  alias email="echo \"mmukaddam+$id@twilio.com\""
 fi
 
 # Mac OS
