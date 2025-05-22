@@ -43,7 +43,8 @@ else
   esac
   # pnpm end
 
-  id=$(uuidgen | sed 's/-/+/g')
+  uuid=$(openssl rand -hex 16)
+  id=$(echo "${uuid:0:8}-${uuid:8:4}-${uuid:12:4}-${uuid:16:4}-${uuid:20:12}")
   # postgresql
   export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
   alias cf="owl tubes render stargate console console-funnel identity -x console-funnel --stage"
