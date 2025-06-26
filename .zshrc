@@ -18,6 +18,7 @@ eval "$(pyenv virtualenv-init -)"
 
 if [[ $(id -un) == "momo" ]]; then
   export XDG_CONFIG_HOME="$HOME/.config"
+  export PATH="$PATH:/usr/local/go/bin"
   # INFO: battery cli tool to maintain battery level
   battery maintain 80
   # battery marinain stop
