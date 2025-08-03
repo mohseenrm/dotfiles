@@ -34,3 +34,5 @@ github-copilot
 !.aider.conf.yaml
 .env
 !.env.example
+
+.crush
