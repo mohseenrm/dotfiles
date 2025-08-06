@@ -8,5 +8,5 @@
 - [ ] Formatter with autocomplete
 - [x] Relative line numbers
 - [x] Yanky with telescope
-- [ ] mini.ai integration
+- [x] mini.ai integration
 

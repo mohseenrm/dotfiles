@@ -86,3 +86,7 @@ require("gitsigns").setup({
   --   enable = false,
   -- },
 })
+
+-- Custom themes
+-- require("cyberdream").setup()
+-- vim.cmd("colorscheme cyberdream")
