@@ -22,27 +22,30 @@ map("v", "L", "$", { desc = "Move to end of line" })
 
 -- copy file path to clipboard
 local function insertFullPath()
-  local filepath = vim.fn.expand("%")
+  local filepath = vim.fn.expand "%"
   vim.fn.setreg("+", filepath) -- write to clipboard
 end
 
 map("n", "<leader>fp", insertFullPath, { noremap = true })
 
 -- grepping
-map({"n", "v", "x"}, "<leader><leader>", "<CMD>Telescope find_files<CR>", { desc = "Telescope find files" })
-map({"n", "v", "x"}, "<leader><leader><leader>", "<CMD>Telescope live_grep<CR>", { desc = "Telescope live grep" })
-map({"n", "v", "x"}, "<leader>fr", "<CMD>Telescope oldfiles<CR>", { desc = "Telescope find recent files" })
-map({"n", "v", "x"}, "<leader>sm", "<CMD>Telescope marks<CR>", { desc = "Telescope find marks" })
-map({"n", "v", "x"}, "<leader>sg", "<CMD>Telescope live_grep<CR>", { desc = "Telescope live grep" })
+map({ "n", "v", "x" }, "<leader><leader>", "<CMD>Telescope find_files<CR>", { desc = "Telescope find files" })
+map({ "n", "v", "x" }, "<leader><leader><leader>", "<CMD>Telescope live_grep<CR>", { desc = "Telescope live grep" })
+map({ "n", "v", "x" }, "<leader>fr", "<CMD>Telescope oldfiles<CR>", { desc = "Telescope find recent files" })
+map({ "n", "v", "x" }, "<leader>sm", "<CMD>Telescope marks<CR>", { desc = "Telescope find marks" })
+map({ "n", "v", "x" }, "<leader>sg", "<CMD>Telescope live_grep<CR>", { desc = "Telescope live grep" })
 
 -- themeing
 map("n", "<leader>t", function()
-  require("nvchad.themes").open({
-    style = "compact"
-  })
+  require("nvchad.themes").open {
+    style = "compact",
+  }
 end)
 
 map("n", "<leader>q", "<CMD>qa<CR>", { desc = "Quit" })
 
 -- yanky
-map({"n", "v", "x"}, "<leader>p", "<CMD>Telescope yank_history<CR>", { desc = "Telescope yank history" })
+map({ "n", "v", "x" }, "<leader>p", "<CMD>Telescope yank_history<CR>", { desc = "Telescope yank history" })
+
+-- copilot chat
+map({ "n", "v", "x" }, "<leader>aq", "<CMD>CopilotChat<CR>", { desc = "AI quick chat" })
