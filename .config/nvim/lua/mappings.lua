@@ -39,3 +39,5 @@ map("n", "<leader>t", function()
     style = "compact"
   })
 end)
+
+map("n", "<leader>q", "<CMD>qa<CR>", { desc = "Quit" })

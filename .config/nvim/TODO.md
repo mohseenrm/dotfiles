@@ -1,6 +1,6 @@
 # TODOs
 
-- [ ] leader q should quit
+- [x] leader q should quit
 - [ ] Check Obsidian if it works
 - [ ] Configure search and grep with telescope
 - [ ] AI plugins with autocomplete
