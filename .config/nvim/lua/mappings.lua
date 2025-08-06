@@ -29,9 +29,11 @@ end
 map("n", "<leader>fp", insertFullPath, { noremap = true })
 
 -- grepping
-map("n", "<leader><leader>", "<CMD>Telescope find_files<CR>", { desc = "Telescope find files" })
-map("v", "<leader><leader>", "<CMD>Telescope find_files<CR>", { desc = "Telescope find files" })
-map("x", "<leader><leader>", "<CMD>Telescope find_files<CR>", { desc = "Telescope find files" })
+map({"n", "v", "x"}, "<leader><leader>", "<CMD>Telescope find_files<CR>", { desc = "Telescope find files" })
+map({"n", "v", "x"}, "<leader><leader><leader>", "<CMD>Telescope live_grep<CR>", { desc = "Telescope live grep" })
+map({"n", "v", "x"}, "<leader>fr", "<CMD>Telescope oldfiles<CR>", { desc = "Telescope find recent files" })
+map({"n", "v", "x"}, "<leader>sm", "<CMD>Telescope marks<CR>", { desc = "Telescope find marks" })
+map({"n", "v", "x"}, "<leader>sg", "<CMD>Telescope live_grep<CR>", { desc = "Telescope live grep" })
 
 -- themeing
 map("n", "<leader>t", function()
@@ -41,3 +43,6 @@ map("n", "<leader>t", function()
 end)
 
 map("n", "<leader>q", "<CMD>qa<CR>", { desc = "Quit" })
+
+-- yanky
+map({"n", "v", "x"}, "<leader>p", "<CMD>Telescope yank_history<CR>", { desc = "Telescope yank history" })

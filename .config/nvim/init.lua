@@ -10,7 +10,10 @@ if not vim.uv.fs_stat(lazypath) then
 end
 
 vim.opt.rtp:prepend(lazypath)
+
+-- Customized vim options
 vim.opt.foldenable = false
+vim.wo.relativenumber = true
 
 local lazy_config = require "configs.lazy"
 
