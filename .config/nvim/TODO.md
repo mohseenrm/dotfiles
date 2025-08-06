@@ -6,6 +6,7 @@
 - [ ] AI plugins with autocomplete
 - [ ] LSP setup with autocomplete
 - [ ] Formatter with autocomplete
+- [ ] Linter setup ?
 - [x] Relative line numbers
 - [x] Yanky with telescope
 - [x] mini.ai integration
