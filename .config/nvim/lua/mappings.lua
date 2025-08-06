@@ -27,3 +27,6 @@ local function insertFullPath()
 end
 
 map("n", "<leader>fp", insertFullPath, { noremap = true })
+
+-- grepping
+map("n", "<leader><leader>", "<CMD>Telescope find_files<CR>", { desc = "Telescope find files" })

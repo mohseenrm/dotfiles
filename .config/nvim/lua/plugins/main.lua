@@ -40,6 +40,16 @@ return {
         sorting_strategy = "ascending",
         winblend = 0,
       },
+      defaults = {
+        vimgrep_arguments = {
+          'rg',
+          '--with-filename',
+          '--line-number',
+          '--column',
+          '--smart-case',
+          '--hidden',
+        },
+      },
     },
 
     dependencies = {
