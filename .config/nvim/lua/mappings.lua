@@ -30,3 +30,12 @@ map("n", "<leader>fp", insertFullPath, { noremap = true })
 
 -- grepping
 map("n", "<leader><leader>", "<CMD>Telescope find_files<CR>", { desc = "Telescope find files" })
+map("v", "<leader><leader>", "<CMD>Telescope find_files<CR>", { desc = "Telescope find files" })
+map("x", "<leader><leader>", "<CMD>Telescope find_files<CR>", { desc = "Telescope find files" })
+
+-- themeing
+map("n", "<leader>t", function()
+  require("nvchad.themes").open({
+    style = "compact"
+  })
+end)
