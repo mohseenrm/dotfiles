@@ -85,6 +85,10 @@ return {
       servers = {
         -- pyright will be automatically installed with mason and loaded with lspconfig
         pyright = {},
+        bacon_ls = {
+          enabled = diagnostics == "bacon-ls",
+        },
+        rust_analyzer = { enabled = false },
       },
     },
   },
