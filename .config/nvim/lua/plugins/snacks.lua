@@ -1,6 +1,6 @@
-local home = os.getenv("HOME")
+local home = os.getenv "HOME"
 local banner_path = home .. "/.config/nvim/logo/banner.txt"
-local banner_cmd = "cat " .. banner_path .. " | lolcat -p 1"
+local banner_cmd = "bat " .. banner_path .. " | lolcat -p 1"
 
 local rosie_path = home .. "/.config/nvim/assets/rosie.png"
 local rosie_cmd = "chafa " .. rosie_path .. " --size 60X20 --format symbols --stretch"
@@ -26,8 +26,10 @@ return {
             section = "terminal",
             cmd = banner_cmd,
             indent = 2,
-            width = 75,
+            width = 80,
             height = 10,
+            ttl = 0.1,
+            padding = 1,
           },
           { section = "keys", gap = 1 },
           { section = "startup" },
@@ -37,7 +39,8 @@ return {
           {
             section = "terminal",
             cmd = rosie_cmd,
-            height = 30,
+            height = 32,
+            ttl = 0.1,
           },
         },
       },

@@ -1,6 +1,6 @@
 # 🏠 Dotfiles Collection
 
-> *A carefully curated collection of configuration files for a modern, productive development environment*
+> _A carefully curated collection of configuration files for a modern, productive development environment_
 
 [![macOS](https://img.shields.io/badge/macOS-supported-brightgreen.svg)](https://www.apple.com/macos/)
 [![Ubuntu](https://img.shields.io/badge/Ubuntu-supported-brightgreen.svg)](https://ubuntu.com/)
@@ -10,18 +10,22 @@
 
 This dotfiles repository transforms your terminal into a powerful, beautiful, and efficient development environment. All configurations are managed through **GNU Stow** for easy symlink management.
 
+[nvim](./assets/nvim.png)
+[term](./assets/term.png)
+[project](./assets/project.png)
+
 ### 🛠️ Core Tools & Features
 
-| Tool | Purpose | Benefits |
-|------|---------|----------|
-| 🚀 **Neovim** | Modern text editor | Lightning-fast editing with LSP support |
-| ⭐ **Starship** | Cross-shell prompt | Beautiful, informative prompt with git integration |
-| 🔍 **FZF** | Fuzzy finder | Blazing fast file/command searching |
-| 📁 **Zoxide** | Smart cd command | Jump to directories with intelligent frequency ranking |
-| 🎨 **Eza** | Modern ls replacement | Colorful, tree-view file listings |
-| 🦇 **Bat** | Cat with wings | Syntax highlighting and git integration |
-| 🏃 **Fastfetch** | System info | Beautiful system information display |
-| 🌈 **Lolcat** | Rainbow text | Add some fun to your terminal output |
+| Tool             | Purpose               | Benefits                                               |
+| ---------------- | --------------------- | ------------------------------------------------------ |
+| 🚀 **Neovim**    | Modern text editor    | Lightning-fast editing with LSP support                |
+| ⭐ **Starship**  | Cross-shell prompt    | Beautiful, informative prompt with git integration     |
+| 🔍 **FZF**       | Fuzzy finder          | Blazing fast file/command searching                    |
+| 📁 **Zoxide**    | Smart cd command      | Jump to directories with intelligent frequency ranking |
+| 🎨 **Eza**       | Modern ls replacement | Colorful, tree-view file listings                      |
+| 🦇 **Bat**       | Cat with wings        | Syntax highlighting and git integration                |
+| 🏃 **Fastfetch** | System info           | Beautiful system information display                   |
+| 🌈 **Lolcat**    | Rainbow text          | Add some fun to your terminal output                   |
 
 ### 🎯 Development Environment
 
@@ -54,6 +58,7 @@ cd ~/dotfiles
 ```
 
 The setup script will:
+
 1. 📦 Install all dependencies based on your OS
 2. 🔗 Create symlinks using GNU Stow
 3. ⚙️ Configure shell and tools
@@ -131,6 +136,7 @@ Key environment variables are configured:
 ### Common Issues
 
 #### 🔗 Symlink Conflicts
+
 ```bash
 # Remove existing symlinks
 stow -D .
@@ -143,6 +149,7 @@ stow .
 ```
 
 #### 🐚 Shell Not Changing
+
 ```bash
 # Make zsh default shell
 chsh -s $(which zsh)
@@ -152,6 +159,7 @@ source ~/.zshrc
 ```
 
 #### 📦 Missing Dependencies
+
 ```bash
 # Re-run setup script
 ./setup.sh
@@ -162,6 +170,7 @@ sudo apt install neovim zsh git curl          # Ubuntu
 ```
 
 #### 🚀 Neovim Issues
+
 ```bash
 # Clear Neovim cache
 rm -rf ~/.local/share/nvim
@@ -172,6 +181,7 @@ nvim +Lazy
 ```
 
 #### 🔍 FZF Not Working
+
 ```bash
 # Reinstall FZF
 ~/.fzf/install --all
@@ -222,6 +232,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Happy Coding!** 🎉
 
-*Made with ❤️ and lots of ☕*
+_Made with ❤️ and lots of ☕_
 
 </div>
