@@ -24,33 +24,6 @@ if [[ $(id -un) == "momo" ]]; then
   # battery marinain stop
 else
   # Work computer
-  export OWL="$HOME/Projects/owl"
-  eval "$("$OWL/bin/owl" init -)"
-  function aws-login() {  eval $( $OWL/bin/owl aws-login $@ ) ; };
-
-  function aws-ec2() {
-    LINES=${LINES} COLUMNS=${COLUMNS} ${OWL}/command/pellets/ec2/scripts/login-wrapper "${@}"
-  };
-
-  # sdkman
-  export SDKMAN_DIR="$HOME/.sdkman"
-  [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
-  # pnpm
-  export PNPM_HOME="/Users/mmukaddam/Library/pnpm"
-  case ":$PATH:" in
-    *":$PNPM_HOME:"*) ;;
-    *) export PATH="$PNPM_HOME:$PATH" ;;
-  esac
-  # pnpm end
-
-  uuid=$(openssl rand -hex 16)
-  id=$(echo "${uuid:0:8}${uuid:8:4}${uuid:12:4}${uuid:16:4}${uuid:20:12}")
-  # postgresql
-  export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
-  alias cf="owl tubes render stargate console console-funnel identity -x console-funnel --stage"
-  alias mc="owl tubes render stargate console messaging-monkey-backend messaging-console --stage"
-  alias email="echo \"mmukaddam+$id@twilio.com\" ; echo \"mmukaddam+$id@twilio.com\" | pbcopy"
 fi
 
 # Mac OS
