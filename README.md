@@ -10,9 +10,9 @@
 
 This dotfiles repository transforms your terminal into a powerful, beautiful, and efficient development environment. All configurations are managed through **GNU Stow** for easy symlink management.
 
-[nvim](./assets/nvim.png)
-[term](./assets/term.png)
-[project](./assets/project.png)
+![nvim](./assets/nvim.png)
+![term](./assets/term.png)
+![project](./assets/project.png)
 
 ### 🛠️ Core Tools & Features
 
