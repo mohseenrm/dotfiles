@@ -49,3 +49,6 @@ map({ "n", "v", "x" }, "<leader>p", "<CMD>Telescope yank_history<CR>", { desc = 
 
 -- copilot chat
 map({ "n", "v", "x" }, "<leader>aq", "<CMD>CopilotChat<CR>", { desc = "AI quick chat" })
+
+-- word wrap
+map({ "n", "v", "x" }, "<leader>ww", "<CMD>set wrap!<CR>", { desc = "Toggle word wrap" })
