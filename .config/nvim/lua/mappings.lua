@@ -52,3 +52,7 @@ map({ "n", "v", "x" }, "<leader>aq", "<CMD>CopilotChat<CR>", { desc = "AI quick 
 
 -- word wrap
 map({ "n", "v", "x" }, "<leader>ww", "<CMD>set wrap!<CR>", { desc = "Toggle word wrap" })
+
+-- lazy
+
+map({ "n", "v", "x" }, "<leader>l", "<CMD>Lazy<CR>", { desc = "Lazy" })
