@@ -47,7 +47,18 @@ require("telescope").setup {
     },
   },
   defaults = {
+    layout_config = { prompt_position = "bottom" },
     path_display = { "smart" },
+    vimgrep_arguments = {
+      "rg",
+      "--color=never",
+      "--no-heading",
+      "--with-filename",
+      "--line-number",
+      "--column",
+      "--smart-case",
+      "--hidden",
+    },
   },
 }
 
