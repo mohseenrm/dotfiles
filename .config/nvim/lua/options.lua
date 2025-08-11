@@ -8,5 +8,5 @@ o.autoindent = true
 o.copyindent = true
 o.breakindent = true
 o.clipboard = "unnamedplus"
-o.updatetime = 500
+o.updatetime = 100
 o.wrap = false
