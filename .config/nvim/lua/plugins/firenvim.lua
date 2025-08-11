@@ -1,5 +1,6 @@
 return {
   "glacambre/firenvim",
-  lazy = false,
+  enabled = false,
+  -- lazy = false,
   build = ":call firenvim#install(0)",
 }
