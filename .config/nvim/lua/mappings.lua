@@ -30,6 +30,7 @@ map("n", "<leader>fp", insertFullPath, { noremap = true })
 
 -- grepping
 map({ "n", "v", "x" }, "<leader><leader>", "<CMD>Telescope find_files<CR>", { desc = "Telescope find files" })
+map({ "n", "v", "x" }, "<leader>ff", "<CMD>Telescope find_files<CR>", { desc = "Telescope find files" })
 map({ "n", "v", "x" }, "<leader><leader><leader>", "<CMD>Telescope live_grep<CR>", { desc = "Telescope live grep" })
 map({ "n", "v", "x" }, "<leader>fr", "<CMD>Telescope oldfiles<CR>", { desc = "Telescope find recent files" })
 map({ "n", "v", "x" }, "<leader>sm", "<CMD>Telescope marks<CR>", { desc = "Telescope find marks" })
