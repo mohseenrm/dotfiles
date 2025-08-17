@@ -31,7 +31,7 @@ if [[ $(uname) == "Darwin" ]]; then
   export PATH="$HOME/.local/bin:$PATH"
 
   # zsh-syntax-highlighting
-  source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
   # zsh-autosuggestions
   source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -141,7 +141,7 @@ zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 precmd() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
-alias cd="zoxide"
+alias cd="z"
 # eza
 alias ls="eza --long --all --icons=\"always\" --show-symlinks"
 alias tree="eza --tree --all --icons=\"always\" --show-symlinks"
@@ -186,5 +186,3 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
 
 # Start fastfetch
 lolcat ~/.config/nvim/logo/fastfetch.txt | lolcat -p 1 --force | fastfetch --raw - --logo-width 55
-
-source '/opt/homebrew/opt/autoenv/activate.sh'
