@@ -52,8 +52,6 @@ fi
 
 # starship
 eval "$(starship init zsh)"
-# Zoxide
-eval "$(zoxide init --cmd cd zsh)"
 
 # History in cache directory:
 mkdir -p ~/.cache/zsh
@@ -186,3 +184,8 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
 
 # Start fastfetch
 lolcat ~/.config/nvim/logo/fastfetch.txt | lolcat -p 1 --force | fastfetch --raw - --logo-width 55
+
+if [[ $(uname) == "Darwin" ]]; then
+  # Zoxide
+  eval "$(zoxide init zsh)"
+fi
