@@ -72,6 +72,9 @@ return {
         rust_analyzer = { enabled = false },
       },
     },
+    config = function()
+      require "configs.lspconfig"
+    end,
   },
 
   -- add more treesitter parsers
@@ -145,7 +148,7 @@ return {
         "shfmt",
         "flake8",
         "deno",
-        -- "typescript-language-server",
+        "vtsls",
         "tailwindcss-language-server",
         "prettier",
         "sql-formatter",
