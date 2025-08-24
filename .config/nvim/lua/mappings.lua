@@ -57,3 +57,6 @@ map({ "n", "v", "x" }, "<leader>ww", "<CMD>set wrap!<CR>", { desc = "Toggle word
 -- lazy
 
 map({ "n", "v", "x" }, "<leader>l", "<CMD>Lazy<CR>", { desc = "Lazy" })
+
+-- LSP
+map({ "n", "v", "x" }, "<leader>cd", vim.diagnostic.open_float, { desc = "Show diagnostic under cursor" })
