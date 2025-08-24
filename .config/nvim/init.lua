@@ -101,3 +101,9 @@ require("gitsigns").setup {
 -- Custom themes
 -- require("cyberdream").setup()
 -- vim.cmd("colorscheme cyberdream")
+
+local vim = vim
+local opt = vim.opt
+
+opt.foldmethod = "expr"
+opt.foldexpr = "nvim_treesitter#foldexpr()"
