@@ -24,6 +24,10 @@ M.ui = {
     style = "atom",
   },
 
+  statusline = {
+    separator_style = "arrow",
+  },
+
   --  tabufline = {
   --     lazyload = false
   -- }
