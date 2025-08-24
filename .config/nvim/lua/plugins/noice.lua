@@ -11,8 +11,17 @@ return {
         enabled = false,
       },
     },
+    cmdline = {
+      view = "cmdline_popup",
+      opts = {
+        position = {
+          row = "50%",
+          col = "50%",
+        },
+      },
+    },
     presets = {
-      bottom_search = true,
+      bottom_search = false,
       command_palette = true,
       long_message_to_split = true,
       inc_rename = false,
