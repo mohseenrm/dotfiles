@@ -71,6 +71,11 @@ If you prefer to install step by step:
 ```bash
 # Install GNU Stow
 # macOS
+brew bundle
+# Dump new file
+brew bundle dump
+
+# Install standalone package
 brew install stow
 
 # Ubuntu
