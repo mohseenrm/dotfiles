@@ -1,5 +1,5 @@
 {
-  "CopilotChat.nvim": { "branch": "main", "commit": "98b50a6143ba2dedb545203e9b50eb36703def00" },
+  "CopilotChat.nvim": { "branch": "main", "commit": "e879659ed67be1c774d4598bce4a119a200f6622" },
   "LuaSnip": { "branch": "master", "commit": "de10d8414235b0a8cabfeba60d07c24304e71f5c" },
   "NvChad": { "branch": "v2.5", "commit": "29ebe31ea6a4edf351968c76a93285e6e108ea08" },
   "base46": { "branch": "v3.0", "commit": "0094095ed60aa55f7148bc1e783b0156f3e7f4f8" },
@@ -35,7 +35,7 @@
   "nvim-cmp": { "branch": "main", "commit": "b5311ab3ed9c846b585c0c15b7559be131ec4be9" },
   "nvim-colorizer.lua": { "branch": "master", "commit": "a065833f35a3a7cc3ef137ac88b5381da2ba302e" },
   "nvim-highlight-colors": { "branch": "main", "commit": "1ce0a09bfc28c7274e649d20927cea51e440b65c" },
-  "nvim-lspconfig": { "branch": "master", "commit": "e844850b3143a1627437f811549fc7d70cfedf05" },
+  "nvim-lspconfig": { "branch": "master", "commit": "fa12ecf9223acf573c6a45507bd0f885070f8857" },
   "nvim-notify": { "branch": "master", "commit": "397c7c1184745fca649e5104de659e6392ef5a4d" },
   "nvim-origami": { "branch": "main", "commit": "f25b61c7dc350189140d0a57522b38197403db86" },
   "nvim-tree.lua": { "branch": "master", "commit": "fefa335f1c8f690eb668a1efd18ee4fc6d64cd3e" },
