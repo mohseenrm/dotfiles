@@ -5,6 +5,8 @@ local lspconfig = require "lspconfig"
 local servers = {
   "html",
   "cssls",
+  "tailwindcss",
+  "vscode-css-language-server",
   "rust_analyzer",
 }
 
