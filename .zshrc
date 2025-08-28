@@ -190,3 +190,11 @@ if [[ $(uname) == "Darwin" ]]; then
   # Zoxide
   eval "$(zoxide init zsh)"
 fi
+
+# pnpm
+export PNPM_HOME="/Users/momo/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
