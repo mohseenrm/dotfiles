@@ -1,0 +1,9 @@
+{
+  "$schema": "https://charm.land/crush.json",
+  "lsp": {
+    "typescript": {
+      "command": "vtsls",
+      "args": ["--stdio"]
+    }
+  }
+}
