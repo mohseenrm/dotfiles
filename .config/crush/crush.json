@@ -5,5 +5,8 @@
       "command": "vtsls",
       "args": ["--stdio"]
     }
+  },
+  "permissions": {
+    "allowed_tools": ["view", "ls", "grep", "edit"]
   }
 }
