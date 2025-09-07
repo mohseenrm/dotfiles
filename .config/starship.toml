@@ -118,7 +118,7 @@ style = "bg:#ffafcc fg:#1a1b26"
 format = '[ $symbol ($version) ]($style)'
 
 [nodejs]
-symbol = ""
+symbol = " "
 style = "bg:#ffafcc fg:#1a1b26"
 format = '[ $symbol ($version) ]($style)'
 
@@ -141,4 +141,4 @@ format = '[ $symbol ($version) ]($style)'
 disabled = false
 time_format = "%R"              # Hour:Minute Format
 style = "bg:#65cbe9 fg:#1a1b26"
-format = '[  $time ]($style)'
+format = '[  $time ]($style)'
