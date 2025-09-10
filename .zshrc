@@ -154,7 +154,7 @@ alias aic="aider --model ollama_chat/deepseek-coder-v2 --config $HOME/aider.conf
 # Claude Code
 alias cc="claude"
 # Weather
-alias weather="curl wttr.in/Seattle%2C+WA+98103"
+alias weather="curl 'wttr.in/Seattle%2C+WA+98103?m'"
 
 # fzf
 source <(fzf --zsh)
