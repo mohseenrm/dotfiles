@@ -24,7 +24,7 @@ This dotfiles repository transforms your terminal into a powerful, beautiful, an
 | 📁 **Zoxide**    | Smart cd command      | Jump to directories with intelligent frequency ranking |
 | 🎨 **Eza**       | Modern ls replacement | Colorful, tree-view file listings                      |
 | 🦇 **Bat**       | Cat with wings        | Syntax highlighting and git integration                |
-| 🏃 **Fastfetch** | System info           | Beautiful system information display                   |
+| 🏃 **Fastfetch** | System info           | Beautiful system information display with custom images |
 | 🌈 **Lolcat**    | Rainbow text          | Add some fun to your terminal output                   |
 
 ### 🎯 Development Environment
@@ -91,13 +91,16 @@ stow .
 
 ```
 dotfiles/
+├── bin/                # 🔧 Custom binaries and scripts
+│   ├── fastfetch       # Custom compiled fastfetch with image support
+│   └── fastfetch-zellij # Wrapper script for zellij compatibility
 ├── .config/
 │   ├── nvim/           # 🚀 Neovim configuration
 │   ├── kitty/          # 🐱 Terminal emulator
 │   ├── starship.toml   # ⭐ Shell prompt
 │   ├── bat/            # 🦇 Syntax highlighter
 │   ├── eza/            # 📁 File listing
-│   ├── fastfetch/      # 🏃 System info
+│   ├── fastfetch/      # 🏃 System info with custom image
 │   ├── lazygit/        # 🌿 Git TUI
 │   ├── yazi/           # 📂 File manager
 │   └── zellij/         # 🔲 Terminal multiplexer
@@ -121,6 +124,10 @@ ll              # Detailed file listing with eza
 la              # All files including hidden
 tree            # Directory tree view
 
+# Fastfetch shortcuts
+ff              # Quick fastfetch with custom config and image
+fastfetch       # Function that handles zellij compatibility
+
 # Git shortcuts
 gs              # git status
 ga              # git add
@@ -135,6 +142,54 @@ Key environment variables are configured:
 - `EDITOR="nvim"` - Default editor
 - `AIDER_EDITOR="nvim"` - AI coding assistant editor
 - `MANPAGER="nvim +Man!"` - Use Neovim for man pages
+
+## 🖼️ Custom Fastfetch Setup
+
+This dotfiles includes a custom-compiled fastfetch binary with **ImageMagick7** and **chafa** support for displaying custom images as ASCII art in your terminal.
+
+### Features
+
+- **Custom Image Display**: Shows your custom image (`~/.config/nvim/assets/rosie.png`) instead of the default OS logo
+- **Zellij Compatibility**: Special function to work around terminal multiplexer limitations
+- **ASCII Art Conversion**: Uses chafa to convert images to beautiful terminal-compatible ASCII art
+
+### Usage
+
+```bash
+# Quick fastfetch with your custom config
+ff
+
+# Standard fastfetch (with zellij compatibility built-in)
+fastfetch --config "$HOME/dotfiles/.config/fastfetch/config.jsonc"
+
+# Use wrapper script directly
+~/dotfiles/bin/fastfetch-zellij --config "$HOME/dotfiles/.config/fastfetch/config.jsonc"
+```
+
+### Zellij Compatibility
+
+Fastfetch normally disables image logos when running in terminal multiplexers like zellij. This setup includes:
+
+1. **Shell Function**: Automatically handles zellij environment variables
+2. **Wrapper Script**: `bin/fastfetch-zellij` for direct usage
+3. **Custom Binary**: Compiled with full image support
+
+### Configuration
+
+Your fastfetch config (`~/.config/fastfetch/config.jsonc`) includes:
+- Custom image path and chafa rendering
+- Tokyo Night color scheme integration
+- Optimized layout for your terminal setup
+
+### Recompiling (if needed)
+
+```bash
+cd /path/to/fastfetch/source
+mkdir build && cd build
+cmake .. -DENABLE_IMAGEMAGICK7=ON -DENABLE_CHAFA=ON
+make -j$(nproc)
+cp fastfetch ~/dotfiles/bin/
+```
 
 ## 🐛 Troubleshooting
 
@@ -193,6 +248,23 @@ nvim +Lazy
 
 # Or via package manager
 brew reinstall fzf  # macOS
+```
+
+#### 🖼️ Fastfetch Image Not Showing
+
+```bash
+# Check if running in zellij (should show custom image)
+ff
+
+# Test outside terminal multiplexer
+unset ZELLIJ ZELLIJ_PANE_ID ZELLIJ_SESSION_NAME && fastfetch --config "$HOME/dotfiles/.config/fastfetch/config.jsonc"
+
+# Verify image file exists
+ls -la ~/.config/nvim/assets/rosie.png
+
+# Check fastfetch features
+~/dotfiles/bin/fastfetch --list-features
+# Should show: imagemagick7, chafa
 ```
 
 ### 🆘 Getting Help

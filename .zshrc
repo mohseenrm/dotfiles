@@ -29,7 +29,7 @@ fi
 
 # Mac OS
 if [[ $(uname) == "Darwin" ]]; then
-  export PATH="$HOME/.local/bin:$PATH"
+  export PATH="$HOME/.local/bin:$HOME/dotfiles/bin:$PATH"
 
   # zsh-syntax-highlighting
   source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -183,8 +183,34 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
   --color=spinner:#ff007c \
 "
 
+# Fastfetch function for zellij compatibility
+# This function temporarily unsets zellij environment variables to allow image logos
+fastfetch() {
+    # Store original zellij environment variables
+    local orig_zellij="$ZELLIJ"
+    local orig_pane_id="$ZELLIJ_PANE_ID"
+    local orig_session="$ZELLIJ_SESSION_NAME"
+    
+    # Temporarily unset zellij variables to bypass terminal multiplexer detection
+    unset ZELLIJ ZELLIJ_PANE_ID ZELLIJ_SESSION_NAME
+    
+    # Run fastfetch with all passed arguments
+    "$HOME/dotfiles/bin/fastfetch" "$@"
+    
+    # Restore original environment variables
+    [[ -n "$orig_zellij" ]] && export ZELLIJ="$orig_zellij"
+    [[ -n "$orig_pane_id" ]] && export ZELLIJ_PANE_ID="$orig_pane_id"
+    [[ -n "$orig_session" ]] && export ZELLIJ_SESSION_NAME="$orig_session"
+}
+
+# Fastfetch aliases
+alias ff='fastfetch --config "$HOME/dotfiles/.config/fastfetch/config.jsonc"'
+
+clear
+
 # Start fastfetch
-lolcat ~/.config/nvim/logo/fastfetch.txt | lolcat -p 1 --force | fastfetch --raw - --logo-width 55
+# lolcat ~/.config/nvim/logo/fastfetch.txt | lolcat -p 1 --force | fastfetch --raw - --logo-width 55
+fastfetch --config "$HOME/dotfiles/.config/fastfetch/config.jsonc"
 
 if [[ $(uname) == "Darwin" ]]; then
   # Zoxide

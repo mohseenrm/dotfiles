@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Fastfetch wrapper for zellij compatibility
+# This script temporarily unsets zellij environment variables to allow image logos
+
+# Store original values
+ORIG_ZELLIJ="$ZELLIJ"
+ORIG_ZELLIJ_PANE_ID="$ZELLIJ_PANE_ID"
+ORIG_ZELLIJ_SESSION_NAME="$ZELLIJ_SESSION_NAME"
+
+# Unset zellij variables temporarily
+unset ZELLIJ ZELLIJ_PANE_ID ZELLIJ_SESSION_NAME
+
+# Run fastfetch with all passed arguments
+"$(dirname "$0")/fastfetch" "$@"
+
+# Restore original values
+export ZELLIJ="$ORIG_ZELLIJ"
+export ZELLIJ_PANE_ID="$ORIG_ZELLIJ_PANE_ID"
+export ZELLIJ_SESSION_NAME="$ORIG_ZELLIJ_SESSION_NAME"
