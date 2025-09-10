@@ -36,3 +36,5 @@ github-copilot
 !.env.example
 
 .crush
+
+bin/fastfetch
