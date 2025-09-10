@@ -16,16 +16,16 @@ This dotfiles repository transforms your terminal into a powerful, beautiful, an
 
 ### 🛠️ Core Tools & Features
 
-| Tool             | Purpose               | Benefits                                               |
-| ---------------- | --------------------- | ------------------------------------------------------ |
-| 🚀 **Neovim**    | Modern text editor    | Lightning-fast editing with LSP support                |
-| ⭐ **Starship**  | Cross-shell prompt    | Beautiful, informative prompt with git integration     |
-| 🔍 **FZF**       | Fuzzy finder          | Blazing fast file/command searching                    |
-| 📁 **Zoxide**    | Smart cd command      | Jump to directories with intelligent frequency ranking |
-| 🎨 **Eza**       | Modern ls replacement | Colorful, tree-view file listings                      |
-| 🦇 **Bat**       | Cat with wings        | Syntax highlighting and git integration                |
+| Tool             | Purpose               | Benefits                                                |
+| ---------------- | --------------------- | ------------------------------------------------------- |
+| 🚀 **Neovim**    | Modern text editor    | Lightning-fast editing with LSP support                 |
+| ⭐ **Starship**  | Cross-shell prompt    | Beautiful, informative prompt with git integration      |
+| 🔍 **FZF**       | Fuzzy finder          | Blazing fast file/command searching                     |
+| 📁 **Zoxide**    | Smart cd command      | Jump to directories with intelligent frequency ranking  |
+| 🎨 **Eza**       | Modern ls replacement | Colorful, tree-view file listings                       |
+| 🦇 **Bat**       | Cat with wings        | Syntax highlighting and git integration                 |
 | 🏃 **Fastfetch** | System info           | Beautiful system information display with custom images |
-| 🌈 **Lolcat**    | Rainbow text          | Add some fun to your terminal output                   |
+| 🌈 **Lolcat**    | Rainbow text          | Add some fun to your terminal output                    |
 
 ### 🎯 Development Environment
 
@@ -91,22 +91,22 @@ stow .
 
 ```
 dotfiles/
-├── bin/                # 🔧 Custom binaries and scripts
-│   ├── fastfetch       # Custom compiled fastfetch with image support
+├── bin/                 # 🔧 Custom binaries and scripts
+│   ├── fastfetch        # Custom compiled fastfetch with image support
 │   └── fastfetch-zellij # Wrapper script for zellij compatibility
 ├── .config/
-│   ├── nvim/           # 🚀 Neovim configuration
-│   ├── kitty/          # 🐱 Terminal emulator
-│   ├── starship.toml   # ⭐ Shell prompt
-│   ├── bat/            # 🦇 Syntax highlighter
-│   ├── eza/            # 📁 File listing
-│   ├── fastfetch/      # 🏃 System info with custom image
-│   ├── lazygit/        # 🌿 Git TUI
-│   ├── yazi/           # 📂 File manager
-│   └── zellij/         # 🔲 Terminal multiplexer
-├── .zshrc              # 🐚 Shell configuration
-├── .gitconfig          # 📝 Git settings
-└── setup.sh            # 🛠️ Installation script
+│   ├── nvim/            # 🚀 Neovim configuration
+│   ├── kitty/           # 🐱 Terminal emulator
+│   ├── starship.toml    # ⭐ Shell prompt
+│   ├── bat/             # 🦇 Syntax highlighter
+│   ├── eza/             # 📁 File listing
+│   ├── fastfetch/       # 🏃 System info with custom image
+│   ├── lazygit/         # 🌿 Git TUI
+│   ├── yazi/            # 📂 File manager
+│   └── zellij/          # 🔲 Terminal multiplexer
+├── .zshrc               # 🐚 Shell configuration
+├── .gitconfig           # 📝 Git settings
+└── setup.sh             # 🛠️ Installation script
 ```
 
 ## 🔧 Customization
@@ -177,6 +177,7 @@ Fastfetch normally disables image logos when running in terminal multiplexers li
 ### Configuration
 
 Your fastfetch config (`~/.config/fastfetch/config.jsonc`) includes:
+
 - Custom image path and chafa rendering
 - Tokyo Night color scheme integration
 - Optimized layout for your terminal setup
