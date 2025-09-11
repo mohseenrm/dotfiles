@@ -105,9 +105,9 @@ stow .
 │       ├── rustaceanvim.lua # 🦀 Rust support
 │       └── ...
 ├── assets/
-│   └── rosie.png           # 🌹 Custom logo
+│   └── rosie.png            # 🐶 Custom logo
 └── logo/
-    └── banner.txt          # 🎨 ASCII art banner
+    └── banner.txt           # 🎨 ASCII art banner
 ```
 
 ## ⌨️ Key Mappings
