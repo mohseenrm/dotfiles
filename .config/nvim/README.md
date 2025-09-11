@@ -89,19 +89,19 @@ stow .
 .config/nvim/
 ├── init.lua                 # 🚀 Entry point
 ├── lua/
-│   ├── autocmds.lua        # 🔄 Auto commands
-│   ├── mappings.lua        # ⌨️  Key mappings
-│   ├── options.lua         # ⚙️  Vim options
-│   ├── chadrc.lua          # 🎨 NvChad configuration
-│   ├── configs/            # 🔧 Plugin configurations
-│   │   ├── conform.lua     # 📝 Code formatting
-│   │   ├── lazy.lua        # 📦 Plugin manager
-│   │   └── lspconfig.lua   # 🔍 Language servers
-│   └── plugins/            # 🔌 Plugin specifications
-│       ├── ai.lua          # 🤖 AI tools
-│       ├── copilot.lua     # 👨‍💻 GitHub Copilot
-│       ├── fzf.lua         # 🔍 Fuzzy finder
-│       ├── oil.lua         # 📁 File manager
+│   ├── autocmds.lua         # 🔄 Auto commands
+│   ├── mappings.lua         # ⌨️  Key mappings
+│   ├── options.lua          # ⚙️  Vim options
+│   ├── chadrc.lua           # 🎨 NvChad configuration
+│   ├── configs/             # 🔧 Plugin configurations
+│   │   ├── conform.lua      # 📝 Code formatting
+│   │   ├── lazy.lua         # 📦 Plugin manager
+│   │   └── lspconfig.lua    # 🔍 Language servers
+│   └── plugins/             # 🔌 Plugin specifications
+│       ├── ai.lua           # mini.ai (around/inside) tools
+│       ├── copilot.lua      # 👨‍💻 GitHub Copilot
+│       ├── fzf.lua          # 🔍 Fuzzy finder
+│       ├── oil.lua          # 📁 File manager
 │       ├── rustaceanvim.lua # 🦀 Rust support
 │       └── ...
 ├── assets/
