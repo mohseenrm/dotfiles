@@ -1,6 +1,6 @@
 # 🚀 Neovim Configuration
 
-> _A modern, feature-rich Neovim setup built on NvChad with AI-powered development tools_
+> _A modern, feature-rich Neovim setup built on NvChad_
 
 [![Neovim](https://img.shields.io/badge/Neovim-0.9+-brightgreen.svg)](https://neovim.io/)
 [![Lua](https://img.shields.io/badge/Lua-5.1+-blue.svg)](https://www.lua.org/)
@@ -358,4 +358,3 @@ This configuration is part of a larger dotfiles collection. Feel free to:
 _Powered by NvChad_
 
 </div>
-
