@@ -8,6 +8,7 @@ local servers = {
   "tailwindcss",
   "vscode-css-language-server",
   "rust_analyzer",
+  "pyright",
 }
 
 for _, lsp in ipairs(servers) do
