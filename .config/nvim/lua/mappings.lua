@@ -61,6 +61,7 @@ map({ "n", "v", "x" }, "<leader>l", "<CMD>Lazy<CR>", { desc = "Lazy" })
 -- LSP
 map({ "n", "v", "x" }, "<leader>cd", vim.diagnostic.open_float, { desc = "Show diagnostic under cursor" })
 
+-- Spectre: Search and Replace
 map("n", "<leader>S", '<cmd>lua require("spectre").toggle()<CR>', {
   desc = "Toggle Spectre",
 })
