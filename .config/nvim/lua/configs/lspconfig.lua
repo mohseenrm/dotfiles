@@ -6,7 +6,6 @@ local servers = {
   "html",
   "cssls",
   "tailwindcss",
-  "vscode-css-language-server",
   "rust_analyzer",
   "pyright",
 }
