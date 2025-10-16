@@ -1,38 +1,39 @@
 require("nvchad.configs.lspconfig").defaults()
 
-local lspconfig = require "lspconfig"
-
+-- Basic servers - just enable them with default configs
 local servers = {
   "html",
   "cssls",
   "tailwindcss",
-  "rust_analyzer",
+  "rust_analyzer", 
   "pyright",
 }
 
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {}
+for _, server in ipairs(servers) do
+  vim.lsp.enable(server)
 end
 
-lspconfig.vtsls.setup {
+-- Configure vtsls with custom settings
+vim.lsp.config('vtsls', {
   filetypes = {
     "javascript",
     "javascriptreact",
     "javascript.jsx",
-    "typescript",
+    "typescript", 
     "typescriptreact",
     "typescript.tsx",
   },
   on_new_config = function(new_config, new_root_dir)
     local util = require("lspconfig").util
-    -- Don't start vtsls if we're in a Deno project
     if new_root_dir and util.root_pattern("deno.json", "deno.jsonc")(new_root_dir) then
       new_config.enabled = false
     end
   end,
-}
+})
+vim.lsp.enable('vtsls')
 
-lspconfig.denols.setup {
+-- Configure denols with custom settings
+vim.lsp.config('denols', {
   root_dir = require("lspconfig").util.root_pattern("deno.json", "deno.jsonc"),
   single_file_support = false,
   settings = {
@@ -42,6 +43,5 @@ lspconfig.denols.setup {
       unstable = true,
     },
   },
-}
-
--- read :h vim.lsp.config for changing options of lsp servers
+})
+vim.lsp.enable('denols')
