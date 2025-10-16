@@ -78,30 +78,30 @@ return {
   },
 
   -- add more treesitter parsers
-  -- {
-  --   "nvim-treesitter/nvim-treesitter",
-  --   opts = {
-  --     ensure_installed = {
-  --       "bash",
-  --       "html",
-  --       "javascript",
-  --       "json",
-  --       "lua",
-  --       "markdown",
-  --       "markdown_inline",
-  --       "python",
-  --       "query",
-  --       "regex",
-  --       "swift",
-  --       "tsx",
-  --       "rust",
-  --       "ron",
-  --       "typescript",
-  --       "vim",
-  --       "yaml",
-  --     },
-  --   },
-  -- },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        "bash",
+        "html",
+        "javascript",
+        "json",
+        "lua",
+        "markdown",
+        "markdown_inline",
+        "python",
+        "query",
+        "regex",
+        "tsx",
+        "typescript",
+        "rust",
+        "ron",
+        "typescript",
+        "vim",
+        "yaml",
+      },
+    },
+  },
 
   -- since `vim.tbl_deep_extend`, can only merge tables and not lists, the code above
   -- would overwrite `ensure_installed` with the new value.
