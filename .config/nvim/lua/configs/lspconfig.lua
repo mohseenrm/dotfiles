@@ -23,25 +23,62 @@ vim.lsp.config('vtsls', {
     "typescriptreact",
     "typescript.tsx",
   },
-  on_new_config = function(new_config, new_root_dir)
-    local util = require("lspconfig").util
-    if new_root_dir and util.root_pattern("deno.json", "deno.jsonc")(new_root_dir) then
-      new_config.enabled = false
-    end
-  end,
 })
-vim.lsp.enable('vtsls')
 
 -- Configure denols with custom settings
 vim.lsp.config('denols', {
-  root_dir = require("lspconfig").util.root_pattern("deno.json", "deno.jsonc"),
   single_file_support = false,
   settings = {
     deno = {
       enable = true,
       lint = true,
       unstable = true,
+      suggest = {
+        imports = {
+          hosts = {
+            ["https://deno.land"] = true,
+          },
+        },
+      },
     },
   },
 })
+
+-- Enable both LSPs
+vim.lsp.enable('vtsls')
 vim.lsp.enable('denols')
+
+-- Commands to disable LSPs
+vim.api.nvim_create_user_command('DisableDeno', function()
+  local clients = vim.lsp.get_clients({ name = "denols" })
+  for _, client in ipairs(clients) do
+    vim.lsp.stop_client(client.id)
+  end
+  vim.notify("Disabled denols", vim.log.levels.INFO)
+end, {
+  desc = 'Disable denols LSP'
+})
+
+vim.api.nvim_create_user_command('DisableVtsls', function()
+  local clients = vim.lsp.get_clients({ name = "vtsls" })
+  for _, client in ipairs(clients) do
+    vim.lsp.stop_client(client.id)
+  end
+  vim.notify("Disabled vtsls", vim.log.levels.INFO)
+end, {
+  desc = 'Disable vtsls LSP'
+})
+
+vim.api.nvim_create_user_command('EnableDeno', function()
+  vim.lsp.enable('denols')
+  vim.notify("Enabled denols", vim.log.levels.INFO)
+end, {
+  desc = 'Enable denols LSP'
+})
+
+vim.api.nvim_create_user_command('EnableVtsls', function()
+  vim.lsp.enable('vtsls')
+  vim.notify("Enabled vtsls", vim.log.levels.INFO)
+end, {
+  desc = 'Enable vtsls LSP'
+})
