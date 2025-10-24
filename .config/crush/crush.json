@@ -8,31 +8,5 @@
   },
   "permissions": {
     "allowed_tools": ["view", "ls", "grep", "edit", "multiedit"]
-  },
-  "providers": {
-    "ollama": {
-      "name": "Ollama",
-      "base_url": "http://localhost:11434/v1/",
-      "type": "openai",
-      "models": [
-        {
-          "name": "GPT OSS 120B",
-          "id": "gpt-oss:latest",
-          "context_window": 256000,
-          "default_max_tokens": -1,
-          "supports_tools": true,
-          "can_reason": true,
-          "has_reasoning_efforts": true,
-          "supports_attachments": true
-        }
-      ]
-    }
-  },
-  "models": {
-    "default": {
-      "model": "gpt-oss:latest",
-      "provider": "ollama",
-      "think": true
-    }
   }
 }
