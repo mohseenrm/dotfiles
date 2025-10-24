@@ -7,6 +7,7 @@ local servers = {
   "tailwindcss",
   "rust_analyzer", 
   "pyright",
+  "black"
 }
 
 for _, server in ipairs(servers) do
