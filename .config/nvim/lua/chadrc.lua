@@ -6,7 +6,7 @@
 local M = {}
 
 M.base46 = {
-  theme = "material-deep-ocean",
+  theme = "neofusion",
 
   hl_override = {
     St_NormalMode = { bg = "#86e1fc" },
