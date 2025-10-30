@@ -60,5 +60,6 @@ return {
     words = { enabled = true },
     scroll = { enabled = false },
     picker = { enabled = false },
+    indent = { enabled = true },
   },
 }
