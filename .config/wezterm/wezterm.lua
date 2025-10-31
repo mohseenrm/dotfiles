@@ -178,7 +178,7 @@ config.cursor_blink_ease_out = "Constant"
 -- ============================================================================
 
 config.front_end = "OpenGL" -- Use GPU acceleration
-config.max_fps = 120
+config.max_fps = 240
 
 -- Scrollback
 config.scrollback_lines = 10000
