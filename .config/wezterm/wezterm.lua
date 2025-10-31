@@ -13,8 +13,12 @@ end
 -- APPEARANCE
 -- ============================================================================
 
-config.hide_tab_bar_if_only_one_tab = true
+-- Tab bar
 config.enable_tab_bar = false
+config.use_fancy_tab_bar = false
+config.hide_tab_bar_if_only_one_tab = true
+config.tab_bar_at_bottom = false
+
 -- Font Configuration
 config.font = wezterm.font_with_fallback({
 	{
@@ -163,12 +167,6 @@ config.window_padding = {
 	bottom = 0,
 }
 
--- Tab bar
-config.enable_tab_bar = false
-config.use_fancy_tab_bar = false
-config.hide_tab_bar_if_only_one_tab = true
-config.tab_bar_at_bottom = false
-
 -- Cursor
 config.default_cursor_style = "SteadyBlock"
 config.animation_fps = 1
@@ -179,9 +177,8 @@ config.cursor_blink_ease_out = "Constant"
 -- PERFORMANCE
 -- ============================================================================
 
-config.front_end = "WebGpu" -- Use GPU acceleration
-config.webgpu_power_preference = "HighPerformance"
-config.max_fps = 240
+config.front_end = "OpenGL" -- Use GPU acceleration
+config.max_fps = 120
 
 -- Scrollback
 config.scrollback_lines = 10000
@@ -337,12 +334,5 @@ config.check_for_updates = false
 config.set_environment_variables = {
 	TERM_PROGRAM = "WezTerm",
 }
-
--- Ensure PATH is available for neovim's jobstart/system calls
--- This fixes 'gx' in oil.nvim and URL opening in plugins
-config.default_prog = { "/bin/zsh", "-l" }
-
--- Set proper terminal type for better compatibility
-config.term = "wezterm"
 
 return config
