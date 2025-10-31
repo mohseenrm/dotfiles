@@ -27,9 +27,13 @@
 ## Tool Configurations
 
 - **Editor**: Neovim is the primary editor (`export EDITOR="nvim"`)
-- **Terminal**: Uses zsh with starship prompt, zoxide, and fzf
+- **Terminal**: Wezterm (supports both kitty and sixel protocols for images)
+  - Alternative: Kitty (config preserved in `.config/kitty/`)
+  - Migration: `./bin/migrate-to-wezterm.sh` (see `docs/wezterm-migration-plan.md`)
+- **Shell**: zsh with starship prompt, zoxide, and fzf
+- **Multiplexer**: Zellij (works with Wezterm's image protocols)
 - **AI Tools**: Configured for aider with claude-3-7-sonnet model
-- **Theme**: Tokyo Night theme applied to various tools (kitty, bat, fzf)
+- **Theme**: Tokyo Night theme applied to various tools (wezterm, kitty, bat, fzf)
 
 ## Project Structure
 
