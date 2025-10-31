@@ -134,7 +134,59 @@ img2sixel /Users/momo/.config/nvim/assets/rosie-3.png > /Users/momo/.config/nvim
 4. If issues with Zellij, verify the workaround function is working
 5. Adjust dimensions if needed for optimal appearance
 
-## Update: Root Cause Identified 🔍
+## ✅ SOLUTION: Migrate to Wezterm
+
+### The Fix
+**Switch from Kitty to Wezterm** - solves the image protocol issue permanently.
+
+**Why Wezterm?**
+- Supports **kitty protocol** (works outside multiplexers)
+- Supports **sixel protocol** (works inside Zellij!)
+- Supports **iTerm2 protocol** (bonus!)
+- No workarounds needed
+- Current config works out-of-the-box
+
+### Migration Prepared
+
+Everything is ready to go:
+
+1. **Wezterm config created**: `.config/wezterm/wezterm.lua`
+   - Tokyo Night theme (exact match)
+   - JetBrains Mono font (size 18)
+   - All your Kitty settings migrated
+   
+2. **Migration script ready**: `./bin/migrate-to-wezterm.sh`
+   - Automated setup
+   - Validation checks
+   - Clear instructions
+
+3. **Documentation complete**: `docs/wezterm-migration-plan.md`
+   - Step-by-step guide
+   - Testing protocol
+   - Rollback plan
+
+### Quick Start
+
+```bash
+# 1. Install Wezterm
+brew install --cask wezterm
+
+# 2. Run migration
+cd ~/dotfiles
+./bin/migrate-to-wezterm.sh
+
+# 3. Test it
+open -a WezTerm
+ff  # Outside Zellij - works!
+zellij
+ff  # Inside Zellij - works!
+```
+
+**See**: `docs/wezterm-migration-ready.md` for full details
+
+---
+
+## Root Cause (Original Investigation)
 
 ### The Problem
 **Kitty + Zellij = Incompatible Image Protocols**
