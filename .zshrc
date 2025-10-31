@@ -190,11 +190,9 @@ fastfetch() {
     local orig_zellij="$ZELLIJ"
     local orig_pane_id="$ZELLIJ_PANE_ID"
     local orig_session="$ZELLIJ_SESSION_NAME"
-    local orig_term_program="$TERM_PROGRAM"
     
     # Temporarily unset zellij variables to bypass terminal multiplexer detection
     unset ZELLIJ ZELLIJ_PANE_ID ZELLIJ_SESSION_NAME
-    export TERM_PROGRAM=kitty
     
     # Run fastfetch with all passed arguments and disable pipe mode
     "$HOME/dotfiles/bin/fastfetch" "$@" --pipe false
@@ -203,7 +201,6 @@ fastfetch() {
     [[ -n "$orig_zellij" ]] && export ZELLIJ="$orig_zellij"
     [[ -n "$orig_pane_id" ]] && export ZELLIJ_PANE_ID="$orig_pane_id"
     [[ -n "$orig_session" ]] && export ZELLIJ_SESSION_NAME="$orig_session"
-    [[ -n "$orig_term_program" ]] && export TERM_PROGRAM="$orig_term_program" || unset TERM_PROGRAM
 }
 
 # Fastfetch aliases
