@@ -25,7 +25,7 @@ config.font = wezterm.font_with_fallback({
 	"Noto Color Emoji",
 })
 
-config.font_size = 12.0
+config.font_size = 16.0
 
 -- Font variations
 config.font_rules = {
@@ -340,7 +340,7 @@ config.set_environment_variables = {
 
 -- Ensure PATH is available for neovim's jobstart/system calls
 -- This fixes 'gx' in oil.nvim and URL opening in plugins
-config.default_prog = { '/bin/zsh', '-l' }
+config.default_prog = { "/bin/zsh", "-l" }
 
 -- Set proper terminal type for better compatibility
 config.term = "wezterm"
