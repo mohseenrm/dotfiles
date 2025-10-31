@@ -13,6 +13,8 @@ end
 -- APPEARANCE
 -- ============================================================================
 
+config.hide_tab_bar_if_only_one_tab = true
+config.enable_tab_bar = false
 -- Font Configuration
 config.font = wezterm.font_with_fallback({
 	{
@@ -23,7 +25,7 @@ config.font = wezterm.font_with_fallback({
 	"Noto Color Emoji",
 })
 
-config.font_size = 18.0
+config.font_size = 12.0
 
 -- Font variations
 config.font_rules = {
@@ -168,8 +170,8 @@ config.hide_tab_bar_if_only_one_tab = false
 config.tab_bar_at_bottom = false
 
 -- Cursor
-config.default_cursor_style = "Block"
-config.cursor_blink_rate = 0 -- No blinking (like Kitty default)
+config.default_cursor_style = "SteadyBlock"
+config.animation_fps = 1
 config.cursor_blink_ease_in = "Constant"
 config.cursor_blink_ease_out = "Constant"
 
@@ -179,8 +181,7 @@ config.cursor_blink_ease_out = "Constant"
 
 config.front_end = "WebGpu" -- Use GPU acceleration
 config.webgpu_power_preference = "HighPerformance"
-config.animation_fps = 60
-config.max_fps = 120
+config.max_fps = 240
 
 -- Scrollback
 config.scrollback_lines = 10000
