@@ -10,3 +10,6 @@ o.breakindent = true
 o.clipboard = "unnamedplus"
 o.updatetime = 100
 o.wrap = false
+
+-- Disable vim-markdown's gx mapping (conflicts with our custom one)
+vim.g.vim_markdown_no_default_key_mappings = 1

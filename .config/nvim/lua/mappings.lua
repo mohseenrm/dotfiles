@@ -74,3 +74,81 @@ map("v", "<leader>sw", '<esc><cmd>lua require("spectre").open_visual()<CR>', {
 map("n", "<leader>sp", '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', {
   desc = "Search on current file",
 })
+
+-- Open URL under cursor with gx
+local function open_url_under_cursor()
+  local function get_visual_selection()
+    local _, start_row, start_col = unpack(vim.fn.getpos("'<"))
+    local _, end_row, end_col = unpack(vim.fn.getpos("'>"))
+    
+    if start_row == end_row then
+      local line = vim.fn.getline(start_row)
+      return string.sub(line, start_col, end_col)
+    end
+    return nil
+  end
+
+  -- Try to get URL from visual selection first
+  local url = get_visual_selection()
+  
+  -- If no visual selection, try to extract URL from current line
+  if not url or url == "" then
+    local line = vim.fn.getline(".")
+    local col = vim.fn.col(".")
+    
+    -- Try to find URL patterns around cursor
+    -- Match URLs like http://, https://, www., or markdown links
+    local patterns = {
+      "https?://[%w-_%.%?%.:/%+=&]+",  -- http(s) URLs
+      "www%.[%w-_%.%?%.:/%+=&]+",       -- www URLs
+      "%[.-%]%((.-)%)",                 -- markdown links [text](url)
+      "<(.-)>",                         -- angle bracket URLs <url>
+    }
+    
+    for _, pattern in ipairs(patterns) do
+      for match in line:gmatch(pattern) do
+        local start_pos = line:find(match, 1, true)
+        local end_pos = start_pos + #match - 1
+        
+        if start_pos and col >= start_pos and col <= end_pos then
+          -- For markdown links, extract just the URL from [text](url)
+          if pattern == "%[.-%]%((.-)%)" then
+            url = match:match("%((.-)%)")
+          elseif pattern == "<(.-)>" then
+            url = match
+          else
+            url = match
+          end
+          break
+        end
+      end
+      if url then break end
+    end
+  end
+  
+  if url and url ~= "" then
+    -- Add http:// prefix if missing
+    if not url:match("^https?://") and not url:match("^www%.") then
+      -- Check if it looks like a relative path
+      if url:match("^%.%./") or url:match("^%./") or url:match("^/") then
+        -- It's a file path, use gf instead
+        vim.cmd("normal! gf")
+        return
+      end
+    end
+    
+    -- Add http:// to www. URLs
+    if url:match("^www%.") then
+      url = "http://" .. url
+    end
+    
+    -- Open URL with macOS 'open' command
+    vim.fn.jobstart({ "open", url }, { detach = true })
+    vim.notify("Opening: " .. url, vim.log.levels.INFO)
+  else
+    vim.notify("No URL found under cursor", vim.log.levels.WARN)
+  end
+end
+
+map("n", "gx", open_url_under_cursor, { desc = "Open URL under cursor", noremap = true, silent = true })
+map("v", "gx", open_url_under_cursor, { desc = "Open selected URL", noremap = true, silent = true })
