@@ -305,6 +305,7 @@ config.keys = {
 -- HYPERLINKS
 -- ============================================================================
 
+-- Enable clickable hyperlinks
 config.hyperlink_rules = wezterm.default_hyperlink_rules()
 
 -- Add custom rules for common patterns
@@ -336,5 +337,12 @@ config.check_for_updates = false
 config.set_environment_variables = {
 	TERM_PROGRAM = "WezTerm",
 }
+
+-- Ensure PATH is available for neovim's jobstart/system calls
+-- This fixes 'gx' in oil.nvim and URL opening in plugins
+config.default_prog = { '/bin/zsh', '-l' }
+
+-- Set proper terminal type for better compatibility
+config.term = "wezterm"
 
 return config
