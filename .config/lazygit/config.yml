@@ -1,8 +1,8 @@
 git:
-  paging:
-    # colorArg: never
-    pager: delta --paging=never --syntax-theme='tokyonight_night'
-    useConfig: false
+  pagers:
+    - # colorArg: never
+      pager: delta --paging=never --syntax-theme='tokyonight_night'
+      useConfig: false
 gui:
   nerdFontsVersion: "3"
   theme:
@@ -25,6 +25,5 @@ gui:
       - "#c8d3f5"
     searchingActiveBorderColor:
       - "#ffc777"
-
   authorColors:
     "*": "#86e1fc"
