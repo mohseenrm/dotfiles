@@ -22,7 +22,7 @@ config.tab_bar_at_bottom = false
 -- Font Configuration
 config.font = wezterm.font_with_fallback({
 	{
-		family = "JetBrains Mono",
+		family = "JetBrainsMono Nerd Font",
 		weight = "Medium",
 		harfbuzz_features = { "calt", "liga" },
 	},

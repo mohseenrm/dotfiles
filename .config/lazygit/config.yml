@@ -5,6 +5,7 @@ git:
       useConfig: false
 gui:
   nerdFontsVersion: "3"
+  showFileIcons: true
   theme:
     activeBorderColor:
       - "#4fd6be"
