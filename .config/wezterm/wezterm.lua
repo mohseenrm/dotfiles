@@ -23,13 +23,18 @@ config.tab_bar_at_bottom = false
 config.font = wezterm.font_with_fallback({
 	{
 		family = "JetBrains Mono",
-		weight = "Regular",
+		weight = "Medium",
+		harfbuzz_features = { "calt", "liga" },
 	},
 	"Apple Color Emoji",
 	"Noto Color Emoji",
 })
 
-config.font_size = 16.0
+config.font_size = 18.0
+
+-- Font rendering options for sharper text
+config.freetype_load_target = "HorizontalLcd"
+config.freetype_render_target = "HorizontalLcd"
 
 -- Font variations
 config.font_rules = {
@@ -39,6 +44,7 @@ config.font_rules = {
 		font = wezterm.font({
 			family = "JetBrains Mono",
 			weight = "Bold",
+			harfbuzz_features = { "calt", "liga" },
 		}),
 	},
 	{
@@ -46,7 +52,9 @@ config.font_rules = {
 		italic = true,
 		font = wezterm.font({
 			family = "JetBrains Mono",
+			weight = "Medium",
 			style = "Italic",
+			harfbuzz_features = { "calt", "liga" },
 		}),
 	},
 	{
@@ -56,6 +64,7 @@ config.font_rules = {
 			family = "JetBrains Mono",
 			weight = "Bold",
 			style = "Italic",
+			harfbuzz_features = { "calt", "liga" },
 		}),
 	},
 }
