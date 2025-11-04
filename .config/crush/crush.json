@@ -6,6 +6,21 @@
       "args": ["--stdio"]
     }
   },
+  "mcp": {
+    "playwright": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "@playwright/mcp@latest",
+        "--allowed-hosts",
+        "*",
+        "--browser",
+        "chrome"
+      ],
+      "disabled": false,
+      "timeout": 150000
+    }
+  },
   "permissions": {
     "allowed_tools": ["view", "ls", "grep", "edit", "multiedit"]
   }
