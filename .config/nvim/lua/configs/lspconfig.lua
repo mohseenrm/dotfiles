@@ -5,9 +5,9 @@ local servers = {
   "html",
   "cssls",
   "tailwindcss",
-  "rust_analyzer", 
+  "rust_analyzer",
   "pyright",
-  "black"
+  "black",
 }
 
 for _, server in ipairs(servers) do
@@ -15,19 +15,19 @@ for _, server in ipairs(servers) do
 end
 
 -- Configure vtsls with custom settings
-vim.lsp.config('vtsls', {
+vim.lsp.config("vtsls", {
   filetypes = {
     "javascript",
     "javascriptreact",
     "javascript.jsx",
-    "typescript", 
+    "typescript",
     "typescriptreact",
     "typescript.tsx",
   },
 })
 
 -- Configure denols with custom settings
-vim.lsp.config('denols', {
+vim.lsp.config("denols", {
   single_file_support = false,
   settings = {
     deno = {
@@ -46,40 +46,40 @@ vim.lsp.config('denols', {
 })
 
 -- Enable both LSPs
-vim.lsp.enable('vtsls')
-vim.lsp.enable('denols')
+vim.lsp.enable "vtsls"
+vim.lsp.enable "denols"
 
 -- Commands to disable LSPs
-vim.api.nvim_create_user_command('DisableDeno', function()
-  local clients = vim.lsp.get_clients({ name = "denols" })
+vim.api.nvim_create_user_command("DisableDeno", function()
+  local clients = vim.lsp.get_clients { name = "denols" }
   for _, client in ipairs(clients) do
     vim.lsp.stop_client(client.id)
   end
   vim.notify("Disabled denols", vim.log.levels.INFO)
 end, {
-  desc = 'Disable denols LSP'
+  desc = "Disable denols LSP",
 })
 
-vim.api.nvim_create_user_command('DisableVtsls', function()
-  local clients = vim.lsp.get_clients({ name = "vtsls" })
+vim.api.nvim_create_user_command("DisableVtsls", function()
+  local clients = vim.lsp.get_clients { name = "vtsls" }
   for _, client in ipairs(clients) do
     vim.lsp.stop_client(client.id)
   end
   vim.notify("Disabled vtsls", vim.log.levels.INFO)
 end, {
-  desc = 'Disable vtsls LSP'
+  desc = "Disable vtsls LSP",
 })
 
-vim.api.nvim_create_user_command('EnableDeno', function()
-  vim.lsp.enable('denols')
+vim.api.nvim_create_user_command("EnableDeno", function()
+  vim.lsp.enable "denols"
   vim.notify("Enabled denols", vim.log.levels.INFO)
 end, {
-  desc = 'Enable denols LSP'
+  desc = "Enable denols LSP",
 })
 
-vim.api.nvim_create_user_command('EnableVtsls', function()
-  vim.lsp.enable('vtsls')
+vim.api.nvim_create_user_command("EnableVtsls", function()
+  vim.lsp.enable "vtsls"
   vim.notify("Enabled vtsls", vim.log.levels.INFO)
 end, {
-  desc = 'Enable vtsls LSP'
+  desc = "Enable vtsls LSP",
 })

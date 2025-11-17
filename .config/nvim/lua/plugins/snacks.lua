@@ -46,10 +46,10 @@ return {
       },
       preset = {
         keys = {
-          { icon = " ", key = "f", desc = "Find File", action = ":lua require('telescope.builtin').find_files()" },
+          { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.picker.files()" },
           { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
-          { icon = " ", key = "m", desc = "Search Marks", action = ":lua require('telescope.builtin').marks()" },
-          { icon = " ", key = "r", desc = "Recent Files", action = ":lua require('telescope.builtin').oldfiles()" },
+          { icon = " ", key = "m", desc = "Search Marks", action = ":lua Snacks.picker.marks()" },
+          { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.picker.recent()" },
           { icon = "󰒲 ", key = "L", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy },
           { icon = " ", key = "q", desc = "Quit", action = ":qa" },
         },
@@ -59,7 +59,19 @@ return {
     statuscolumn = { enabled = true },
     words = { enabled = true },
     scroll = { enabled = false },
-    picker = { enabled = false },
+    picker = {
+      enabled = true,
+      layout = "telescope",
+      -- Configure snacks picker to match your telescope setup
+      sources = {
+        files = {
+          hidden = true, -- show hidden files (matches your rg --hidden)
+        },
+        grep = {
+          hidden = true, -- search hidden files
+        },
+      },
+    },
     indent = { enabled = true },
   },
 }

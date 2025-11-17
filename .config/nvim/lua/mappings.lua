@@ -29,12 +29,24 @@ end
 map("n", "<leader>fp", insertFullPath, { noremap = true })
 
 -- grepping
-map({ "n", "v", "x" }, "<leader><leader>", "<CMD>Telescope find_files<CR>", { desc = "Telescope find files" })
-map({ "n", "v", "x" }, "<leader>ff", "<CMD>Telescope find_files<CR>", { desc = "Telescope find files" })
-map({ "n", "v", "x" }, "<leader><leader><leader>", "<CMD>Telescope live_grep<CR>", { desc = "Telescope live grep" })
-map({ "n", "v", "x" }, "<leader>fr", "<CMD>Telescope oldfiles<CR>", { desc = "Telescope find recent files" })
-map({ "n", "v", "x" }, "<leader>sm", "<CMD>Telescope marks<CR>", { desc = "Telescope find marks" })
-map({ "n", "v", "x" }, "<leader>sg", "<CMD>Telescope live_grep<CR>", { desc = "Telescope live grep" })
+map({ "n", "v", "x" }, "<leader><leader>", function()
+  Snacks.picker.files()
+end, { desc = "Find files" })
+map({ "n", "v", "x" }, "<leader>ff", function()
+  Snacks.picker.files()
+end, { desc = "Find files" })
+map({ "n", "v", "x" }, "<leader><leader><leader>", function()
+  Snacks.picker.grep()
+end, { desc = "Live grep" })
+map({ "n", "v", "x" }, "<leader>fr", function()
+  Snacks.picker.recent()
+end, { desc = "Find recent files" })
+map({ "n", "v", "x" }, "<leader>sm", function()
+  Snacks.picker.marks()
+end, { desc = "Find marks" })
+map({ "n", "v", "x" }, "<leader>sg", function()
+  Snacks.picker.grep()
+end, { desc = "Live grep" })
 
 -- themeing
 map("n", "<leader>t", function()
@@ -46,7 +58,38 @@ end)
 map("n", "<leader>q", "<CMD>qa<CR>", { desc = "Quit" })
 
 -- yanky
-map({ "n", "v", "x" }, "<leader>p", "<CMD>Telescope yank_history<CR>", { desc = "Telescope yank history" })
+map({ "n", "v", "x" }, "<leader>p", function()
+  Snacks.picker.registers()
+end, { desc = "Yank history" })
+
+-- Additional snacks picker keymaps
+map("n", "<leader>fb", function()
+  Snacks.picker.buffers()
+end, { desc = "Find buffers" })
+map("n", "<leader>fh", function()
+  Snacks.picker.help()
+end, { desc = "Find help" })
+map("n", "<leader>fk", function()
+  Snacks.picker.keymaps()
+end, { desc = "Find keymaps" })
+map("n", "<leader>gc", function()
+  Snacks.picker.git_log()
+end, { desc = "Git log" })
+map("n", "<leader>gs", function()
+  Snacks.picker.git_status()
+end, { desc = "Git status" })
+map("n", "<leader>sd", function()
+  Snacks.picker.diagnostics()
+end, { desc = "Diagnostics" })
+map("n", "<leader>ss", function()
+  Snacks.picker.lsp_symbols()
+end, { desc = "LSP symbols" })
+map("n", "gr", function()
+  Snacks.picker.lsp_references()
+end, { desc = "LSP references" })
+map("n", "gd", function()
+  Snacks.picker.lsp_definitions()
+end, { desc = "LSP definitions" })
 
 -- copilot chat
 map({ "n", "v", "x" }, "<leader>aq", "<CMD>CopilotChat<CR>", { desc = "AI quick chat" })
@@ -78,9 +121,9 @@ map("n", "<leader>sp", '<cmd>lua require("spectre").open_file_search({select_wor
 -- Open URL under cursor with gx
 local function open_url_under_cursor()
   local function get_visual_selection()
-    local _, start_row, start_col = unpack(vim.fn.getpos("'<"))
-    local _, end_row, end_col = unpack(vim.fn.getpos("'>"))
-    
+    local _, start_row, start_col = unpack(vim.fn.getpos "'<")
+    local _, end_row, end_col = unpack(vim.fn.getpos "'>")
+
     if start_row == end_row then
       local line = vim.fn.getline(start_row)
       return string.sub(line, start_col, end_col)
@@ -90,30 +133,30 @@ local function open_url_under_cursor()
 
   -- Try to get URL from visual selection first
   local url = get_visual_selection()
-  
+
   -- If no visual selection, try to extract URL from current line
   if not url or url == "" then
-    local line = vim.fn.getline(".")
-    local col = vim.fn.col(".")
-    
+    local line = vim.fn.getline "."
+    local col = vim.fn.col "."
+
     -- Try to find URL patterns around cursor
     -- Match URLs like http://, https://, www., or markdown links
     local patterns = {
-      "https?://[%w-_%.%?%.:/%+=&]+",  -- http(s) URLs
-      "www%.[%w-_%.%?%.:/%+=&]+",       -- www URLs
-      "%[.-%]%((.-)%)",                 -- markdown links [text](url)
-      "<(.-)>",                         -- angle bracket URLs <url>
+      "https?://[%w-_%.%?%.:/%+=&]+", -- http(s) URLs
+      "www%.[%w-_%.%?%.:/%+=&]+", -- www URLs
+      "%[.-%]%((.-)%)", -- markdown links [text](url)
+      "<(.-)>", -- angle bracket URLs <url>
     }
-    
+
     for _, pattern in ipairs(patterns) do
       for match in line:gmatch(pattern) do
         local start_pos = line:find(match, 1, true)
         local end_pos = start_pos + #match - 1
-        
+
         if start_pos and col >= start_pos and col <= end_pos then
           -- For markdown links, extract just the URL from [text](url)
           if pattern == "%[.-%]%((.-)%)" then
-            url = match:match("%((.-)%)")
+            url = match:match "%((.-)%)"
           elseif pattern == "<(.-)>" then
             url = match
           else
@@ -122,26 +165,28 @@ local function open_url_under_cursor()
           break
         end
       end
-      if url then break end
+      if url then
+        break
+      end
     end
   end
-  
+
   if url and url ~= "" then
     -- Add http:// prefix if missing
-    if not url:match("^https?://") and not url:match("^www%.") then
+    if not url:match "^https?://" and not url:match "^www%." then
       -- Check if it looks like a relative path
-      if url:match("^%.%./") or url:match("^%./") or url:match("^/") then
+      if url:match "^%.%./" or url:match "^%./" or url:match "^/" then
         -- It's a file path, use gf instead
-        vim.cmd("normal! gf")
+        vim.cmd "normal! gf"
         return
       end
     end
-    
+
     -- Add http:// to www. URLs
-    if url:match("^www%.") then
+    if url:match "^www%." then
       url = "http://" .. url
     end
-    
+
     -- Open URL with macOS 'open' command
     vim.fn.jobstart({ "open", url }, { detach = true })
     vim.notify("Opening: " .. url, vim.log.levels.INFO)
