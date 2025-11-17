@@ -1,7 +1,9 @@
 return {
   "chrisgrieser/nvim-origami",
   event = "BufReadPre",
-  opts = {}, -- needed even when using default config
+  opts = {
+    autoFold = { enabled = false },
+  }, -- needed even when using default config
 
   -- recommended: disable vim's auto-folding
   init = function()
