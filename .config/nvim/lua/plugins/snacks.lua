@@ -61,6 +61,7 @@ return {
     scroll = { enabled = false },
     picker = {
       enabled = true,
+      layout = "telescope",
       -- Configure snacks picker to match your telescope setup
       sources = {
         files = {
