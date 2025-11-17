@@ -20,25 +20,16 @@ return {
     lazy = true,
   },
 
-  -- change some telescope options and a keymap to browse plugin files
+  -- Telescope - migrated to snacks.nvim picker (keeping for extensions compatibility)
   {
     "nvim-telescope/telescope.nvim",
-    keys = {
-      -- add a keymap to browse plugin files
-      -- stylua: ignore
-      {
-        "<leader>fp",
-        function() require("telescope.builtin").find_files({ cwd = require("lazy.core.config").options.root }) end,
-        desc = "Find Plugin File",
-      },
-    },
-
+    enabled = false, -- disabled in favor of snacks.nvim picker
+    keys = {},
     dependencies = {
       {
         "nvim-telescope/telescope-live-grep-args.nvim"
       }
     },
-
     config = function()
       require("telescope").load_extension("live_grep_args")
       require("telescope").load_extension("yank_history")
