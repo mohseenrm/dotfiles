@@ -40,27 +40,28 @@ vim.schedule(function()
   require "mappings"
 end)
 
-require("telescope").setup {
-  pickers = {
-    find_files = {
-      find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
-    },
-  },
-  defaults = {
-    layout_config = { prompt_position = "bottom" },
-    path_display = { "smart" },
-    vimgrep_arguments = {
-      "rg",
-      "--color=never",
-      "--no-heading",
-      "--with-filename",
-      "--line-number",
-      "--column",
-      "--smart-case",
-      "--hidden",
-    },
-  },
-}
+-- Telescope config - migrated to snacks.nvim picker
+-- require("telescope").setup {
+--   pickers = {
+--     find_files = {
+--       find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+--     },
+--   },
+--   defaults = {
+--     layout_config = { prompt_position = "bottom" },
+--     path_display = { "smart" },
+--     vimgrep_arguments = {
+--       "rg",
+--       "--color=never",
+--       "--no-heading",
+--       "--with-filename",
+--       "--line-number",
+--       "--column",
+--       "--smart-case",
+--       "--hidden",
+--     },
+--   },
+-- }
 
 require("gitsigns").setup {
   signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`

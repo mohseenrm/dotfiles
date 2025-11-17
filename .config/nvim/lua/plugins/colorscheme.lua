@@ -1,5 +1,5 @@
-  return {
-    "scottmckendry/cyberdream.nvim",
-    lazy = false,
-    enabled = false,
-  }
+return {
+  "scottmckendry/cyberdream.nvim",
+  lazy = false,
+  enabled = false,
+}

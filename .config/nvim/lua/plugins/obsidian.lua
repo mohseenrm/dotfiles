@@ -8,7 +8,46 @@ wk.add {
     icon = "📝",
   },
   { "<leader>On", "<cmd>ObsidianNew<cr>", desc = "New Note", mode = "n" },
-  { "<leader>Os", "<cmd>ObsidianSearch<cr>", desc = "Search Notes", mode = "n" },
+  {
+    "<leader>Os",
+    function()
+      Snacks.picker.grep { cwd = vim.fn.expand "~/Projects/notes" }
+    end,
+    desc = "Search Notes (Snacks)",
+    mode = "n",
+  },
+  {
+    "<leader>Of",
+    function()
+      Snacks.picker.files { cwd = vim.fn.expand "~/Projects/notes" }
+    end,
+    desc = "Grep Notes (Snacks)",
+    mode = "n",
+  },
+  {
+    "<leader>Or",
+    function()
+      Snacks.picker.recent { filter = { cwd = vim.fn.expand "~/Projects/notes" } }
+    end,
+    desc = "Recent Notes (Snacks)",
+    mode = "n",
+  },
+  {
+    "<leader>Ot",
+    function()
+      Snacks.picker.files { cwd = vim.fn.expand "~/Projects/notes/src/twilio" }
+    end,
+    desc = "Search Work Notes",
+    mode = "n",
+  },
+  {
+    "<leader>Op",
+    function()
+      Snacks.picker.files { cwd = vim.fn.expand "~/Projects/notes/src/personal" }
+    end,
+    desc = "Search Personal Notes",
+    mode = "n",
+  },
   { "<leader>Ow", "<cmd>ObsidianWorkspace<cr>", desc = "Change Workspace", mode = "n" },
   { "<leader>Oo", "<cmd>ObsidianOpen<cr>", desc = "Open (needs to be open in buffer)", mode = "n" },
 }
@@ -62,7 +101,8 @@ return {
     },
     picker = {
       -- Set your preferred picker. Can be one of 'telescope.nvim', 'fzf-lua', or 'mini.pick'.
-      name = "telescope.nvim",
+      -- Using mini.pick since we migrated to snacks.nvim picker for other operations
+      name = "mini.pick",
       -- Optional, configure key mappings for the picker. These are the defaults.
       -- Not all pickers support all mappings.
       note_mappings = {

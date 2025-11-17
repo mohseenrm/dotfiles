@@ -26,7 +26,7 @@ return {
     end
 
     require("render-markdown").setup {}
-    
+
     -- Auto-enable/disable render-markdown based on filetype
     vim.api.nvim_create_autocmd({ "BufEnter", "WinEnter" }, {
       callback = function()
@@ -34,9 +34,9 @@ return {
           local ft = vim.bo.filetype
           local success, _ = pcall(function()
             if ft == "markdown" then
-              vim.cmd("RenderMarkdown enable")
+              vim.cmd "RenderMarkdown enable"
             elseif ft ~= "" then
-              vim.cmd("RenderMarkdown disable")
+              vim.cmd "RenderMarkdown disable"
             end
           end)
         end)
