@@ -334,7 +334,7 @@ config.exit_behavior = "Close"
 config.window_close_confirmation = "NeverPrompt"
 
 -- Check for updates
-config.check_for_updates = false
+config.check_for_updates = true
 
 -- Disable ligatures in specific apps if needed
 -- config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
