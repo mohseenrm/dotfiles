@@ -153,6 +153,8 @@ alias air="aider --model anthropic/claude-3-7-sonnet-20250219 --config $HOME/aid
 alias aic="aider --model ollama_chat/deepseek-coder-v2 --config $HOME/aider.conf.yaml"
 # Claude Code
 alias cc="claude"
+# Open Code
+alias oc="opencode"
 # Weather
 alias weather="curl 'wttr.in/Seattle%2C+WA+98103?m'"
 
