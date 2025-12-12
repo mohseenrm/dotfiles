@@ -1,18 +1,18 @@
 require("nvchad.configs.lspconfig").defaults()
 
 -- Basic servers - just enable them with default configs
+-- Note: pyright is configured separately below with uv venv support
 local servers = {
   "html",
   "cssls",
   "tailwindcss",
   "rust_analyzer",
-  "pyright",
   "black",
   "harper_ls",
 }
 
 for _, server in ipairs(servers) do
-  if server ~= "harper_ls" then
+  if server ~= "harper_ls" and server ~= "pyright" then
     vim.lsp.enable(server)
   end
 end
@@ -28,6 +28,62 @@ vim.lsp.config("vtsls", {
     "typescript.tsx",
   },
 })
+
+-- Configure Pyright with uv venv support using vim.lsp.config
+local util = require "lspconfig.util"
+
+-- Function to find Python interpreter in uv venv
+local function get_python_path(workspace)
+  local path = util.path
+
+  -- Check for uv venv in .venv
+  local venv = path.join(workspace, ".venv", "bin", "python")
+  if path.exists(venv) then
+    return venv
+  end
+
+  -- Check for uv venv in venv
+  venv = path.join(workspace, "venv", "bin", "python")
+  if path.exists(venv) then
+    return venv
+  end
+
+  -- Fallback to system python
+  return vim.fn.exepath "python3" or vim.fn.exepath "python" or "python"
+end
+
+vim.lsp.config("pyright", {
+  cmd = { "pyright-langserver", "--stdio" },
+  filetypes = { "python" },
+  root_dir = function(fname)
+    -- Look for uv project markers first, then fallback to common Python project markers
+    return util.root_pattern("pyproject.toml", "uv.lock", "setup.py", "setup.cfg", "requirements.txt", ".git")(fname)
+  end,
+  on_init = function(client)
+    local workspace = client.config.root_dir
+    if workspace then
+      local python_path = get_python_path(workspace)
+      client.config.settings.python.pythonPath = python_path
+      client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+      -- Notify that we've detected a venv
+      if python_path:match "%.venv" or python_path:match "/venv/" then
+        vim.notify("Pyright using: " .. python_path, vim.log.levels.INFO)
+      end
+    end
+  end,
+  settings = {
+    python = {
+      analysis = {
+        autoSearchPaths = true,
+        useLibraryCodeForTypes = true,
+        diagnosticMode = "workspace",
+        typeCheckingMode = "basic",
+      },
+    },
+  },
+})
+
+vim.lsp.enable "pyright"
 
 -- Configure denols with custom settings
 vim.lsp.config("denols", {
