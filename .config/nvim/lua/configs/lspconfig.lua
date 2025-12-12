@@ -8,10 +8,13 @@ local servers = {
   "rust_analyzer",
   "pyright",
   "black",
+  "harper_ls",
 }
 
 for _, server in ipairs(servers) do
-  vim.lsp.enable(server)
+  if server ~= "harper_ls" then
+    vim.lsp.enable(server)
+  end
 end
 
 -- Configure vtsls with custom settings
@@ -70,6 +73,16 @@ end, {
   desc = "Disable vtsls LSP",
 })
 
+vim.api.nvim_create_user_command("DisableHarper", function()
+  local clients = vim.lsp.get_clients { name = "harper_ls" }
+  for _, client in ipairs(clients) do
+    vim.lsp.stop_client(client.id)
+  end
+  vim.notify("Disabled Harper", vim.log.levels.INFO)
+end, {
+  desc = "Disable Harper LSP",
+})
+
 vim.api.nvim_create_user_command("EnableDeno", function()
   vim.lsp.enable "denols"
   vim.notify("Enabled denols", vim.log.levels.INFO)
@@ -82,4 +95,11 @@ vim.api.nvim_create_user_command("EnableVtsls", function()
   vim.notify("Enabled vtsls", vim.log.levels.INFO)
 end, {
   desc = "Enable vtsls LSP",
+})
+
+vim.api.nvim_create_user_command("EnableHarper", function()
+  vim.lsp.enable "harper_ls"
+  vim.notify("Enabled harper_ls", vim.log.levels.INFO)
+end, {
+  desc = "Enable Harper LSP",
 })
