@@ -18,15 +18,6 @@
                             "to": [{ "key_code": "left_option" }]
                         }
                     ]
-                },
-                {
-                    "identifiers": { "is_keyboard": true },
-                    "simple_modifications": [
-                        {
-                            "from": { "key_code": "caps_lock" },
-                            "to": [{ "key_code": "escape" }]
-                        }
-                    ]
                 }
             ],
             "name": "Default profile",
