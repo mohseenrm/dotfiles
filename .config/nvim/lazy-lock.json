@@ -42,7 +42,7 @@
   "nvim-tree.lua": { "branch": "master", "commit": "b8b44b6a2494d086a9177251a119f9daec6cace8" },
   "nvim-treesitter": { "branch": "master", "commit": "42fc28ba918343ebfd5565147a42a26580579482" },
   "nvim-web-devicons": { "branch": "master", "commit": "6788013bb9cb784e606ada44206b0e755e4323d7" },
-  "obsidian.nvim": { "branch": "main", "commit": "ae1f76a75c7ce36866e1d9342a8f6f5b9c2caf9b" },
+  "obsidian.nvim": { "branch": "main", "commit": "66af69a357ec1db5fe2d264f83a18db039a1e6f8" },
   "oil.nvim": { "branch": "master", "commit": "756dec855b4811f2d27f067a3aca477f368d99f5" },
   "oklch-color-picker.nvim": { "branch": "master", "commit": "0c3c07a08c0f9c9272298d55a21e7a8829afe62d" },
   "plenary.nvim": { "branch": "master", "commit": "b9fd5226c2f76c951fc8ed5923d85e4de065e509" },
