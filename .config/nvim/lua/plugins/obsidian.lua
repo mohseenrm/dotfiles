@@ -1,42 +1,3 @@
--- Custom workspace switcher using Snacks picker
-local function switch_obsidian_workspace()
-  -- Get fresh client and workspaces each time
-  local ok, client = pcall(require("obsidian").get_client)
-  if not ok or not client then
-    vim.notify("Obsidian client not available", vim.log.levels.ERROR)
-    return
-  end
-
-  local workspaces = client.opts.workspaces
-  if not workspaces or #workspaces == 0 then
-    vim.notify("No workspaces configured", vim.log.levels.WARN)
-    return
-  end
-
-  -- Build items as tables with text field
-  local items = {}
-  for _, workspace in ipairs(workspaces) do
-    table.insert(items, {
-      text = workspace.name .. " - " .. workspace.path,
-      workspace_name = workspace.name, -- Store just the name
-    })
-  end
-
-  Snacks.picker.pick {
-    items = items,
-    format = "text",
-    confirm = function(picker, item)
-      picker:close()
-      if item and item.workspace_name then
-        vim.schedule(function()
-          vim.cmd("ObsidianWorkspace " .. item.workspace_name)
-          vim.notify("Switched to workspace: " .. item.workspace_name, vim.log.levels.INFO)
-        end)
-      end
-    end,
-  }
-end
-
 local wk = require "which-key"
 wk.add {
   {
@@ -87,7 +48,7 @@ wk.add {
     desc = "Search Personal Notes",
     mode = "n",
   },
-  { "<leader>Ow", switch_obsidian_workspace, desc = "Change Workspace (Snacks)", mode = "n" },
+  { "<leader>Ow", "<cmd>ObsidianWorkspace<cr>", desc = "Change Workspace (Snacks)", mode = "n" },
   { "<leader>Oo", "<cmd>ObsidianOpen<cr>", desc = "Open (needs to be open in buffer)", mode = "n" },
 }
 vim.keymap.set("n", "gf", function()
@@ -99,7 +60,7 @@ vim.keymap.set("n", "gf", function()
 end, { noremap = false, expr = true })
 
 return {
-  "epwalsh/obsidian.nvim",
+  "obsidian-nvim/obsidian.nvim",
   version = "*", -- recommended, use latest release instead of latest commit
   lazy = false, -- load on demand
   ft = "markdown",
@@ -118,6 +79,7 @@ return {
     "preservim/vim-markdown",
   },
   opts = {
+    legacy_commands = false,
     ui = {
       enable = false,
     },
@@ -140,7 +102,7 @@ return {
     picker = {
       -- Set your preferred picker. Can be one of 'telescope.nvim', 'fzf-lua', or 'mini.pick'.
       -- Using fzf-lua as fallback (most pickers are handled by custom Snacks functions)
-      name = "fzf-lua",
+      name = "snacks.picker",
       -- Optional, configure key mappings for the picker. These are the defaults.
       -- Not all pickers support all mappings.
       note_mappings = {
@@ -156,7 +118,6 @@ return {
         insert_tag = "<C-l>",
       },
     },
-    mappings = {},
     follow_url_func = function(url)
       -- Open the URL in the default web browser.
       vim.fn.jobstart { "open", url } -- Mac OS
