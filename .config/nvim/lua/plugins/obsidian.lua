@@ -7,7 +7,7 @@ wk.add {
     desc = "Obsidian",
     icon = "📝",
   },
-  { "<leader>On", "<cmd>ObsidianNew<cr>", desc = "New Note", mode = "n" },
+  { "<leader>On", "<cmd>Obsidian new<cr>", desc = "New Note", mode = "n" },
   {
     "<leader>Os",
     function()
@@ -48,12 +48,12 @@ wk.add {
     desc = "Search Personal Notes",
     mode = "n",
   },
-  { "<leader>Ow", "<cmd>ObsidianWorkspace<cr>", desc = "Change Workspace (Snacks)", mode = "n" },
-  { "<leader>Oo", "<cmd>ObsidianOpen<cr>", desc = "Open (needs to be open in buffer)", mode = "n" },
+  { "<leader>Ow", "<cmd>Obsidian workspace<cr>", desc = "Change Workspace", mode = "n" },
+  { "<leader>Oo", "<cmd>Obsidian open<cr>", desc = "Open in Obsidian App", mode = "n" },
 }
 vim.keymap.set("n", "gf", function()
   if require("obsidian").util.cursor_on_markdown_link() then
-    return "<cmd>ObsidianFollowLink<CR>"
+    return "<cmd>Obsidian follow_link<CR>"
   else
     return "gf"
   end
@@ -62,6 +62,7 @@ end, { noremap = false, expr = true })
 return {
   "obsidian-nvim/obsidian.nvim",
   version = "*", -- recommended, use latest release instead of latest commit
+  priority = 1000,
   lazy = false, -- load on demand
   ft = "markdown",
   -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
@@ -82,6 +83,9 @@ return {
     legacy_commands = false,
     ui = {
       enable = false,
+    },
+    attachments = {
+      img_folder = "assets/imgs",
     },
     workspaces = {
       {
@@ -129,7 +133,7 @@ return {
   keys = {
     {
       "<leader>on",
-      "<cmd>ObsidianNew<cr>",
+      "<cmd>Obsidian new<cr>",
       desc = "New Note",
       remap = true,
     },
