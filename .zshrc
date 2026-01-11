@@ -156,7 +156,7 @@ alias cc="claude"
 # Open Code
 alias oc="opencode"
 # Weather
-alias weather="curl 'wttr.in/Seattle%2C+WA+98103?m'"
+alias w="curl 'wttr.in/Seattle%2C+WA+98103?m'"
 
 # fzf
 source <(fzf --zsh)
