@@ -18,7 +18,7 @@ eval "$(pyenv virtualenv-init -)"
 
 if [[ $(id -un) == "momo" ]]; then
   export XDG_CONFIG_HOME="$HOME/.config"
-  export PATH="$PATH:/usr/local/go/bin"
+  # export PATH="$PATH:/usr/local/go/bin"
   export ANDROID_HOME="$HOME/Library/Android/sdk"
   # GCloud
   export PATH=/opt/homebrew/share/google-cloud-sdk/bin:"$PATH"
@@ -228,3 +228,6 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+# mise setup
+eval "$(mise activate zsh)" # this sets up interactive sessions
