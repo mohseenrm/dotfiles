@@ -10,13 +10,13 @@
   "logo": {
     "source": "/Users/momo/.config/nvim/assets/rosie-3-tokyo.png",
     "type": "sixel",
-    "height": 25,
-    "width": 50,
+    "height": 12,
+    "width": 25,
     "position": "left",
     "padding": {
-      "top": 2,
-      "left": 7,
-      "right": 7,
+      "top": 1,
+      "left": 4,
+      "right": 30,
     },
   },
   "display": {
