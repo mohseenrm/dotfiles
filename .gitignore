@@ -38,3 +38,5 @@ github-copilot
 .crush
 
 bin/fastfetch
+
+.config/fastfetch/config.work.jsonc
