@@ -17,6 +17,7 @@ eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
 if [[ $(id -un) == "momo" ]]; then
+  export PNPM_HOME="$HOME/Library/pnpm"
   export XDG_CONFIG_HOME="$HOME/.config"
   # export PATH="$PATH:/usr/local/go/bin"
   export ANDROID_HOME="$HOME/Library/Android/sdk"
@@ -25,12 +26,13 @@ if [[ $(id -un) == "momo" ]]; then
   # INFO: battery cli tool to maintain battery level
   battery maintain 80
   # battery marinain stop
-# Fastfetch aliases
-alias ff='fastfetch --config "$HOME/dotfiles/.config/fastfetch/config.jsonc"'
+  # Fastfetch aliases
+  alias ff='fastfetch --config "$HOME/dotfiles/.config/fastfetch/config.jsonc"'
 else
   # Work computer
-# Fastfetch aliases
-alias ff='fastfetch --config "$HOME/dotfiles/.config/fastfetch/config.work.jsonc"'
+  # Fastfetch aliases
+  alias ff='fastfetch --config "$HOME/dotfiles/.config/fastfetch/config.work.jsonc"'
+  source work.zsh
 fi
 
 # Mac OS
@@ -224,7 +226,6 @@ if [[ $(uname) == "Darwin" ]]; then
 fi
 
 # pnpm
-export PNPM_HOME="$HOME/Library/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;

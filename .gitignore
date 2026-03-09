@@ -41,3 +41,4 @@ bin/fastfetch
 
 .config/fastfetch/config.work.jsonc
 Brewfile.work
+work.zsh
