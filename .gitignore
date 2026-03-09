@@ -40,3 +40,4 @@ github-copilot
 bin/fastfetch
 
 .config/fastfetch/config.work.jsonc
+Brewfile.work
