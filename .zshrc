@@ -25,8 +25,12 @@ if [[ $(id -un) == "momo" ]]; then
   # INFO: battery cli tool to maintain battery level
   battery maintain 80
   # battery marinain stop
+# Fastfetch aliases
+alias ff='fastfetch --config "$HOME/dotfiles/.config/fastfetch/config.jsonc"'
 else
   # Work computer
+# Fastfetch aliases
+alias ff='fastfetch --config "$HOME/dotfiles/.config/fastfetch/config.work.jsonc"'
 fi
 
 # Mac OS
@@ -207,14 +211,12 @@ fastfetch() {
     [[ -n "$orig_session" ]] && export ZELLIJ_SESSION_NAME="$orig_session"
 }
 
-# Fastfetch aliases
-alias ff='fastfetch --config "$HOME/dotfiles/.config/fastfetch/config.jsonc"'
 
 clear
 
 # Start fastfetch
 # lolcat ~/.config/nvim/logo/fastfetch.txt | lolcat -p 1 --force | fastfetch --raw - --logo-width 55
-fastfetch --config "$HOME/dotfiles/.config/fastfetch/config.jsonc"
+ff
 
 if [[ $(uname) == "Darwin" ]]; then
   # Zoxide
