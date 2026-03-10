@@ -90,9 +90,9 @@ return {
     workspaces = {
       {
         name = "work",
-        path = "~/Projects/notes/src/twilio",
+        path = "~/Projects/notes/src/opendoor",
         overrides = {
-          notes_subdir = "twilio",
+          notes_subdir = "opendoor",
         },
       },
       {
