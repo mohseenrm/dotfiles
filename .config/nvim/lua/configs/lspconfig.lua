@@ -14,8 +14,8 @@ for _, server in ipairs(servers) do
   vim.lsp.enable(server)
 end
 
--- Configure vtsls with custom settings
-vim.lsp.config("vtsls", {
+-- Configure tsgo with custom settings
+vim.lsp.config("tsgo", {
   filetypes = {
     "javascript",
     "javascriptreact",
@@ -207,7 +207,7 @@ vim.lsp.config("denols", {
 })
 
 -- Enable both LSPs
-vim.lsp.enable "vtsls"
+vim.lsp.enable "tsgo"
 vim.lsp.enable "denols"
 
 -- Commands to disable LSPs
@@ -221,14 +221,14 @@ end, {
   desc = "Disable denols LSP",
 })
 
-vim.api.nvim_create_user_command("DisableVtsls", function()
-  local clients = vim.lsp.get_clients { name = "vtsls" }
+vim.api.nvim_create_user_command("DisableTypeScript", function()
+  local clients = vim.lsp.get_clients { name = "tsgo" }
   for _, client in ipairs(clients) do
     vim.lsp.stop_client(client.id)
   end
-  vim.notify("Disabled vtsls", vim.log.levels.INFO)
+  vim.notify("Disabled tsgo", vim.log.levels.INFO)
 end, {
-  desc = "Disable vtsls LSP",
+  desc = "Disable tsgo LSP",
 })
 
 vim.api.nvim_create_user_command("DisableHarper", function()
@@ -248,11 +248,11 @@ end, {
   desc = "Enable denols LSP",
 })
 
-vim.api.nvim_create_user_command("EnableVtsls", function()
-  vim.lsp.enable "vtsls"
-  vim.notify("Enabled vtsls", vim.log.levels.INFO)
+vim.api.nvim_create_user_command("EnableTypeScript", function()
+  vim.lsp.enable "tsgo"
+  vim.notify("Enabled tsgo", vim.log.levels.INFO)
 end, {
-  desc = "Enable vtsls LSP",
+  desc = "Enable tsgo LSP",
 })
 
 vim.api.nvim_create_user_command("EnableHarper", function()
