@@ -10,6 +10,6 @@
     "write": true,
     "bash": true,
     "webfetch": true,
-    "todoread": true,
-  },
+    "todoread": true
+  }
 }
