@@ -234,3 +234,5 @@ esac
 
 # mise setup
 eval "$(mise activate zsh)" # this sets up interactive sessions
+
+eval "$(direnv hook zsh)"
