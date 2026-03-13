@@ -1,6 +1,14 @@
 vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46/"
 vim.g.mapleader = " "
 
+-- INFO: Prepend the mise-managed Go bin dir so vim.system() calls (e.g. from gopls's
+-- root_dir detection) resolve the real 'go' binary, not the repo's Bazel wrapper
+-- in scripts/bin/go which requires CODE_ROOT and a full Bazel environment.
+local mise_go_bin = vim.fn.expand "~/.local/share/mise/installs/go/latest/bin"
+if vim.fn.isdirectory(mise_go_bin) == 1 then
+  vim.env.PATH = mise_go_bin .. ":" .. vim.env.PATH
+end
+
 -- bootstrap lazy and all plugins
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 
