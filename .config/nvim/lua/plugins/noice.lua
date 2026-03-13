@@ -7,8 +7,9 @@ return {
       signature = {
         enabled = false,
       },
+      -- hover enabled: Noice renders LSP hover docs with Treesitter syntax highlighting
       hover = {
-        enabled = false,
+        enabled = true,
       },
     },
     cmdline = {
@@ -25,7 +26,7 @@ return {
       command_palette = true,
       long_message_to_split = true,
       inc_rename = false,
-      lsp_doc_border = false,
+      lsp_doc_border = true,
     },
   },
   dependencies = {
