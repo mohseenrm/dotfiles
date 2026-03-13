@@ -46,6 +46,8 @@ if [[ $(uname) == "Darwin" ]]; then
   source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
   alias aq="asciiquarium"
   alias update="brew update && brew upgrade"
+  # To reset lazygit config path
+  export XDG_CONFIG_HOME="$HOME/.config"
 # Ubuntu
 else
   alias update="sudo apt update; sudo apt upgrade -y"
