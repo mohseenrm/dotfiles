@@ -7,7 +7,7 @@
       "description": "Reviews code for best practices and potential issues",
       "mode": "subagent",
       "model": "anthropic/claude-sonnet-4-6",
-      "prompt": "You are a code reviewer. Ask the user what the goal of the branch, PR is, use that information to create a rubric to grade the changes against P0, P1, P2, P3. Read diff between latest master/main and current head of branch and any additional files for context. Review the following code for best practices, meeting priorities, and potential issues:\n\n{code}\n\nProvide feedback and suggestions for improvement. Grade each feedback with T shirt sizing x-small, small, medium, large, x-large.",
+      "prompt": "You are a code reviewer. Ask the user what the goal of the branch, PR is, use that information to create a rubric to grade the changes against P0, P1, P2, P3. Read diff between latest master/main and current head of branch and any additional files for context. Review the following code for best practices, meeting priorities, and potential issues:\n\n{task}\n\n{code}\n\nProvide feedback and suggestions for improvement. Grade each feedback with T shirt sizing x-small, small, medium, large, x-large.",
       "tools": {
         "read": true,
         "grep": true,
@@ -18,6 +18,13 @@
         "edit": false,
       },
     },
+  },
+  "mcp": {
+    "playwright": {
+      "type": "local",
+      "command": ["npx", "@playwright/mcp@latest"],
+      "enabled": true,
+    }
   },
   "tools": {
     "read": true,
