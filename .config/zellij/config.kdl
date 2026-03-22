@@ -288,24 +288,24 @@ plugins {
 // Default: default
 //
 themes {
-    tokyonight_night {
-        fg "#c0caf5"
-        bg "#292e42"
+    brutus {
+        fg "#e0e5f6"
+        bg "#0d1220"
         // Black should match the terminal background color
         // This ensures the top and bottom bars are transparent
-        black "#1a1b26"
-        red "#f7768e"
-        green "#4fd6be"
-        yellow "#e0af68"
-        blue "#7aa2f7"
-        magenta "#bb9af7"
-        cyan "#7dcfff"
-        white "#a9b1d6"
+        black "#05080f"
+        red "#ff716c"
+        green "#50fa7b"
+        yellow "#ffd866"
+        blue "#7bafff"
+        magenta "#c792ea"
+        cyan "#00fbfb"
+        white "#9ba1b0"
         orange "#ff9e64"
     }
 }
 
-theme "tokyonight_night"
+theme "brutus"
 
 // The name of the default layout to load on startup
 // Default: "default"

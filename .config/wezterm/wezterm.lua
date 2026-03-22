@@ -1,5 +1,5 @@
 -- Wezterm Configuration
--- Migrated from Kitty - Tokyo Night theme
+-- Cobalt Kinetic (Brutus) theme
 
 local wezterm = require("wezterm")
 local config = {}
@@ -69,101 +69,101 @@ config.font_rules = {
 	},
 }
 
--- Tokyo Night Color Scheme
+-- Cobalt Kinetic (Brutus) Color Scheme
 config.colors = {
 	-- Base colors
-	foreground = "#c0caf5",
-	background = "#1a1b26",
+	foreground = "#e0e5f6",
+	background = "#05080f",
 
-	cursor_bg = "#c0caf5",
-	cursor_fg = "#1a1b26",
-	cursor_border = "#c0caf5",
+	cursor_bg = "#e0e5f6",
+	cursor_fg = "#05080f",
+	cursor_border = "#e0e5f6",
 
-	selection_fg = "#c0caf5",
-	selection_bg = "#283457",
+	selection_fg = "#e0e5f6",
+	selection_bg = "#172030",
 
-	scrollbar_thumb = "#292e42",
+	scrollbar_thumb = "#0d1220",
 
-	split = "#7aa2f7",
+	split = "#7bafff",
 
 	-- ANSI colors
 	ansi = {
-		"#15161e", -- black
-		"#f7768e", -- red
-		"#9ece6a", -- green
-		"#e0af68", -- yellow
-		"#7aa2f7", -- blue
-		"#bb9af7", -- magenta
-		"#7dcfff", -- cyan
-		"#a9b1d6", -- white
+		"#020408", -- black (surface_floor)
+		"#ff716c", -- red (error)
+		"#50fa7b", -- green (string/added)
+		"#ffd866", -- yellow (class/search)
+		"#7bafff", -- blue (primary)
+		"#c792ea", -- magenta (keyword)
+		"#00fbfb", -- cyan (secondary)
+		"#9ba1b0", -- white (on_surface_muted)
 	},
 
 	-- Bright ANSI colors
 	brights = {
-		"#414868", -- bright black
-		"#ff899d", -- bright red
-		"#9fe044", -- bright green
-		"#faba4a", -- bright yellow
-		"#8db0ff", -- bright blue
-		"#c7a9ff", -- bright magenta
-		"#a4daff", -- bright cyan
-		"#c0caf5", -- bright white
+		"#28344c", -- bright black (surface_nested)
+		"#ff79c6", -- bright red (baby_pink)
+		"#73fdab", -- bright green (vibrant_green)
+		"#ffe08a", -- bright yellow (sun)
+		"#5e9eff", -- bright blue (primary_deep)
+		"#ff79c6", -- bright magenta (baby_pink)
+		"#00d9d9", -- bright cyan (teal)
+		"#e0e5f6", -- bright white (on_surface)
 	},
 
 	-- Indexed colors
 	indexed = {
 		[16] = "#ff9e64",
-		[17] = "#db4b4b",
+		[17] = "#ff716c",
 	},
 
 	-- Tab bar colors
 	tab_bar = {
-		background = "#1a1b26",
+		background = "#05080f",
 
 		active_tab = {
-			bg_color = "#7aa2f7",
-			fg_color = "#16161e",
+			bg_color = "#7bafff",
+			fg_color = "#05080f",
 			intensity = "Bold",
 		},
 
 		inactive_tab = {
-			bg_color = "#292e42",
-			fg_color = "#545c7e",
+			bg_color = "#0d1220",
+			fg_color = "#707584",
 		},
 
 		inactive_tab_hover = {
-			bg_color = "#292e42",
-			fg_color = "#7aa2f7",
+			bg_color = "#0d1220",
+			fg_color = "#7bafff",
 		},
 
 		new_tab = {
-			bg_color = "#292e42",
-			fg_color = "#545c7e",
+			bg_color = "#0d1220",
+			fg_color = "#707584",
 		},
 
 		new_tab_hover = {
-			bg_color = "#292e42",
-			fg_color = "#7aa2f7",
+			bg_color = "#0d1220",
+			fg_color = "#7bafff",
 		},
 	},
 
 	-- Visual bell
-	visual_bell = "#292e42",
+	visual_bell = "#0d1220",
 
 	-- Compose cursor (IME)
 	compose_cursor = "#ff9e64",
 
 	-- Copy mode
-	copy_mode_active_highlight_bg = { Color = "#283457" },
-	copy_mode_active_highlight_fg = { Color = "#c0caf5" },
-	copy_mode_inactive_highlight_bg = { Color = "#283457" },
-	copy_mode_inactive_highlight_fg = { Color = "#c0caf5" },
+	copy_mode_active_highlight_bg = { Color = "#172030" },
+	copy_mode_active_highlight_fg = { Color = "#e0e5f6" },
+	copy_mode_inactive_highlight_bg = { Color = "#172030" },
+	copy_mode_inactive_highlight_fg = { Color = "#e0e5f6" },
 
 	-- Quick select
-	quick_select_label_bg = { Color = "#7aa2f7" },
-	quick_select_label_fg = { Color = "#16161e" },
-	quick_select_match_bg = { Color = "#283457" },
-	quick_select_match_fg = { Color = "#c0caf5" },
+	quick_select_label_bg = { Color = "#7bafff" },
+	quick_select_label_fg = { Color = "#05080f" },
+	quick_select_match_bg = { Color = "#172030" },
+	quick_select_match_fg = { Color = "#e0e5f6" },
 }
 
 -- Window appearance

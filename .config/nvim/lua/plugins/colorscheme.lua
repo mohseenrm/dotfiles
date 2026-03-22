@@ -1,5 +1,7 @@
 return {
-  "scottmckendry/cyberdream.nvim",
+  -- Cobalt Kinetic — custom NvChad/base46 colorscheme
+  "mohseenrm/brutus",
+  -- dev = true,
   lazy = false,
-  enabled = false,
+  priority = 1000,
 }
