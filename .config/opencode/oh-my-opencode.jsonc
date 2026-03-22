@@ -14,9 +14,12 @@
 
     // Architecture consultation: GPT-5.4 or Claude Opus
     "oracle": { "model": "anthropic/claude-opus-4-6", "variant": "high" },
+    "hephaestus": { "model": "anthropic/claude-opus-4-6" },
 
     // Prometheus inherits sisyphus model; just add prompt guidance
+    "atlas": { "model": "anthropic/claude-opus-4-6" },
     "prometheus": {
+      "model": "anthropic/claude-opus-4-6",
       // "prompt_append": "Leverage deep & quick agents heavily, always in parallel.",
     },
   },
