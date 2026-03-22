@@ -1,0 +1,70 @@
+{
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/dev/assets/oh-my-opencode.schema.json",
+
+  "agents": {
+    // Main orchestrator: Claude Opus or Kimi K2.5 work best
+    "sisyphus": {
+      "model": "anthropic/claude-opus-4-6",
+      "ultrawork": { "model": "anthropic/claude-opus-4-6", "variant": "max" },
+    },
+
+    // Research agents: cheap fast models are fine
+    "librarian": { "model": "anthropic/claude-opus-4-6" },
+    "explore": { "model": "anthropic/claude-opus-4-6" },
+
+    // Architecture consultation: GPT-5.4 or Claude Opus
+    "oracle": { "model": "anthropic/claude-opus-4-6", "variant": "high" },
+
+    // Prometheus inherits sisyphus model; just add prompt guidance
+    "prometheus": {
+      // "prompt_append": "Leverage deep & quick agents heavily, always in parallel.",
+    },
+  },
+
+  "categories": {
+    // quick — trivial tasks
+    "quick": { "model": "anthropic/claude-opus-4-6" },
+
+    // unspecified-low — moderate tasks
+    "unspecified-low": { "model": "anthropic/claude-opus-4-6" },
+
+    // unspecified-high — complex work
+    "unspecified-high": {
+      "model": "anthropic/claude-opus-4-6",
+      "variant": "max",
+    },
+
+    // writing — docs/prose
+    "writing": { "model": "anthropic/claude-opus-4-6" },
+
+    // visual-engineering — Gemini dominates visual tasks
+    "visual-engineering": {
+      "model": "anthropic/claude-opus-4-6",
+      "variant": "high",
+    },
+
+    // Custom category for git operations
+    "git": {
+      "model": "anthropic/claude-opus-4-6",
+      "description": "All git operations",
+      // "prompt_append": "Focus on atomic commits, clear messages, and safe operations.",
+    },
+  },
+
+  // Limit expensive providers; let cheap ones run freely
+  "background_task": {
+    "providerConcurrency": {
+      "anthropic": 25,
+      "openai": 3,
+      "opencode": 10,
+      "zai-coding-plan": 10,
+    },
+    "modelConcurrency": {
+      "anthropic/claude-opus-4-6": 25,
+      "opencode/gpt-5-nano": 20,
+    },
+  },
+
+  // "experimental": { "aggressive_truncation": true, "task_system": true },
+  // "tmux": { "enabled": false },
+}
