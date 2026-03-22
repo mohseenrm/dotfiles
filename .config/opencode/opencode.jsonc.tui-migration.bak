@@ -1,7 +1,7 @@
 {
   "$schema": "https://opencode.ai/config.json",
   // Theme configuration
-  "theme": "vercel",
+  "theme": "tokyonight",
   "model": "anthropic/claude-sonnet-4-5",
   "autoupdate": true,
   "tools": {
