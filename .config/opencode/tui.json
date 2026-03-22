@@ -1,6 +1,6 @@
 {
   "$schema": "https://opencode.ai/tui.json",
-  "theme": "vercel",
+  "theme": "brutus",
   "keybinds": {
     "leader": "ctrl+s",
     "app_exit": "ctrl+c,ctrl+d,<leader>q",
