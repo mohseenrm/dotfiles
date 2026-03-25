@@ -40,7 +40,7 @@
   "nvim-origami": { "branch": "main", "commit": "e5b527f41d18c2ee5af868e1a3939b60f15fdb90" },
   "nvim-spectre": { "branch": "master", "commit": "72f56f7585903cd7bf92c665351aa585e150af0f" },
   "nvim-tree.lua": { "branch": "master", "commit": "3d385d3346e4883d60dc37cf642bd47bed78a46e" },
-  "nvim-treesitter": { "branch": "main", "commit": "6620ae1c44dfa8623b22d0cbf873a9e8d073b849" },
+  "nvim-treesitter": { "branch": "master", "commit": "cf12346a3414fa1b06af75c79faebe7f76df080a" },
   "nvim-web-devicons": { "branch": "master", "commit": "d7462543c9e366c0d196c7f67a945eaaf5d99414" },
   "obsidian.nvim": { "branch": "main", "commit": "5392f49c755d28e663147bc6012f0d8545b326cf" },
   "oil.nvim": { "branch": "master", "commit": "0fcc83805ad11cf714a949c98c605ed717e0b83e" },
