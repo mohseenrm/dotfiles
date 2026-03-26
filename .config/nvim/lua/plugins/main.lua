@@ -88,6 +88,7 @@ return {
         "typescript",
         "rust",
         "ron",
+        "ruby",
         "typescript",
         "vim",
         "yaml",
@@ -144,7 +145,9 @@ return {
         "tailwindcss-language-server",
         "prettier",
         "sql-formatter",
-        "black"
+        "black",
+        "solargraph",
+        "rubocop"
       },
     },
   },
@@ -370,6 +373,7 @@ return {
         ["graphql"] = { "prettier" },
         ["handlebars"] = { "prettier" },
         ["python"] = { "black" },
+        ["ruby"] = { "rubocop" },
       },
     },
   },
