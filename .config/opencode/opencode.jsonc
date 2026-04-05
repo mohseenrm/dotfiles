@@ -3,7 +3,26 @@
   "$schema": "https://opencode.ai/config.json",
   "model": "anthropic/claude-sonnet-4-6",
   "autoupdate": true,
+  "permission": {
+    "external_directory": {
+      "~/Projects/plans/**": "allow",
+    },
+  },
   "agent": {
+    "plan": {
+      "prompt": "When creating or updating plans, always save them as markdown files in ~/Projects/plans/. Use descriptive kebab-case filenames (e.g. 2025-04-04-auth-redesign.md). When searching for or referencing existing plans, look in ~/Projects/plans/ first.",
+      "permission": {
+        "edit": {
+          "*": "ask",
+          "~/Projects/plans/**": "allow",
+        },
+        "bash": {
+          "*": "ask",
+          "mkdir -p ~/Projects/plans*": "allow",
+          "ls ~/Projects/plans*": "allow",
+        },
+      },
+    },
     "code-reviewer": {
       "description": "Reviews code for best practices and potential issues",
       "mode": "subagent",
