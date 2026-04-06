@@ -4,15 +4,20 @@ export OLLAMA_API_BASE=http://127.0.0.1:11434
 export MANPAGER="nvim +Man!"
 
 export EZA_CONFIG_DIR="$HOME/.config/eza"
-# nvm
+# nvm (lazy-loaded — defers ~850ms until first use of nvm/node/npm/npx)
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+_nvm_lazy_load() {
+  unset -f nvm node npm npx pnpm 2>/dev/null
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+}
+for cmd in nvm node npm npx pnpm; do
+  eval "${cmd}() { _nvm_lazy_load; ${cmd} \"\$@\"; }"
+done
 
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 
-eval "$(pyenv virtualenv-init -)"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
@@ -239,3 +244,4 @@ esac
 eval "$(mise activate zsh)" # this sets up interactive sessions
 
 eval "$(direnv hook zsh)"
+
