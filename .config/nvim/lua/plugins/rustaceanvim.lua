@@ -24,10 +24,10 @@ return {
             },
           },
           -- Add clippy lints for Rust if using rust-analyzer
-          checkOnSave = diagnostics == "rust-analyzer",
-          -- Enable diagnostics if using rust-analyzer
+          checkOnSave = true,
+          -- Enable diagnostics via rust-analyzer
           diagnostics = {
-            enable = diagnostics == "rust-analyzer",
+            enable = true,
           },
           procMacro = {
             enable = true,

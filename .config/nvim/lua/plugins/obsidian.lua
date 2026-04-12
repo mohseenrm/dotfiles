@@ -1,64 +1,3 @@
-local wk = require "which-key"
-wk.add {
-  {
-    "<leader>O",
-    group = "Obsidian",
-    name = "Obsidian",
-    desc = "Obsidian",
-    icon = "📝",
-  },
-  { "<leader>On", "<cmd>Obsidian new<cr>", desc = "New Note", mode = "n" },
-  {
-    "<leader>Os",
-    function()
-      Snacks.picker.grep { cwd = vim.fn.expand "~/Projects/notes" }
-    end,
-    desc = "Search Notes (Snacks)",
-    mode = "n",
-  },
-  {
-    "<leader>Of",
-    function()
-      Snacks.picker.files { cwd = vim.fn.expand "~/Projects/notes" }
-    end,
-    desc = "Grep Notes (Snacks)",
-    mode = "n",
-  },
-  {
-    "<leader>Or",
-    function()
-      Snacks.picker.recent { filter = { cwd = vim.fn.expand "~/Projects/notes" } }
-    end,
-    desc = "Recent Notes (Snacks)",
-    mode = "n",
-  },
-  {
-    "<leader>Ot",
-    function()
-      Snacks.picker.files { cwd = vim.fn.expand "~/Projects/notes/src/twilio" }
-    end,
-    desc = "Search Work Notes",
-    mode = "n",
-  },
-  {
-    "<leader>Op",
-    function()
-      Snacks.picker.files { cwd = vim.fn.expand "~/Projects/notes/src/personal" }
-    end,
-    desc = "Search Personal Notes",
-    mode = "n",
-  },
-  { "<leader>Ow", "<cmd>Obsidian workspace<cr>", desc = "Change Workspace", mode = "n" },
-  { "<leader>Oo", "<cmd>Obsidian open<cr>", desc = "Open in Obsidian App", mode = "n" },
-}
-vim.keymap.set("n", "gf", function()
-  if require("obsidian").util.cursor_on_markdown_link() then
-    return "<cmd>Obsidian follow_link<CR>"
-  else
-    return "gf"
-  end
-end, { noremap = false, expr = true })
-
 return {
   "obsidian-nvim/obsidian.nvim",
   version = "*", -- recommended, use latest release instead of latest commit
@@ -138,4 +77,71 @@ return {
       remap = true,
     },
   },
+  config = function(_, opts)
+    require("obsidian").setup(opts)
+
+    local ok, wk = pcall(require, "which-key")
+    if ok then
+      wk.add {
+        {
+          "<leader>O",
+          group = "Obsidian",
+          name = "Obsidian",
+          desc = "Obsidian",
+          icon = "📝",
+        },
+        { "<leader>On", "<cmd>Obsidian new<cr>", desc = "New Note", mode = "n" },
+        {
+          "<leader>Os",
+          function()
+            Snacks.picker.grep { cwd = vim.fn.expand "~/Projects/notes" }
+          end,
+          desc = "Search Notes (Snacks)",
+          mode = "n",
+        },
+        {
+          "<leader>Of",
+          function()
+            Snacks.picker.files { cwd = vim.fn.expand "~/Projects/notes" }
+          end,
+          desc = "Grep Notes (Snacks)",
+          mode = "n",
+        },
+        {
+          "<leader>Or",
+          function()
+            Snacks.picker.recent { filter = { cwd = vim.fn.expand "~/Projects/notes" } }
+          end,
+          desc = "Recent Notes (Snacks)",
+          mode = "n",
+        },
+        {
+          "<leader>Ot",
+          function()
+            Snacks.picker.files { cwd = vim.fn.expand "~/Projects/notes/src/twilio" }
+          end,
+          desc = "Search Work Notes",
+          mode = "n",
+        },
+        {
+          "<leader>Op",
+          function()
+            Snacks.picker.files { cwd = vim.fn.expand "~/Projects/notes/src/personal" }
+          end,
+          desc = "Search Personal Notes",
+          mode = "n",
+        },
+        { "<leader>Ow", "<cmd>Obsidian workspace<cr>", desc = "Change Workspace", mode = "n" },
+        { "<leader>Oo", "<cmd>Obsidian open<cr>", desc = "Open in Obsidian App", mode = "n" },
+      }
+    end
+
+    vim.keymap.set("n", "gf", function()
+      if require("obsidian").util.cursor_on_markdown_link() then
+        return "<cmd>Obsidian follow_link<CR>"
+      else
+        return "gf"
+      end
+    end, { noremap = false, expr = true })
+  end,
 }

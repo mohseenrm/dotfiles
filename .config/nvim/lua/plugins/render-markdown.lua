@@ -18,14 +18,16 @@ return {
       },
     },
   },
-  config = function()
-    require("obsidian").get_client().opts.ui.enable = false
+  config = function(_, opts)
+    pcall(function()
+      require("obsidian").get_client().opts.ui.enable = false
+    end)
     local obsidianNS = vim.api.nvim_get_namespaces()["ObsidianUI"]
     if not isempty(obsidianNS) then
       vim.api.nvim_buf_clear_namespace(0, obsidianNS, 0, -1)
     end
 
-    require("render-markdown").setup {}
+    require("render-markdown").setup(opts)
 
     -- Auto-enable/disable render-markdown based on filetype
     vim.api.nvim_create_autocmd({ "BufEnter", "WinEnter" }, {
