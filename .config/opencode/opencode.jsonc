@@ -70,6 +70,14 @@
     },
   },
   "mcp": {
+    "github": {
+      "type": "remote",
+      "headers": {
+        "Authorization": "Bearer {env:GITHUB_MCP_KEY}",
+      },
+      "url": "https://api.githubcopilot.com/mcp/",
+      "enabled": true,
+    },
     "playwright": {
       "type": "local",
       "command": ["npx", "@playwright/mcp@latest"],

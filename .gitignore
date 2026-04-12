@@ -43,3 +43,5 @@ bin/fastfetch
 Brewfile.work
 work.zsh
 .config/opencode/opencode.work.jsonc
+
+.envrc
