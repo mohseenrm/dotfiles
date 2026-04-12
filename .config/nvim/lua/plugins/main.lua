@@ -20,57 +20,10 @@ return {
     lazy = true,
   },
 
-  -- Telescope - migrated to snacks.nvim picker (keeping for extensions compatibility)
-  {
-    "nvim-telescope/telescope.nvim",
-    enabled = false, -- disabled in favor of snacks.nvim picker
-    keys = {},
-    dependencies = {
-      {
-        "nvim-telescope/telescope-live-grep-args.nvim"
-      }
-    },
-    config = function()
-      require("telescope").load_extension("live_grep_args")
-      require("telescope").load_extension("yank_history")
-    end
-  },
-
-  -- add telescope-fzf-native
-  -- {
-  --   "telescope.nvim",
-  --   dependencies = {
-  --     "nvim-telescope/telescope-fzf-native.nvim",
-  --     build = "make",
-  --     config = function()
-  --       require("telescope").load_extension("fzf")
-  --     end,
-  --   },
-  -- },
-
-  -- add pyright to lspconfig
-  {
-    "neovim/nvim-lspconfig",
-    ---@class PluginLspOpts
-    opts = {
-      ---@type lspconfig.options
-      servers = {
-        -- pyright will be automatically installed with mason and loaded with lspconfig
-        pyright = {},
-        bacon_ls = {
-          enabled = diagnostics == "bacon-ls",
-        },
-        rust_analyzer = { enabled = false },
-      },
-    },
-    config = function()
-      require "configs.lspconfig"
-    end,
-  },
-
   -- add more treesitter parsers
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
     opts = {
       ensure_installed = {
         "bash",
