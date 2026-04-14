@@ -3,6 +3,7 @@ local options = {
     lua = { "stylua" },
     css = { "prettier" },
     html = { "prettier" },
+    markdown = { "prettier" },
     rust = { "rustfmt", lsp_format = "fallback" },
   },
 
