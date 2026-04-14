@@ -263,6 +263,7 @@ unset ZELLIJ ZELLIJ_PANE_ID ZELLIJ_SESSION_NAME && fastfetch --config "$HOME/dot
 # Verify image file exists
 ls -la ~/.config/nvim/assets/rosie.png
 
+
 # Check fastfetch features
 ~/dotfiles/bin/fastfetch --list-features
 # Should show: imagemagick7, chafa
