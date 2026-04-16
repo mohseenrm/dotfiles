@@ -72,6 +72,11 @@
     },
   },
   "mcp": {
+    "excalidraw": {
+      "type": "remote",
+      "url": "https://mcp.excalidraw.com",
+      "enabled": true,
+    },
     "github": {
       "type": "remote",
       "headers": {
