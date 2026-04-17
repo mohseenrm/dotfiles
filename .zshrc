@@ -240,6 +240,9 @@ case ":$PATH:" in
 esac
 # pnpm end
 
+# Load utilility scripts
+source ~/utils.zsh
+
 # mise setup
 eval "$(mise activate zsh)" # this sets up interactive sessions
 
