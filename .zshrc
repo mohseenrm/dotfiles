@@ -248,3 +248,6 @@ eval "$(mise activate zsh)" # this sets up interactive sessions
 
 eval "$(direnv hook zsh)"
 
+
+# Go user-installed binaries (air, dlv, etc.)
+export PATH="$HOME/go/bin:$PATH"
