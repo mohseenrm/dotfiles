@@ -8,7 +8,7 @@ local servers = {
   "tailwindcss",
   "rust_analyzer",
   "gopls",
-  "solargraph",
+  "ruby_lsp",
 }
 
 for _, server in ipairs(servers) do
