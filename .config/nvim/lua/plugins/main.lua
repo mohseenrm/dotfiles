@@ -99,7 +99,7 @@ return {
         "prettier",
         "sql-formatter",
         "black",
-        "solargraph",
+        "ruby-lsp",
         "rubocop"
       },
     },
