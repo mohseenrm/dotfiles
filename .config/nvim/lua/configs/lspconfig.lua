@@ -11,6 +11,12 @@ local servers = {
   "ruby_lsp",
 }
 
+vim.lsp.config("ruby_lsp", {
+  capabilities = {
+    general = { positionEncodings = { "utf-16" } },
+  },
+})
+
 for _, server in ipairs(servers) do
   vim.lsp.enable(server)
 end
