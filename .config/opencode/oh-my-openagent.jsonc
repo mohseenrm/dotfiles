@@ -1,0 +1,67 @@
+{
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/dev/assets/oh-my-opencode.schema.json",
+  "agents": {
+    "sisyphus": {
+      "model": "anthropic/claude-opus-4-7",
+      "ultrawork": {
+        "model": "anthropic/claude-opus-4-6",
+        "variant": "max"
+      }
+    },
+    "librarian": {
+      "model": "anthropic/claude-opus-4-7"
+    },
+    "explore": {
+      "model": "anthropic/claude-opus-4-7"
+    },
+    "oracle": {
+      "model": "anthropic/claude-opus-4-7",
+      "variant": "high"
+    },
+    "hephaestus": {
+      "model": "anthropic/claude-sonnet-4-6"
+    },
+    "atlas": {
+      "model": "anthropic/claude-opus-4-7"
+    },
+    "prometheus": {
+      "model": "anthropic/claude-opus-4-7"
+    }
+  },
+  "categories": {
+    "quick": {
+      "model": "anthropic/claude-sonnet-4-6"
+    },
+    "unspecified-low": {
+      "model": "anthropic/claude-sonnet-4-6"
+    },
+    "unspecified-high": {
+      "model": "anthropic/claude-opus-4-7",
+      "variant": "max"
+    },
+    "writing": {
+      "model": "anthropic/claude-sonnet-4-6"
+    },
+    "visual-engineering": {
+      "model": "anthropic/claude-opus-4-7",
+      "variant": "high"
+    },
+    "git": {
+      "model": "anthropic/claude-sonnet-4-6",
+      "description": "All git operations"
+    }
+  },
+  "background_task": {
+    "providerConcurrency": {
+      "anthropic": 25,
+      "openai": 3,
+      "opencode": 10,
+      "zai-coding-plan": 10
+    },
+    "modelConcurrency": {
+      "anthropic/claude-opus-4-6": 25,
+      "anthropic/claude-sonnet-4-6": 25,
+      "opencode/gpt-5-nano": 20
+    }
+  }
+}
