@@ -169,7 +169,9 @@ alias aic="aider --model ollama_chat/deepseek-coder-v2 --config $HOME/aider.conf
 # Claude Code
 alias cc="claude"
 # Open Code
+export OPENCODE_TUI_CONFIG="$HOME/.config/opencode/tui.json"
 alias oc="opencode"
+alias ocw="OPENCODE_CONFIG=$HOME/.config/opencode/opencode.work.jsonc opencode"
 # Weather
 alias w="curl 'wttr.in/Seattle%2C+WA+98103?m'"
 
