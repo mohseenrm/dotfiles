@@ -33,7 +33,27 @@ This dotfiles repository transforms your terminal into a powerful, beautiful, an
 - **Node.js**: Managed with `nvm`
 - **Rust**: Full toolchain with `rustup`
 - **Java**: Managed with `SDKMAN!` (macOS)
-- **AI Tools**: `aider-chat`, `claude-cli`, and `ollama` integration
+- **AI Tools**: `aider-chat`, `claude-cli`, `claude-code`, and `ollama` integration
+
+### 🤖 Claude Code
+
+Personal + work profiles managed in `.claude/`, mirroring the OpenCode setup:
+
+```bash
+# Pick a profile (creates symlink ~/.claude/settings.json → dotfiles)
+~/dotfiles/.claude/use-profile.sh personal   # or `work`
+
+# Install MCP servers (idempotent, safe to re-run)
+~/dotfiles/.claude/install-mcps.sh           # personal MCPs
+~/dotfiles/.claude/install-mcps.work.sh      # work MCPs (gitignored)
+
+# Shell aliases (loaded from .zshrc)
+ccp        # switch to personal profile
+ccw        # switch to work profile
+ccstatus   # show which profile is active
+```
+
+Subagents in `.claude/agents/` (`code-reviewer`, `adversarial-reviewer`, `git-pick`) are auto-discovered. The work settings file and work MCP installer are gitignored.
 
 ### 🎨 Theme & Aesthetics
 
