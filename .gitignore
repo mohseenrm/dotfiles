@@ -43,5 +43,7 @@ bin/fastfetch
 Brewfile.work
 work.zsh
 .config/opencode/opencode.work.jsonc
+.claude/settings.work.json
+.claude/install-mcps.work.sh
 
 .envrc
