@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+# link-plans — symlink ~/Projects/plans into the target directory as `.plans`
+#
+# Usage:
+#   link-plans            # links into $PWD
+#   link-plans <dir>      # links into <dir>
+#
+# Safe / idempotent:
+#   - If `.plans` already points to ~/Projects/plans, exits success quietly
+#   - If `.plans` exists but is a regular file/dir or points elsewhere, refuses to clobber
+#   - Verifies ~/Projects/plans exists before linking
+
+set -euo pipefail
+
+PLANS_SRC="${STYX_PLANS_DIR:-$HOME/Projects/plans}"
+TARGET_DIR="${1:-$PWD}"
+LINK_NAME=".plans"
+LINK_PATH="$TARGET_DIR/$LINK_NAME"
+
+if [[ ! -d "$PLANS_SRC" ]]; then
+  printf 'link-plans: plans source does not exist: %s\n' "$PLANS_SRC" >&2
+  exit 1
+fi
+
+if [[ ! -d "$TARGET_DIR" ]]; then
+  printf 'link-plans: target directory does not exist: %s\n' "$TARGET_DIR" >&2
+  exit 1
+fi
+
+# Resolve canonical paths for accurate comparison
+PLANS_SRC_REAL="$(cd "$PLANS_SRC" && pwd -P)"
+
+if [[ -L "$LINK_PATH" ]]; then
+  EXISTING_TARGET="$(readlink "$LINK_PATH")"
+  # Resolve to absolute for comparison
+  if [[ "$EXISTING_TARGET" != /* ]]; then
+    EXISTING_TARGET="$TARGET_DIR/$EXISTING_TARGET"
+  fi
+  EXISTING_REAL="$(cd "$(dirname "$EXISTING_TARGET")" 2>/dev/null && pwd -P)/$(basename "$EXISTING_TARGET")" || EXISTING_REAL="$EXISTING_TARGET"
+
+  if [[ "$EXISTING_REAL" == "$PLANS_SRC_REAL" ]] || [[ "$EXISTING_TARGET" == "$PLANS_SRC" ]]; then
+    printf '✓ %s already linked to %s\n' "$LINK_PATH" "$PLANS_SRC"
+    exit 0
+  fi
+
+  printf 'link-plans: %s is a symlink pointing elsewhere (%s). Refusing to clobber.\n' "$LINK_PATH" "$EXISTING_TARGET" >&2
+  exit 1
+fi
+
+if [[ -e "$LINK_PATH" ]]; then
+  printf 'link-plans: %s exists and is not a symlink. Refusing to clobber.\n' "$LINK_PATH" >&2
+  exit 1
+fi
+
+ln -s "$PLANS_SRC" "$LINK_PATH"
+printf '✓ linked %s → %s\n' "$LINK_PATH" "$PLANS_SRC"
+
+# Auto-gitignore hint
+if [[ -d "$TARGET_DIR/.git" ]] && ! git -C "$TARGET_DIR" check-ignore -q "$LINK_NAME" 2>/dev/null; then
+  printf '\n  tip: %s is not gitignored in this repo. Add to .gitignore or rely on global gitignore.\n' "$LINK_NAME"
+fi
