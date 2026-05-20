@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "model": "claude-opus-4-7",
+  "autoUpdatesChannel": "stable",
+  "editorMode": "vim",
+  "alwaysThinkingEnabled": false,
+  "awaySummaryEnabled": true,
+  "permissions": {
+    "allow": [
+      "Read(//~/Projects/plans/**)",
+      "Bash(mkdir -p ~/Projects/plans*)",
+      "Bash(ls ~/Projects/plans*)",
+      "Bash(git status)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git branch:*)",
+      "Bash(git show:*)",
+      "Bash(stow:*)"
+    ],
+    "deny": [
+      "Bash(curl http://*)",
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./secrets/**)",
+      "Read(//~/.ssh/**)",
+      "Read(//~/.aws/credentials)"
+    ],
+    "ask": [
+      "Bash(rm -rf:*)",
+      "Bash(git push --force:*)",
+      "Bash(git reset --hard:*)"
+    ]
+  },
+  "additionalDirectories": [
+    "~/Projects/plans"
+  ],
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
+  "enableAllProjectMcpServers": false
+}

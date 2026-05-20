@@ -168,6 +168,9 @@ alias air="aider --model anthropic/claude-3-7-sonnet-20250219 --config $HOME/aid
 alias aic="aider --model ollama_chat/deepseek-coder-v2 --config $HOME/aider.conf.yaml"
 # Claude Code
 alias cc="claude"
+alias ccp='"$HOME/dotfiles/.claude/use-profile.sh" personal'
+alias ccw='"$HOME/dotfiles/.claude/use-profile.sh" work'
+alias ccstatus='"$HOME/dotfiles/.claude/use-profile.sh" status'
 # Open Code
 export OPENCODE_TUI_CONFIG="$HOME/.config/opencode/tui.json"
 alias oc="opencode"
