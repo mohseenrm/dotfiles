@@ -3,7 +3,7 @@
     "oh-my-openagent@latest"
   ],
   "$schema": "https://opencode.ai/config.json",
-  "model": "anthropic/claude-opus-4-7",
+  "model": "anthropic/claude-opus-4-8",
   "autoupdate": true,
   "permission": {
     "external_directory": {
