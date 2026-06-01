@@ -90,7 +90,7 @@
     "recraft": {
       "type": "remote",
       "url": "https://mcp.recraft.ai/mcp",
-      "enabled": true,
+      "enabled": false,
     },
   },
   "tools": {
