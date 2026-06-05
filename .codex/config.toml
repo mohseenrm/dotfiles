@@ -1,0 +1,76 @@
+# ~/.codex/config.toml — managed via dotfiles (stow)
+# Migrated from .config/opencode/opencode.jsonc
+# Reference: https://developers.openai.com/codex/config-reference
+#
+# NOTE: This file is symlinked into ~/.codex/ by `stow .`. Codex's runtime
+# state (auth.json, *.sqlite, logs, history.jsonl, cache/) lives alongside it
+# in ~/.codex/ and is NOT git-managed.
+
+# --- Model -------------------------------------------------------------------
+# opencode used anthropic/claude-opus-4-8. Codex talks to OpenAI models by
+# default; pick a current Codex model. Override per-session with `codex -m`.
+model = "gpt-5.5-codex"
+
+# --- Sandbox & approvals -----------------------------------------------------
+# You chose full-access / no approval prompts (YOLO equivalent of opencode
+# tools=all + bash allowed). danger-full-access disables the sandbox.
+default_permissions = ":danger-full-access"
+approval_policy = "never"
+
+# --- Web search --------------------------------------------------------------
+# opencode had webfetch=true. Codex exposes web search as a first-class tool.
+web_search = "live"
+
+# --- Updates -----------------------------------------------------------------
+# opencode autoupdate=true -> Codex update check on startup.
+check_for_update_on_startup = true
+
+# --- Subagents (global caps) -------------------------------------------------
+# Individual agents are defined as TOML files in ~/.codex/agents/*.toml.
+[agents]
+max_threads = 6
+max_depth = 1
+
+# --- TUI ---------------------------------------------------------------------
+# opencode tui.json -> Codex [tui]. brutus (custom opencode theme) has no
+# Codex equivalent; using a built-in dark theme. Run `/themes` in Codex to
+# browse options and change `theme` below.
+[tui]
+theme = "dark"
+vim_mode_default = false
+
+# Keymap port from tui.json. Codex keymap contexts: global, chat, composer,
+# editor, pager, list, approval. opencode's <leader>=ctrl+s chords do not map
+# 1:1 (Codex has no leader concept), so these are the closest direct bindings.
+[tui.keymap.global]
+# session_new (<leader>n) -> new conversation
+# session_list (<leader>l) -> open conversation picker
+# Adjust to taste; unbind with `action = []`.
+
+# --- MCP servers (personal) --------------------------------------------------
+# opencode "mcp" -> Codex [mcp_servers.<id>].
+# Remote HTTP servers use `url`; local stdio servers use `command` + `args`.
+
+[mcp_servers.excalidraw]
+url = "https://mcp.excalidraw.com"
+
+[mcp_servers.github]
+url = "https://api.githubcopilot.com/mcp/"
+# Codex http_headers are STATIC (no ${VAR} expansion). For an env-sourced
+# bearer token, use bearer_token_env_var. opencode used {env:GITHUB_MCP_KEY};
+# export GITHUB_MCP_KEY (e.g. via ~/.envrc) for this to authenticate.
+bearer_token_env_var = "GITHUB_MCP_KEY"
+
+[mcp_servers.playwright]
+command = "npx"
+args = ["@playwright/mcp@latest"]
+
+# recraft was disabled in opencode; omit (re-add with a [mcp_servers.recraft]
+# block + url = "https://mcp.recraft.ai/mcp" when needed).
+
+# --- Project trust (preserved from prior Codex install) ----------------------
+[projects."/Users/mohseen.mukaddam@opendoor.com/Projects"]
+trust_level = "trusted"
+
+[tui.model_availability_nux]
+"gpt-5.5" = 1
