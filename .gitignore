@@ -45,5 +45,6 @@ work.zsh
 .config/opencode/opencode.work.jsonc
 .claude/settings.work.json
 .claude/install-mcps.work.sh
+.codex/work.config.toml
 
 .envrc
