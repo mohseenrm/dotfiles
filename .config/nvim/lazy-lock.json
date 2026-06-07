@@ -9,7 +9,7 @@
   "brutus": { "branch": "main", "commit": "29ed9271f51e8adbe757c79fce3cc21b52697f64" },
   "conform.nvim": { "branch": "master", "commit": "619363c30309d29ffa631e67c8183f2a72caa373" },
   "copilot-cmp": { "branch": "master", "commit": "15fc12af3d0109fa76b60b5cffa1373697e261d1" },
-  "copilot.lua": { "branch": "master", "commit": "1d457ad5f267b8ef855a6b8b3fe152403cb00947" },
+  "copilot.lua": { "branch": "master", "commit": "0415bd625c3076a6a5ee445be484574d55b4fbfc" },
   "crates.nvim": { "branch": "main", "commit": "694357861ec9ebf12475ddcdd04ea45a0923c32d" },
   "dropbar.nvim": { "branch": "master", "commit": "808ba31cde89aec8833e9789f5e04557cd31c9e1" },
   "firenvim": { "branch": "master", "commit": "c927486daff6d1eb8a0d61fd9e264bc1bf5f2c36" },
@@ -26,7 +26,7 @@
   "menu": { "branch": "main", "commit": "7a0a4a2896b715c066cfbe320bdc048091874cc6" },
   "mini.ai": { "branch": "main", "commit": "4511b3481707c1d021485475d34f2ed2a50bf47b" },
   "mini.icons": { "branch": "main", "commit": "520995f1d75da0e4cc901ee95080b1ff2bc46b94" },
-  "mini.nvim": { "branch": "main", "commit": "b2ac6522f7a54b475d9fad711b938eefc6d3d0a6" },
+  "mini.nvim": { "branch": "main", "commit": "d5e6f5b843f1d813d9c4bfb242b751dc5ab6f8ae" },
   "mini.surround": { "branch": "main", "commit": "88c52297ed3e69ecf9f8652837888ecc727a28ee" },
   "minty": { "branch": "main", "commit": "aafc9e8e0afe6bf57580858a2849578d8d8db9e0" },
   "modes.nvim": { "branch": "main", "commit": "2cd194d1033ba391d87d386735e15963adbc5f51" },
@@ -60,5 +60,5 @@
   "vim-markdown": { "branch": "master", "commit": "1bc9d0cd8e1cc3e901b0a49c2b50a843f1c89397" },
   "volt": { "branch": "main", "commit": "620de1321f275ec9d80028c68d1b88b409c0c8b1" },
   "which-key.nvim": { "branch": "main", "commit": "3aab2147e74890957785941f0c1ad87d0a44c15a" },
-  "yanky.nvim": { "branch": "main", "commit": "b13d318dc7c816e2eee626dde61fa0a7237bc77e" }
+  "yanky.nvim": { "branch": "main", "commit": "257716a5649e35eaebf2015a488b0f22b3907a47" }
 }
