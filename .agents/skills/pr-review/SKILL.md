@@ -13,7 +13,7 @@ description: |
   PR", or wants a thorough pre-merge review.
 user-invocable: true
 disable-model-invocation: true
-argument-hint: [PR number, URL, "current" (for git diff), or path to a saved diff. Optionally suffix with `--worktree /abs/path/to/local/checkout` to use an existing worktree instead of cloning.]
+argument-hint: 'PR number, URL, "current" (for git diff), or path to a saved diff. Optionally suffix with `--worktree /abs/path/to/local/checkout` to use an existing worktree instead of cloning.'
 allowed-tools: Agent, Bash, Read, Glob, Grep
 metadata:
   author: mohseenrm
