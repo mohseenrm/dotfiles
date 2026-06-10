@@ -69,8 +69,6 @@ args = ["@playwright/mcp@latest"]
 # block + url = "https://mcp.recraft.ai/mcp" when needed).
 
 # --- Project trust (preserved from prior Codex install) ----------------------
-[projects."/Users/mohseen.mukaddam@opendoor.com/Projects"]
-trust_level = "trusted"
 
 [tui.model_availability_nux]
 "gpt-5.5" = 1
