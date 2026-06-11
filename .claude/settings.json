@@ -1,10 +1,9 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
-  "model": "claude-opus-4-7",
-  "autoUpdatesChannel": "stable",
-  "editorMode": "vim",
-  "alwaysThinkingEnabled": false,
-  "awaySummaryEnabled": true,
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
   "permissions": {
     "allow": [
       "Read(//~/Projects/plans/**)",
@@ -31,12 +30,14 @@
       "Bash(git reset --hard:*)"
     ]
   },
+  "model": "claude-fable-5[1m]",
+  "enableAllProjectMcpServers": false,
+  "alwaysThinkingEnabled": false,
+  "awaySummaryEnabled": true,
+  "autoUpdatesChannel": "stable",
+  "skipDangerousModePermissionPrompt": true,
+  "editorMode": "vim",
   "additionalDirectories": [
     "~/Projects/plans"
-  ],
-  "attribution": {
-    "commit": "",
-    "pr": ""
-  },
-  "enableAllProjectMcpServers": false
+  ]
 }
