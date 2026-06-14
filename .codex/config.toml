@@ -47,6 +47,16 @@ vim_mode_default = false
 # session_list (<leader>l) -> open conversation picker
 # Adjust to taste; unbind with `action = []`.
 
+# Vim-like scrolling in the transcript/pager (mirrors Claude Code keybindings).
+# Pager defaults already include j/k (line), ctrl-u/ctrl-d (half page); listed
+# here for documentation. jump_top/jump_bottom add g/G on top of home/end —
+# user values REPLACE defaults, so home/end must be restated.
+[tui.keymap.pager]
+half_page_up = "ctrl-u"
+half_page_down = "ctrl-d"
+jump_top = ["home", "g"]
+jump_bottom = ["end", "shift-g"]
+
 # --- MCP servers (personal) --------------------------------------------------
 # opencode "mcp" -> Codex [mcp_servers.<id>].
 # Remote HTTP servers use `url`; local stdio servers use `command` + `args`.
