@@ -36,6 +36,7 @@
   "awaySummaryEnabled": true,
   "autoUpdatesChannel": "stable",
   "skipDangerousModePermissionPrompt": true,
+  "theme": "custom:brutus",
   "editorMode": "vim",
   "additionalDirectories": [
     "~/Projects/plans"
