@@ -30,7 +30,7 @@
       "Bash(git reset --hard:*)"
     ]
   },
-  "model": "claude-fable-5[1m]",
+  "model": "opus[1m]",
   "enableAllProjectMcpServers": false,
   "alwaysThinkingEnabled": false,
   "awaySummaryEnabled": true,
