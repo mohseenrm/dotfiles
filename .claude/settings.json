@@ -40,5 +40,8 @@
   "editorMode": "vim",
   "additionalDirectories": [
     "~/Projects/plans"
-  ]
+  ],
+  "enabledPlugins": {
+    "ruby-lsp@claude-plugins-official": true
+  }
 }
