@@ -1,5 +1,5 @@
 {
-  "CopilotChat.nvim": { "branch": "main", "commit": "2025f92022bef434de0511c5157a19974a9377a4" },
+  "CopilotChat.nvim": { "branch": "main", "commit": "ab5cf12ea8b8c8af82feb616bf7fbac096edc0e0" },
   "LuaSnip": { "branch": "master", "commit": "0abc8f390b278c3b4aabc4c004ac8a088b65cf24" },
   "NvChad": { "branch": "v2.5", "commit": "d042cc975247c2aa55fcb228e5d146dc1dc6c648" },
   "base46": { "branch": "v3.0", "commit": "884b990dcdbe07520a0892da6ba3e8d202b46337" },
@@ -25,8 +25,8 @@
   "mason.nvim": { "branch": "main", "commit": "fc98833b6da5de5a9c5b1446ac541577059555be" },
   "menu": { "branch": "main", "commit": "7a0a4a2896b715c066cfbe320bdc048091874cc6" },
   "mini.ai": { "branch": "main", "commit": "4511b3481707c1d021485475d34f2ed2a50bf47b" },
-  "mini.icons": { "branch": "main", "commit": "d48ad47359218d2b019034f95f601b3861180885" },
-  "mini.nvim": { "branch": "main", "commit": "7ed410c73ebb910754c2938a6dae50c51c3a096a" },
+  "mini.icons": { "branch": "main", "commit": "ac38c983aed0a2bd32a65ca3e2348e12e58ca292" },
+  "mini.nvim": { "branch": "main", "commit": "bf8169f3e518be8de3f88073ace37d91f576cb04" },
   "mini.surround": { "branch": "main", "commit": "88c52297ed3e69ecf9f8652837888ecc727a28ee" },
   "minty": { "branch": "main", "commit": "aafc9e8e0afe6bf57580858a2849578d8d8db9e0" },
   "modes.nvim": { "branch": "main", "commit": "2cd194d1033ba391d87d386735e15963adbc5f51" },
