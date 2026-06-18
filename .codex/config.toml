@@ -80,11 +80,15 @@ open_external_editor = "ctrl-e"
 toggle_fast_mode = "alt-o"
 copy = "ctrl-y"
 
-# CC escape (chat:cancel) -> interrupt; CC modelPicker left/right (effort).
+# CC escape (chat:cancel) -> interrupt.
+# NOTE: decrease/increase_reasoning_effort intentionally left UNBOUND. CC only
+# used left/right for effort inside its model-picker dialog, with no global
+# equivalent. alt-left/alt-right (and the arrow family) are RESERVED by Codex's
+# fixed agent-cycle bindings (fixed.previous_agent / fixed.next_agent), which
+# `codex doctor` does NOT flag — only the TUI rejects them at startup with an
+# "Ambiguous tui.keymap" error. Use Codex's built-in effort keys instead.
 [tui.keymap.chat]
 interrupt_turn = "escape"
-decrease_reasoning_effort = "alt-left"
-increase_reasoning_effort = "alt-right"
 
 # CC/opencode enter (submit); opencode up/down history.
 [tui.keymap.composer]
