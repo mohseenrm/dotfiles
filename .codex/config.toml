@@ -39,23 +39,80 @@ max_depth = 1
 theme = "dark"
 vim_mode_default = false
 
-# Keymap port from tui.json. Codex keymap contexts: global, chat, composer,
-# editor, pager, list, approval. opencode's <leader>=ctrl+s chords do not map
-# 1:1 (Codex has no leader concept), so these are the closest direct bindings.
-[tui.keymap.global]
-# session_new (<leader>n) -> new conversation
-# session_list (<leader>l) -> open conversation picker
-# Adjust to taste; unbind with `action = []`.
+# Keymap ported from .config/opencode/tui.json + ~/.claude/keybindings.json.
+#
+# IMPORTANT — two gotchas that make keymaps silently "not take effect":
+#   1. Keys use HYPHENS, not plus: `ctrl-o`, `shift-enter`, `alt-left`. Codex
+#      rejects `ctrl+o`.
+#   2. An UNKNOWN action name or a bad key value fails the WHOLE config load,
+#      and Codex falls back to built-in defaults (so it looks like nothing was
+#      applied — and model/MCP/sandbox settings silently revert too). After any
+#      edit here, run:  codex doctor   and confirm `✓ config  loaded`.
+#
+# Codex has no <leader> concept, no theme-toggle hotkey, no todo/brief panels,
+# no model picker, and no session-list/new hotkeys in the keymap. Those opencode
+# (<leader>l/n/m/t...) and Claude Code (ctrl+t todos, ctrl+shift+b brief,
+# meta+p model picker, theme:toggle) bindings have NO Codex equivalent and are
+# intentionally omitted rather than mapped to invented actions. Valid action
+# names per context (from the 0.141.0 binary):
+#   global   : open_transcript open_external_editor copy clear_terminal
+#              toggle_vim_mode toggle_fast_mode toggle_raw_output
+#   chat     : interrupt_turn decrease_reasoning_effort
+#              increase_reasoning_effort edit_queued_message
+#   composer : submit queue toggle_shortcuts history_search_previous
+#              history_search_next
+#   editor   : insert_newline move_word_left move_word_right delete_backward
+#              delete_forward delete_backward_word delete_forward_word
+#              kill_line_start kill_whole_line kill_line_end yank
+#   pager    : scroll_up scroll_down half_page_up half_page_down page_up
+#              page_down jump_top jump_bottom close close_transcript
+#   list     : move_up move_down move_left move_right page_up page_down
+#              jump_top jump_bottom accept cancel
+#   approval : open_fullscreen open_thread approve approve_for_session
+#              approve_for_prefix deny decline cancel
+# Values: "key" or ["key1","key2"]. Unbind with [].
 
-# Vim-like scrolling in the transcript/pager (mirrors Claude Code keybindings).
-# Pager defaults already include j/k (line), ctrl-u/ctrl-d (half page); listed
-# here for documentation. jump_top/jump_bottom add g/G on top of home/end —
-# user values REPLACE defaults, so home/end must be restated.
+# CC ctrl+o (toggleTranscript), ctrl+e (externalEditor), meta+o (fastMode);
+# opencode <leader>e (editor_open), <leader>y (messages_copy).
+[tui.keymap.global]
+open_transcript = "ctrl-o"
+open_external_editor = "ctrl-e"
+toggle_fast_mode = "alt-o"
+copy = "ctrl-y"
+
+# CC escape (chat:cancel) -> interrupt; CC modelPicker left/right (effort).
+[tui.keymap.chat]
+interrupt_turn = "escape"
+decrease_reasoning_effort = "alt-left"
+increase_reasoning_effort = "alt-right"
+
+# CC/opencode enter (submit); opencode up/down history.
+[tui.keymap.composer]
+submit = "enter"
+history_search_previous = "up"
+history_search_next = "down"
+
+# opencode input_newline: shift+return,ctrl+return,alt+return,ctrl+j.
+[tui.keymap.editor]
+insert_newline = ["shift-enter", "ctrl-j"]
+
+# Vim-like scrolling (mirrors CC Transcript/Scroll + opencode half-page).
+# User values REPLACE defaults, so home/end are restated alongside g/G.
 [tui.keymap.pager]
 half_page_up = "ctrl-u"
 half_page_down = "ctrl-d"
 jump_top = ["home", "g"]
 jump_bottom = ["end", "shift-g"]
+
+# CC Select context: j/k + arrows for list navigation.
+[tui.keymap.list]
+move_down = ["down", "j"]
+move_up = ["up", "k"]
+
+# CC Confirmation: y / n.
+[tui.keymap.approval]
+approve = "y"
+deny = "n"
 
 # --- MCP servers (personal) --------------------------------------------------
 # opencode "mcp" -> Codex [mcp_servers.<id>].
