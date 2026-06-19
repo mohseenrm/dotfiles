@@ -28,9 +28,6 @@ if [[ $(id -un) == "momo" ]]; then
   export ANDROID_HOME="$HOME/Library/Android/sdk"
   # GCloud
   export PATH=/opt/homebrew/share/google-cloud-sdk/bin:"$PATH"
-  # INFO: battery cli tool to maintain battery level
-  battery maintain 80
-  # battery marinain stop
   # Fastfetch aliases
   alias ff='fastfetch --config "$HOME/dotfiles/.config/fastfetch/config.jsonc"'
 else
