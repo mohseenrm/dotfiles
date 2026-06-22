@@ -74,11 +74,17 @@ vim_mode_default = false
 
 # CC ctrl+o (toggleTranscript), ctrl+e (externalEditor), meta+o (fastMode);
 # opencode <leader>e (editor_open), <leader>y (messages_copy).
+# NOTE: global/chat keys are live WHILE TYPING, so they must not equal Codex's
+# default emacs-style editor keys or the TUI rejects them at startup with an
+# "Ambiguous tui.keymap" error (e.g. ctrl-e = editor.move_line_end, ctrl-y =
+# editor.yank, ctrl-a/ctrl-k/ctrl-u/ctrl-w are also taken). To keep CC's ctrl-e
+# for external editor, we MOVE editor.move_line_end off ctrl-e (to End, below)
+# so the two no longer collide. copy moves off ctrl-y (= editor.yank) to alt-y.
 [tui.keymap.global]
 open_transcript = "ctrl-o"
 open_external_editor = "ctrl-e"
 toggle_fast_mode = "alt-o"
-copy = "ctrl-y"
+copy = "alt-y"
 
 # CC escape (chat:cancel) -> interrupt.
 # NOTE: decrease/increase_reasoning_effort intentionally left UNBOUND. CC only
@@ -90,15 +96,22 @@ copy = "ctrl-y"
 [tui.keymap.chat]
 interrupt_turn = "escape"
 
-# CC/opencode enter (submit); opencode up/down history.
+# CC/opencode enter (submit).
+# NOTE: history_search_previous/next intentionally left UNBOUND. CC/opencode
+# used up/down for history, but in Codex the composer and editor share the
+# input region, so binding up/down to history "shadows" editor.move_up/down
+# (cursor movement) and the TUI rejects it at startup with an "Ambiguous
+# tui.keymap" error. Arrows stay as cursor movement (Codex default); reach
+# history via Codex's built-in composer history keys.
 [tui.keymap.composer]
 submit = "enter"
-history_search_previous = "up"
-history_search_next = "down"
 
 # opencode input_newline: shift+return,ctrl+return,alt+return,ctrl+j.
+# move_line_end moved off its ctrl-e default to End, freeing ctrl-e for
+# global.open_external_editor above.
 [tui.keymap.editor]
 insert_newline = ["shift-enter", "ctrl-j"]
+move_line_end = "end"
 
 # Vim-like scrolling (mirrors CC Transcript/Scroll + opencode half-page).
 # User values REPLACE defaults, so home/end are restated alongside g/G.
@@ -114,9 +127,11 @@ move_down = ["down", "j"]
 move_up = ["up", "k"]
 
 # CC Confirmation: y / n.
+# NOTE: deny intentionally left UNBOUND. `n` is already Codex's default for
+# approval.decline; binding deny = "n" too makes deny and decline collide on
+# the same key. `n` (decline) is the natural "no", so we keep only approve = y.
 [tui.keymap.approval]
 approve = "y"
-deny = "n"
 
 # --- MCP servers (personal) --------------------------------------------------
 # opencode "mcp" -> Codex [mcp_servers.<id>].
@@ -135,6 +150,9 @@ bearer_token_env_var = "GITHUB_MCP_KEY"
 [mcp_servers.playwright]
 command = "npx"
 args = ["@playwright/mcp@latest"]
+
+[projects."/Users/mohseen.mukaddam@opendoor.com/dotfiles"]
+trust_level = "trusted"
 
 # recraft was disabled in opencode; omit (re-add with a [mcp_servers.recraft]
 # block + url = "https://mcp.recraft.ai/mcp" when needed).
