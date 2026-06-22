@@ -47,4 +47,7 @@ work.zsh
 .claude/install-mcps.work.sh
 .codex/work.config.toml
 
+.agents/skills/deploy-web-pr-to-stage/
+.claude/skills/deploy-web-pr-to-stage/
+
 .envrc
