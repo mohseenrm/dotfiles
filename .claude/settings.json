@@ -32,6 +32,10 @@
   },
   "model": "opus[1m]",
   "enableAllProjectMcpServers": false,
+  "enabledPlugins": {
+    "ruby-lsp@claude-plugins-official": true,
+    "figma@claude-plugins-official": true
+  },
   "alwaysThinkingEnabled": false,
   "awaySummaryEnabled": true,
   "autoUpdatesChannel": "stable",
@@ -40,8 +44,5 @@
   "editorMode": "vim",
   "additionalDirectories": [
     "~/Projects/plans"
-  ],
-  "enabledPlugins": {
-    "ruby-lsp@claude-plugins-official": true
-  }
+  ]
 }
