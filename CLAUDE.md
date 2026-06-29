@@ -29,5 +29,6 @@ A collection of dotfiles symlinked via GNU stow, organized by application.
 - **Subagents**: `.claude/agents/*.md` — `code-reviewer`, `adversarial-reviewer`, `git-pick`
 - **MCP installers**: `.claude/install-mcps.sh` (personal), `.claude/install-mcps.work.sh` (gitignored)
 - **Profile switcher**: `.claude/use-profile.sh personal|work|status`
-- **User preferences**: `.claude/CLAUDE.md` (loaded into every Claude Code session)
+- **User preferences**: `.claude/CLAUDE.md` (loaded into every Claude Code session; symlinked to `.claude/AGENTS.md`)
+- **Cross-tool AGENTS.md**: `.claude/link-agents-md.sh` symlinks `.claude/CLAUDE.md` to other tools' global AGENTS.md (`~/.codex/AGENTS.md`, `~/.config/opencode/AGENTS.md`). Run once; `status` arg shows link state.
 - Stow tree-folds into `~/.claude/` so symlinks coexist with Claude Code's runtime state (`sessions/`, `transcripts/`, `plugins/`, etc.) — those stay untouched on disk.
