@@ -12,6 +12,7 @@ local servers = {
 }
 
 vim.lsp.config("ruby_lsp", {
+  root_markers = { { "Gemfile", ".ruby-version" }, ".git" },
   capabilities = {
     general = { positionEncodings = { "utf-16" } },
   },
