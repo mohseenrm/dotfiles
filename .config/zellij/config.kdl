@@ -326,6 +326,10 @@ theme "brutus"
 //
 // mouse_mode false
 
+// Pass OSC 8 hyperlinks through to the host terminal so they stay clickable.
+// Default is false, which strips hyperlinks emitted by programs inside zellij.
+osc8_hyperlinks true
+
 // Configure the scroll back buffer size
 // This is the number of lines zellij stores for each pane in the scroll back
 // buffer. Excess number of lines are discarded in a FIFO fashion.

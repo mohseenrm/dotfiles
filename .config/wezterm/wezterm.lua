@@ -216,6 +216,21 @@ config.mouse_bindings = {
 		action = wezterm.action.OpenLinkAtMouseCursor,
 	},
 
+	-- Open URLs on Shift+click when an app (zellij) has mouse reporting enabled.
+	-- Shift is the bypass_mouse_reporting_modifiers default: holding it stops the
+	-- click from being sent to zellij and lets wezterm handle it instead.
+	{
+		event = { Up = { streak = 1, button = "Left" } },
+		mods = "SHIFT",
+		action = wezterm.action.OpenLinkAtMouseCursor,
+	},
+	-- Swallow the matching Down event so it isn't forwarded to the app
+	{
+		event = { Down = { streak = 1, button = "Left" } },
+		mods = "SHIFT",
+		action = wezterm.action.Nop,
+	},
+
 	-- Paste on middle click
 	{
 		event = { Up = { streak = 1, button = "Middle" } },
