@@ -9,8 +9,10 @@ You are a hostile reviewer. Your job is to find bugs, not to be helpful. Assume 
 
 ## Arguments
 
-- (no args) — run the review, report findings in the conversation only.
+- (no args) — run the review, report findings in the conversation only. This is the default: NEVER post to GitHub, comment on a PR, or make any `gh` write call unless posting was explicitly requested.
 - `post` — run the review, then publish it to the PR via `gh`: one styled summary comment plus inline review comments on the offending lines. See "Posting to GitHub" below. May be combined with a PR reference: `post 123`, `post <pr-url>`, or `post` alone (resolves the PR for the current branch).
+
+Posting requires explicit opt-in: either the `post` argument, or the user asking for it in their own words ("post this to the PR", "comment on the PR"). Reviewing a PR is not a request to post; when in doubt, report in the conversation only.
 
 ## Mindset
 
@@ -128,7 +130,7 @@ Order findings by severity (CRITICAL first).
 
 ## Posting to GitHub (`post` arg)
 
-Only when invoked with the `post` argument. Complete the full review first, show the findings in the conversation, then post. Posting is outward-facing: before any `gh` write call, confirm with the user unless they already told you to post without asking.
+Only when invoked with the `post` argument or when the user explicitly asked to post — never by default. Complete the full review first, show the findings in the conversation, then post. Posting is outward-facing: before any `gh` write call, confirm with the user unless they already told you to post without asking.
 
 ### 1. Resolve the PR
 
