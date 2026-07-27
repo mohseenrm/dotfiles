@@ -29,6 +29,36 @@ PENDING_CHECK_STATES = {
 }
 REVIEW_BOT_LOGIN_KEYWORDS = {
     "codex",
+    "claude",
+    "copilot",
+    "coderabbit",
+    "cursor",
+    "graphite",
+    "greptile",
+    "sonar",
+    "codecov",
+    "deepsource",
+    "snyk",
+    "sourcery",
+    "ellipsis",
+    "korbit",
+    "qodo",
+    "codiumai",
+    "bugbot",
+    "reviewer",
+    "review-bot",
+    "lint",
+}
+# Bots whose output is never review feedback (deploy previews, changelog bots, etc.).
+REVIEW_BOT_LOGIN_DENY_KEYWORDS = {
+    "dependabot",
+    "renovate",
+    "netlify",
+    "vercel",
+    "argocd",
+    "stale",
+    "semantic-release",
+    "changeset",
 }
 TRUSTED_AUTHOR_ASSOCIATIONS = {
     "OWNER",
@@ -68,6 +98,14 @@ def parse_args():
         help="Max rerun cycles per head SHA before stop recommendation",
     )
     parser.add_argument("--state-file", help="Path to state JSON file")
+    parser.add_argument(
+        "--all-bots",
+        action="store_true",
+        help=(
+            "Surface review feedback from every bot author except known non-review bots "
+            "(dependabot, renovate, deploy-preview bots). Default surfaces only known review bots."
+        ),
+    )
     parser.add_argument("--once", action="store_true", help="Emit one snapshot and exit")
     parser.add_argument("--watch", action="store_true", help="Continuously emit JSONL snapshots")
     parser.add_argument(
@@ -512,10 +550,14 @@ def is_bot_login(login):
     return bool(login) and login.endswith("[bot]")
 
 
-def is_actionable_review_bot_login(login):
+def is_actionable_review_bot_login(login, all_bots=False):
     if not is_bot_login(login):
         return False
     lower_login = login.lower()
+    if any(keyword in lower_login for keyword in REVIEW_BOT_LOGIN_DENY_KEYWORDS):
+        return False
+    if all_bots:
+        return True
     return any(keyword in lower_login for keyword in REVIEW_BOT_LOGIN_KEYWORDS)
 
 
@@ -529,7 +571,7 @@ def is_trusted_human_review_author(item, authenticated_login):
     return association in TRUSTED_AUTHOR_ASSOCIATIONS
 
 
-def fetch_new_review_items(pr, state, fresh_state, authenticated_login=None):
+def fetch_new_review_items(pr, state, fresh_state, authenticated_login=None, all_bots=False):
     repo = pr["repo"]
     pr_number = pr["number"]
     endpoints = comment_endpoints(repo, pr_number)
@@ -577,7 +619,7 @@ def fetch_new_review_items(pr, state, fresh_state, authenticated_login=None):
         if not author:
             continue
         if is_bot_login(author):
-            if not is_actionable_review_bot_login(author):
+            if not is_actionable_review_bot_login(author, all_bots=all_bots):
                 continue
         elif not is_trusted_human_review_author(item, authenticated_login):
             continue
@@ -693,6 +735,7 @@ def collect_snapshot(args):
         state,
         fresh_state=fresh_state,
         authenticated_login=authenticated_login,
+        all_bots=bool(getattr(args, "all_bots", False)),
     )
     # Surface review feedback before drilling into CI and mergeability details.
     # That keeps the babysitter responsive to new comments even when other
