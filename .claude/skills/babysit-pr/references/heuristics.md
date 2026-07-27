@@ -33,13 +33,16 @@ If uncertain, inspect failed logs once before choosing rerun.
    - If likely flaky/unrelated and not safely rerunnable: stop and report the blocker; do not edit unrelated tests, build scripts, CI configuration, dependency pins, or infrastructure code.
    - If checks are still pending and no failed job is available yet: wait.
 3. If flaky reruns for the same SHA reach the configured limit (default 3): stop and report persistent failure.
-4. Independently, process any new human review comments.
+4. Independently, process any new review comments (bot or human) through the fix pipeline below.
 
 ## Review comment agreement criteria
 
+Investigate first: read the comment, open the referenced code, and reproduce the claim before
+classifying. This applies equally to bot and human comments - bots produce confident false positives.
+
 Address the comment when:
 
-- The comment is technically correct.
+- The comment is technically correct (verified against the code, not assumed).
 - The change is actionable in the current branch.
 - The requested change does not conflict with the user’s intent or recent guidance.
 - The change can be made safely without unrelated refactors.
@@ -53,6 +56,21 @@ Do not auto-fix when:
 - The proposed change requires product/design decisions the user has not made.
 - The codebase is in a dirty/unrelated state that makes safe editing uncertain.
 - The comment only needs a written answer or disagreement response; propose the reply to the user instead of posting it automatically.
+- The claim does not reproduce. A bot or human claim you verified as wrong is not a mandate to change code; surface the rebuttal with file:line evidence.
+
+## Fix pipeline (every code change, review-driven or CI-driven)
+
+1. Patch: smallest correct change.
+2. Verify: run the tests/lint/typecheck covering the touched code.
+3. Adversarial gate: `/adversarial-reviewer` (no `post` arg) scoped to the pending diff. Loop until
+   no finding is 🚨 CRITICAL / 🔴 HIGH / 🟡 MEDIUM. ⚪ LOW and "No bugs found" pass. Cap 3 iterations.
+4. Commit.
+5. Rebase onto `origin/<baseRefName>`; re-run verification after a non-trivial rebase.
+6. Push with `--force-with-lease` after a rebase, plain `git push` otherwise.
+7. Resolve the thread if policy allows, then resume watching.
+
+Gate escape hatches are forbidden: no deleting tests, no loosening types, no `@ts-ignore`/`as any`,
+no `--no-verify`. If the gate will not clear in 3 iterations, stop and ask the user.
 
 ## Stop-and-ask conditions
 
@@ -64,3 +82,6 @@ Stop and ask the user instead of continuing automatically when:
 - CI failures persist after the flaky retry budget.
 - Reviewer feedback requires a product decision or cross-team coordination.
 - A human review comment requires a written GitHub reply instead of a code change.
+- The adversarial gate still flags findings above LOW after 3 iterations.
+- A rebase conflict cannot be resolved confidently from the PR's own changes (`git rebase --abort` first).
+- `git push --force-with-lease` is rejected, meaning someone else pushed to the branch.

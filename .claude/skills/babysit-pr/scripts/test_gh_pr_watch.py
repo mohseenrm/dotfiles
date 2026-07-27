@@ -283,3 +283,60 @@ def test_failed_jobs_include_direct_logs_endpoint(monkeypatch):
             "logs_endpoint": "repos/openai/codex/actions/jobs/555/logs",
         }
     ]
+
+
+@pytest.mark.parametrize(
+    "login,expected_default,expected_all_bots",
+    [
+        ("chatgpt-codex-connector[bot]", True, True),
+        ("coderabbitai[bot]", True, True),
+        ("copilot-pull-request-reviewer[bot]", True, True),
+        ("claude[bot]", True, True),
+        ("sonarcloud[bot]", True, True),
+        # Non-review bots stay filtered out even with --all-bots.
+        ("dependabot[bot]", False, False),
+        ("renovate[bot]", False, False),
+        ("netlify[bot]", False, False),
+        ("vercel[bot]", False, False),
+        # Unknown bots surface only under --all-bots.
+        ("some-inhouse-reviewer-thing[bot]", True, True),
+        ("mystery-tool[bot]", False, True),
+        # Humans are never treated as review bots.
+        ("octocat", False, False),
+    ],
+)
+def test_review_bot_login_classification(login, expected_default, expected_all_bots):
+    assert gh_pr_watch.is_actionable_review_bot_login(login) is expected_default
+    assert (
+        gh_pr_watch.is_actionable_review_bot_login(login, all_bots=True) is expected_all_bots
+    )
+
+
+def test_all_bots_flag_surfaces_unknown_review_bot(monkeypatch):
+    comment = {
+        "id": 77,
+        "user": {"login": "mystery-tool[bot]"},
+        "author_association": "NONE",
+        "body": "This nil-checks nothing.",
+        "created_at": "2026-06-08T10:00:00Z",
+        "path": "src/example.rs",
+        "line": 12,
+        "html_url": "https://github.com/openai/codex/pull/123#discussion_r77",
+    }
+
+    def fake_list(endpoint, **kwargs):
+        if endpoint.endswith("/pulls/123/comments"):
+            return [comment]
+        return []
+
+    monkeypatch.setattr(gh_pr_watch, "gh_api_list_paginated", fake_list)
+
+    default_items = gh_pr_watch.fetch_new_review_items(
+        sample_pr(), {}, fresh_state=True, authenticated_login="octocat"
+    )
+    assert default_items == []
+
+    all_bot_items = gh_pr_watch.fetch_new_review_items(
+        sample_pr(), {}, fresh_state=True, authenticated_login="octocat", all_bots=True
+    )
+    assert [(i["kind"], i["id"]) for i in all_bot_items] == [("review_comment", "77")]
