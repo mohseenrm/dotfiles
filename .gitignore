@@ -51,3 +51,5 @@ work.zsh
 .claude/skills/deploy-web-pr-to-stage/
 
 .envrc
+
+__pycache__
