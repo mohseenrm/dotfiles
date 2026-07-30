@@ -62,7 +62,7 @@ Do not auto-fix when:
 
 1. Patch: smallest correct change.
 2. Verify: run the tests/lint/typecheck covering the touched code.
-3. Adversarial gate: `/adversarial-reviewer` (no `post` arg) scoped to the pending diff. Loop until
+3. Adversarial gate: `$adversarial-reviewer` (no `post` arg) scoped to the pending diff. Loop until
    no finding is 🚨 CRITICAL / 🔴 HIGH / 🟡 MEDIUM. ⚪ LOW and "No bugs found" pass. Cap 3 iterations.
 4. Commit.
 5. Rebase onto `origin/<baseRefName>`; re-run verification after a non-trivial rebase.

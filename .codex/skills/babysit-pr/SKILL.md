@@ -1,7 +1,7 @@
 ---
 name: babysit-pr
 description: |-
-  Babysit a GitHub pull request after creation by continuously polling review comments (bot and human), CI checks/workflow runs, and mergeability state until the PR is merged/closed or user help is required. Diagnose failures, retry likely flaky failures up to 3 times, investigate every review comment and patch when changes are warranted, self-review each fix with /adversarial-reviewer until nothing above LOW is flagged, then commit, rebase on the base branch, and push. Use when the user asks to monitor a PR, watch CI, handle review comments, or keep an eye on failures and feedback on an open PR.
+  Babysit a GitHub pull request after creation by continuously polling review comments (bot and human), CI checks/workflow runs, and mergeability state until the PR is merged/closed or user help is required. Diagnose failures, retry likely flaky failures up to 3 times, investigate every review comment and patch when changes are warranted, self-review each fix with the `$adversarial-reviewer` skill until nothing above LOW is flagged, then commit, rebase on the base branch, and push. Use when the user asks to monitor a PR, watch CI, handle review comments, or keep an eye on failures and feedback on an open PR.
 ---
 # PR Babysitter
 
@@ -27,9 +27,9 @@ Accept any of the following:
 2. Run the watcher script to snapshot PR/review/CI state (or consume each streamed snapshot from `--watch`).
 3. Inspect the `actions` list in the JSON response.
 4. If `diagnose_ci_failure` is present, inspect failed run logs and classify the failure.
-5. If the failure is likely caused by the current branch, patch code locally, then run the same fix pipeline used for review comments (patch → verify → `/adversarial-reviewer` until nothing above LOW → commit → rebase → push). Do not patch random flaky tests, CI infrastructure, dependency outages, runner issues, or other failures that are unrelated to the branch.
+5. If the failure is likely caused by the current branch, patch code locally, then run the same fix pipeline used for review comments (patch → verify → `$adversarial-reviewer` until nothing above LOW → commit → rebase → push). Do not patch random flaky tests, CI infrastructure, dependency outages, runner issues, or other failures that are unrelated to the branch.
 6. If `process_review_comment` is present, investigate every surfaced published review item (bot or human) per "Investigate every surfaced comment" below, and decide whether changes are needed.
-7. If a review item is valid and actionable, run the full fix pipeline: patch → verify → `/adversarial-reviewer` until nothing above LOW is flagged → commit → rebase on the base branch → push. Then resolve the associated review thread only when allowed by the GitHub state mutation policy below.
+7. If a review item is valid and actionable, run the full fix pipeline: patch → verify → `$adversarial-reviewer` until nothing above LOW is flagged → commit → rebase on the base branch → push. Then resolve the associated review thread only when allowed by the GitHub state mutation policy below.
 8. Do not post replies to human-authored review comments/threads unless the user explicitly confirms the exact response. If a human review item is non-actionable, already addressed, or not valid, surface the item and a fully formatted recommended response (see "Response Formatting") to the user instead of replying on GitHub.
 9. If the failure is likely flaky/unrelated and `retry_failed_checks` is present, rerun failed jobs with `--retry-failed-now`.
 10. If both actionable review feedback and `retry_failed_checks` are present, prioritize review feedback first; a new commit will retrigger CI, so avoid rerunning flaky checks on the old SHA unless you intentionally defer the review change.
@@ -146,7 +146,7 @@ pass when they touch the same area; otherwise handle them one item at a time.
 1. **Patch** code locally on the PR head branch, smallest correct change that addresses the comment.
 2. **Verify** the fix: run the tests/lint/typecheck that cover the touched code. If a check fails,
    fix it before continuing. Never skip verification because the change "looks obvious".
-3. **Self-review with `/adversarial-reviewer`** on the pending changes (see below). Loop until the
+3. **Self-review with `$adversarial-reviewer`** on the pending changes (see below). Loop until the
    review returns nothing above LOW severity.
 4. **Commit** the change (see commit message defaults).
 5. **Rebase** onto the current base branch (see the Rebase section).
@@ -162,7 +162,7 @@ pass when they touch the same area; otherwise handle them one item at a time.
 Before committing any review-comment fix, review it with the `adversarial-reviewer` skill and iterate
 until it is clean:
 
-1. Invoke `/adversarial-reviewer` with **no `post` argument** so findings stay in the conversation.
+1. Invoke `$adversarial-reviewer` with **no `post` argument** so findings stay in the conversation.
    Posting the self-review to the PR would spam reviewers; never pass `post` from this skill.
 2. Scope the review to the pending change (the uncommitted diff plus any commits added this
    babysitting session), not the whole PR.
@@ -333,7 +333,7 @@ Use this loop in a live session:
 3. First check whether the PR is now merged or otherwise closed; if so, report that terminal state and stop polling immediately.
 4. Check CI summary, new review items, and mergeability/conflict status.
 5. Diagnose CI failures and classify branch-related vs flaky/unrelated. If the overall run is still pending but `failed_jobs` already includes a failed job, fetch that job's logs and diagnose immediately instead of waiting for the whole workflow run to finish. Patch only when the failure is branch-related.
-6. For each surfaced review item from another author (bot or human), investigate it against the actual code first. If it is valid and actionable, run the fix pipeline (patch → verify → `/adversarial-reviewer` until nothing above LOW → commit → rebase → push), then resolve it only when allowed by the GitHub state mutation policy above. If it is non-actionable, already addressed, incorrect, or requires a written answer, surface it to the user with a formatted suggested response instead of posting automatically. If a later snapshot surfaces your own approved reply, treat it as informational and continue without responding again.
+6. For each surfaced review item from another author (bot or human), investigate it against the actual code first. If it is valid and actionable, run the fix pipeline (patch → verify → `$adversarial-reviewer` until nothing above LOW → commit → rebase → push), then resolve it only when allowed by the GitHub state mutation policy above. If it is non-actionable, already addressed, incorrect, or requires a written answer, surface it to the user with a formatted suggested response instead of posting automatically. If a later snapshot surfaces your own approved reply, treat it as informational and continue without responding again.
 7. Process actionable review comments before flaky reruns when both are present; if a review fix requires a commit, push it and skip rerunning failed checks on the old SHA.
 8. Retry failed checks only when `retry_failed_checks` is present and you are not about to replace the current SHA with a review/CI fix commit. Do not make code changes for unrelated flakes or infrastructure failures just to get CI green.
 9. If you pushed a commit, resolved an eligible review thread, or triggered a rerun, report the action briefly and continue polling (do not stop). If a human review comment needs a written GitHub response, stop and ask for confirmation before posting.
@@ -381,7 +381,7 @@ Provide concise progress updates while monitoring and a final summary that inclu
 - A user request to "monitor" is not satisfied by a couple of sample polls; remain in the loop until a strict stop condition or an explicit user interruption.
 - A review-fix commit + push is not a completion event; immediately resume live monitoring (`--watch`) in the same turn and continue reporting progress updates.
 - Report the adversarial gate result for each fix as a progress update: iterations used and what was flagged. Example: `Fix for CodeRabbit comment on parser.ts: 2 adversarial passes (1 HIGH off-by-one caught and fixed), clean on pass 2, rebased on main, pushed 4f2a91c.`
-- Never claim a fix is clean without having actually run `/adversarial-reviewer` on it. If the gate was skipped, say so.
+- Never claim a fix is clean without having actually run `$adversarial-reviewer` on it. If the gate was skipped, say so.
 - When CI first transitions to all green for the current SHA, emit a one-time celebratory progress update (do not repeat it on every green poll). Preferred style: `🚀 CI is all green! 33/33 passed. Still on watch for review approval.`
 - Do not send the final summary while a watcher terminal is still running unless the watcher has emitted/confirmed a strict stop condition; otherwise continue with progress updates.
 
