@@ -140,13 +140,6 @@ approve = "y"
 [mcp_servers.excalidraw]
 url = "https://mcp.excalidraw.com"
 
-[mcp_servers.github]
-url = "https://api.githubcopilot.com/mcp/"
-# Codex http_headers are STATIC (no ${VAR} expansion). For an env-sourced
-# bearer token, use bearer_token_env_var. opencode used {env:GITHUB_MCP_KEY};
-# export GITHUB_MCP_KEY (e.g. via ~/.envrc) for this to authenticate.
-bearer_token_env_var = "GITHUB_MCP_KEY"
-
 [mcp_servers.playwright]
 command = "npx"
 args = ["@playwright/mcp@latest"]
