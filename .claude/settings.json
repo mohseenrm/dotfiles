@@ -37,6 +37,7 @@
     "figma@claude-plugins-official": true
   },
   "alwaysThinkingEnabled": false,
+  "effortLevel": "medium",
   "awaySummaryEnabled": true,
   "autoUpdatesChannel": "stable",
   "skipDangerousModePermissionPrompt": true,
