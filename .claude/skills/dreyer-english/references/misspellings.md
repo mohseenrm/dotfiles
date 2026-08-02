@@ -1,0 +1,120 @@
+# Frequently Misspelled Words
+
+Correct spellings with notes, from *Dreyer's English* ch. 8. The headword is the correct spelling.
+
+- **ACCESSIBLE** - Takes "-ible," not "-able."
+- **ACCOMMODATE, ACCOMMODATION** - Double c and double m; both easily dropped.
+- **ACKNOWLEDGMENT** - Preferred US spelling; UK uses "acknowledgement."
+- **AD NAUSEAM** - Not "ad nauseum."
+- **AFICIONADOS**
+- **ANOINT** - Not "annoint" (an archaic variant).
+- **ANTEDILUVIAN**
+- **ASSASSIN, ASSASSINATE, ASSASSINATED, ASSASSINATION** - Keep all the s's.
+- **BARBITURATE** - Not "barbituate."
+- **BATTALION** - Two t's, one l.
+- **BOOKKEEPER** - Three consecutive double letters; don't drop the second k.
+- **BUOY, BUOYANCY, BUOYANT** - The "uo" is easily flipped to "ou."
+- **BUREAUCRACY** - Ends "-cracy," not "-crasy."
+- **CAPPUCCINO** - Two p's and two c's.
+- **CENTENNIAL**
+- **CHAISE LONGUE** - Literally "long chair"; "chaise lounge" is a common accepted variant.
+- **COMMANDOS** - Preferred plural of "commando."
+- **CONSENSUS** - Not "concensus."
+- **DACHSHUND** - Two h's.
+- **DAIQUIRI** - Three i's.
+- **DAMMIT** - Not "damnit."
+- **DE RIGUEUR**
+- **DIETICIAN, DIETITIAN** - Both correct; "dietitian" is far more common.
+- **DIKE**
+- **DILEMMA** - Not "dilemna."
+- **DIPHTHERIA** - Not "diptheria"; two h's.
+- **DOPPELGÄNGER** - Don't transpose the "el" to "le."
+- **DUMBBELL** - Double b.
+- **ECSTASY** - Not "ecstacy."
+- **ELEGIAC** - Not "elegaic."
+- **ENMITY** - Not "emnity."
+- **FASCIST** - Capitalized only when naming an actual Fascist organization or member, otherwise lowercase.
+- **FILMMAKER, FILMMAKING** - Double m; not "filmaker."
+- **FLACCID** - Two c's.
+- **FLUORESCENCE, FLUORESCENT** - Note the "uo."
+- **FLUORIDE** - Note the "uo."
+- **FORTY** - Not "fourty."
+- **FUCHSIA** - Not "fuschia."
+- **GARROTE** - Not "garotte."
+- **GENEALOGY** - Not "geneology."
+- **GLAMOUR, GLAMOROUS** - "Glamour" keeps the u, but "glamorous" and "glamorize" drop it (never "glamourous"/"glamourize").
+- **GONORRHEA** - Two r's.
+- **GRAFFITI** - Two f's; it's a plural (singular "graffito").
+- **GUTTURAL** - Not "gutteral."
+- **HEROES** - Plural of the champion is "heroes"; the sandwich can be "heros."
+- **HIGHFALUTIN** - No trailing apostrophe and no internal hyphen.
+- **HORS D'OEUVRE, HORS D'OEUVRES** - Watch the "oeu"; the plural s is an English addition.
+- **HYPOCRISY** - Ends "-crisy," not "-crasy."
+- **IDIOSYNCRASY** - Ends "-crasy."
+- **INDISPENSABLE** - Not "indispensible."
+- **INDUBITABLY** - A b in the middle, not a p.
+- **INFINITESIMAL** - Just one s.
+- **INOCULATE** - One n and one c.
+- **LEPRECHAUN**
+- **LIAISON** - Three consecutive vowels ("iai").
+- **LIQUEUR** - Three consecutive vowels; no c before the q.
+- **MARSHMALLOW** - Two a's, no e's.
+- **MEDIEVAL** - Not "mediaeval."
+- **MEMENTO** - Not "momento."
+- **MILLENNIUM, MILLENNIA, MILLENNIAL** - Two l's and two n's in each.
+- **MINUSCULE** - Not "miniscule."
+- **MISCHIEVOUS** - Not "mischievious."
+- **MISSPELL, MISSPELLED, MISSPELLING** - Double s.
+- **MULTIFARIOUS** - With an f, not a v.
+- **NAÏVE, NAÏVETÉ** - Keep the accent marks; "naivety" is a poor variant.
+- **NEWSSTAND** - Two s's.
+- **NON SEQUITUR** - Not "non sequiter"; no hyphen.
+- **OCCURRED, OCCURRENCE, OCCURRING** - Double c and double r.
+- **ODORIFEROUS, ODOROUS** - Both correct (as is "odiferous").
+- **OPHTHALMIC, OPHTHALMOLOGIST, OPHTHALMOLOGY** - Note the "ophth."
+- **OVERRATE** - Double r; likewise overreach, override, overrule.
+- **PARALLEL, PARALLELED, PARALLELISM** - Two l's, then one l ("par-all-el").
+- **PARAPHERNALIA** - Keep the r after the midpoint.
+- **PASTIME** - One t (from "pass" + "time").
+- **PEJORATIVE** - Not "perjorative."
+- **PENDANT** - The noun; "pendent" is the adjective meaning hanging.
+- **PERSEVERE, PERSEVERANCE, PERSEVERANT** - No extra r before the v.
+- **PHARAOH** - Not "pharoah."
+- **PIMIENTO** - Preferred over the acceptable "pimento."
+- **POINSETTIA** - Not "poinsetta" or "poinsietta."
+- **PREROGATIVE** - Not "perogative."
+- **PROTUBERANCE, PROTUBERANT** - No r after the t; not "protruberance."
+- **PUBLICLY** - Not "publically."
+- **RACCOON** - Preferred over the odd variant "racoon."
+- **RASPBERRY** - With a p.
+- **REMUNERATIVE** - Not "renumerative."
+- **RENOWN, RENOWNED** - Not "reknown"/"reknowned."
+- **REPERTOIRE, REPERTORY** - Three r's each.
+- **RESTAURATEUR** - Not "restauranteur"; no n.
+- **ROCOCO** - Not "roccoco" or "rococco."
+- **ROOMMATE** - Double m.
+- **SACRILEGIOUS** - Not "sacreligious."
+- **SEIZE, SEIZED** - "ei," not "ie"; not "sieze."
+- **SEPARATE, SEPARATION** - Not "seperate"/"seperation."
+- **SHEPHERD** - Spelled "shepherd," not "shepard."
+- **SIEGE** - "ie," not "ei"; not "seige."
+- **SKULDUGGERY** - Single l preferred over "skullduggery."
+- **STOMACHACHE** - One word.
+- **STRAITJACKET** - "Strait" (constricted), not "straight"; likewise "straitlaced."
+- **STRATAGEM** - Ends "-agem," unlike "strategy."
+- **SUPERSEDE** - Not "supercede."
+- **SURPRISE, SURPRISED, SURPRISING** - Don't drop the first r.
+- **SYPHILIS** - One l.
+- **TAILLIGHT** - Two l's.
+- **TENDINITIS** - Not "tendonitis."
+- **THRESHOLD** - One h; not "threshhold."
+- **TOUT DE SUITE** - Not "toute suite."
+- **UNDERRATE, UNDERRATED, UNDERRATING** - Double r.
+- **UNPRECEDENTED**
+- **UNWIELDY** - Not "unwieldly."
+- **VILLAIN, VILLAINOUS, VILLAINY** - "ai," not "ia."
+- **VINAIGRETTE** - Not "viniagrette" or "vinegarette."
+- **WEIRD** - Not "wierd."
+- **WHOA** - Not "woah."
+- **WITHHOLD** - Two h's.
+- **Y'ALL** - Never "ya'll."
