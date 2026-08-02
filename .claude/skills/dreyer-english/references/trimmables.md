@@ -1,0 +1,93 @@
+# The Trimmables
+
+Redundancies where two words do one word's work, from *Dreyer's English* ch. 12. **Bold** marks the word(s) to keep; the rest is deletable. Optional note follows.
+
+- **ABM** missile - ABM = anti-ballistic missile.
+- absolutely **certain,** absolute **certainty,** absolutely **essential**
+- added **bonus**
+- advance **planning,** advance **warning**
+- all-time **record** - Also avoid "new record"; you just set a record.
+- assless **chaps** - Chaps are assless by definition.
+- **ATM** machine - ATM already means automated teller machine.
+- **blend** together
+- **cameo** appearance, **cameo** role
+- **capitol** building
+- closed **fist** - There are no open fists.
+- close **proximity** - To be proximate is to be close; find another way to stress intimacy.
+- **CNN** network - CNN = Cable News Network.
+- **consensus** of opinion, general **consensus** - "Consensus" already implies general and of opinion.
+- **continue** on
+- **crisis** situation
+- **depreciated** in value
+- direct **confrontation**
+- **disappear** from sight
+- **earlier** in time
+- end **product**
+- end **result**
+- equally **as, equally** as - Use one or the other, not both.
+- **erupt (or explode)** violently
+- exact **same** - Redundant, though common.
+- **fall** down
+- fellow **countryman**
+- **fetch** back - To fetch already means to go get and bring back.
+- **few** in number
+- fiction **novel** - A novel is fiction. Note "nonfiction novel" is a valid genre term (novelistic nonfiction), and calling any full-length book a "novel" is wrong.
+- final **outcome**
+- **follow** after
+- free **gift**
+- from **whence** - Whence means "from where," so "from whence" is redundant, though it has long literary precedent.
+- **frontispiece** illustration - A frontispiece is the illustration facing a book's title page.
+- full **gamut** - A gamut is already the full range; same for "complete range," "broad spectrum," "full extent."
+- **fuse** together
+- future **plans**
+- **gather** together
+- **glance** briefly - A glance is already brief.
+- **HIV** virus - HIV = human immunodeficiency virus.
+- hollow **tube**
+- **hourly (or daily or weekly or monthly or yearly)** basis
+- **integrate** with each other
+- **interdependent** upon each other
+- **join** together
+- **kneel** down
+- **knots** per hour - One knot = one nautical mile per hour.
+- **last** of all
+- **lesbian** woman
+- **lift** up
+- low **ebb** - An ebb is low by definition, though "lowest ebb" can pass.
+- main **protagonist**
+- **merge** together
+- **might** possibly
+- **moment** in time
+- more **superior**
+- Mount **Fujiyama** - Yama means "mountain"; use Fujiyama or Mount Fuji, not both.
+- mutual **cooperation**
+- **___ o’clock **A.M. in the morning - Unacceptable; ditto "P.M. in the evening." Also just say "midnight" and "noon," not "twelve midnight"/"twelve noon."
+- **orbit** around
+- overexaggerate
+- passing **fad** - A fad is brief by definition. "Passing fancy" is fine, since a fancy need not be brief.
+- past **history**
+- personal **friend,** personal **opinion** - "Personal" is usually deletable; "my own personal opinion" is the worst offender.
+- **PIN** number - PIN = personal identification number.
+- **plan** ahead
+- pre**plan**
+- **raise** up
+- **reason** why - The "why" is usually droppable but not wrong. Avoid "the reason is because," though.
+- **regular** routine
+- **return (or recall or revert or many other things beginning with “re-”) **back
+- **rise** up
+- **short** in length
+- **shuttle** back and forth
+- **sink** down
+- **skirt** around
+- slightly **ajar**
+- sudden **impulse**
+- **surrounded** on all sides
+- **swoop** down - Swooping is downward, but "swoop down" gets a pass; likewise "swoop up."
+- sworn **affidavit**
+- **undergraduate** student - "Undergraduate" works fine as a noun on its own.
+- unexpected **surprise**
+- unsolved **mystery** - A solved mystery is no longer a mystery.
+- un**thaw**
+- usual **custom**
+- wall **mural**
+- wall **sconce**
