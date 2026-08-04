@@ -1,6 +1,5 @@
 ---
 name: pr-self-review
-argument-hint: "[pr-number-or-url]"
 description: Review and fix YOUR OWN work - a pull request or a not-yet-PR branch. With an open PR, reads everything already posted (CodeRabbit and human comments, checkbox review bodies, failing CI checks), runs its own subagent review when the PR has no feedback yet, folds in a background CodeRabbit CLI pass (never blocks on it), validates each item against the actual code with parallel subagents (real vs false positive vs already fixed), fixes only the confirmed ones, commits, and pushes. With no PR yet, reviews the branch diff against the default branch through the same pipeline and fixes confirmed issues in place, so the draft PR opens clean. Stacked PRs (base branch is another open PR) are detected automatically and hand off to /pr-self-review-stack. NEVER posts anything to GitHub. Triggers on "review my PR", "self review my PR", "check feedback on my draft PR", "address the coderabbit comments", "fix PR feedback", "review my branch", "review my changes before I open a PR", "pre-PR review".
 ---
 
@@ -34,7 +33,7 @@ Two modes, one pipeline:
 
 ## Step 0: Resolve the PR and repo
 
-`$ARGUMENTS` may be a PR number, a full URL, or empty.
+The request may name a PR number, a full URL, or no PR at all.
 
 - Full URL → extract `OWNER/REPO` and the bare number `PR`.
 - Bare number → `PR` as given; `OWNER/REPO` from the current checkout

@@ -1,6 +1,5 @@
 ---
 name: pr-review
-argument-hint: "<pr-url-or-number> [more PRs...]"
 description: Review a TEAMMATE'S pull request (or a pasted list of PRs) and unblock them. Runs a multi-agent review where every candidate finding is adversarially verified against the real code before it survives, then posts ONE review comment per PR with checkbox findings grouped by severity (Blocking through Nits) and gives you a clear APPROVE or HOLD recommendation. Philosophy is unblock by default - only confirmed damage a follow-up PR cannot repair blocks merging. Always shows the comments and asks before posting. Batch mode triages each PR light vs heavy. Stacked PRs (base branch is another open PR) are detected automatically and hand off to /pr-review-stack. Re-invoking on a PR you already reviewed continues it - verifies which checkboxes got fixed, reviews only the new commits, updates the same comment in place. Triggers on "review this PR", "review <name>'s PR", "should I approve this PR", "review PR 12345", "review these PRs", "re-review this PR", "they pushed changes", pasted PR URL lists.
 ---
 
@@ -34,8 +33,8 @@ manufacture findings to look thorough.
 
 ## Step 1: Parse the PR and guard
 
-`$ARGUMENTS` is one or more PRs (URLs and/or numbers, separated by spaces, commas, or
-newlines). **More than one PR → use Batch mode (section after Step 9), which wraps the
+The user's request names one or more PRs (URLs and/or numbers, separated by spaces, commas,
+or newlines). **More than one PR → use Batch mode (section after Step 9), which wraps the
 steps below.** For each: URL → owner/repo + number. Bare number → use the `origin` of the
 git repo containing the current directory; if the current directory is not inside a git
 repo, ask the user which repo.
@@ -358,7 +357,7 @@ duplicates of existing threads).
 
 ## Batch mode (multiple PRs)
 
-When `$ARGUMENTS` contains several PRs, review them all in one run. One bad item never
+When the request names several PRs, review them all in one run. One bad item never
 kills the batch.
 
 **Batch is for INDEPENDENT PRs.** Run Step 1's stack check across the whole list first -

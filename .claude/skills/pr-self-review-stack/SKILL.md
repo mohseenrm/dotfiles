@@ -1,6 +1,5 @@
 ---
 name: pr-self-review-stack
-argument-hint: "[pr-number-or-url anywhere in the stack]"
 description: Review and fix YOUR OWN stack of PRs - a chain where each PR's base branch is the previous PR's head branch. Discovers the full chain from any single member, gathers feedback per PR, verifies every finding against the real code, then fixes each one at the LOWEST PR that owns it rather than patching the symptom at the top. Handles the part that makes stacks painful - after a fix lands in a lower branch it rebases every branch above it and force-pushes with lease, bottom-up, then re-verifies that every link is zero-behind its base. Also runs the stack-level pass on the composed end state. Never posts anything to GitHub and always asks before the first force-push. Triggers on "review my stack", "fix feedback on my stacked PRs", "self review my PR stack", "my PRs are stacked", "rebase my stack after fixes", "address feedback across my stack".
 ---
 
@@ -44,7 +43,7 @@ reference.
 
 ## Step 0: Discover the chain and guard
 
-`$ARGUMENTS` may be a PR number, a URL, or empty (use the current branch's PR, same
+The request may name a PR number, a URL, or no PR (use the current branch's PR, same
 resolution as `/pr-self-review` Step 0). **Any single member discovers the rest.**
 
 **Ordering is a safety property here, not a style choice.** Everything read-only happens
