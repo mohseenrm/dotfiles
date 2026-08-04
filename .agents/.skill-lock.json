@@ -1,63 +1,53 @@
 {
   "version": 3,
   "skills": {
-    "grill-me": {
-      "source": "mattpocock/skills",
+    "adversarial-reviewer": {
+      "source": "emdash-cms/emdash",
       "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/productivity/grill-me/SKILL.md",
-      "skillFolderHash": "c817f6f36acd483294144694a935a76d3e3eb101",
-      "pluginName": "mattpocock-skills",
-      "installedAt": "2026-08-01T17:20:21.035Z",
-      "updatedAt": "2026-08-01T17:20:21.035Z"
+      "sourceUrl": "https://github.com/emdash-cms/emdash.git",
+      "skillPath": "skills/adversarial-reviewer/SKILL.md",
+      "skillFolderHash": "4a003d5c3c7eb48b83b71fac44171b5394eb0893",
+      "installedAt": "2026-05-15T18:35:15.934Z",
+      "updatedAt": "2026-05-15T18:36:11.315Z"
     },
-    "wayfinder": {
-      "source": "mattpocock/skills",
+    "babysit-pr": {
+      "source": "openai/codex",
       "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/engineering/wayfinder/SKILL.md",
-      "skillFolderHash": "33ed747fb30668c0e7b61698af5268c25c0d75cb",
-      "pluginName": "mattpocock-skills",
-      "installedAt": "2026-08-01T17:20:21.037Z",
-      "updatedAt": "2026-08-01T17:20:21.037Z"
-    },
-    "grill-with-docs": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/engineering/grill-with-docs/SKILL.md",
-      "skillFolderHash": "5fdcdeedf2d0c73b3ecb1da0a464dd885590f8d6",
-      "pluginName": "mattpocock-skills",
-      "installedAt": "2026-08-01T17:20:21.038Z",
-      "updatedAt": "2026-08-01T17:20:21.038Z"
+      "sourceUrl": "https://github.com/openai/codex.git",
+      "skillPath": ".codex/skills/babysit-pr/SKILL.md",
+      "skillFolderHash": "229b745de8be933efda69e3bddc837228b181ee5",
+      "installedAt": "2026-07-21T21:13:33.216Z",
+      "updatedAt": "2026-07-21T21:13:33.216Z"
     },
     "find-skills": {
       "source": "vercel-labs/skills",
       "sourceType": "github",
       "sourceUrl": "https://github.com/vercel-labs/skills.git",
       "skillPath": "skills/find-skills/SKILL.md",
-      "skillFolderHash": "76a98a285cb0434f3d39e1a873823556330e398b",
-      "installedAt": "2026-08-01T17:20:26.617Z",
-      "updatedAt": "2026-08-01T17:20:26.617Z"
+      "skillFolderHash": "3013fdeb8a11b10b1eb795ec3ae8bfca38f7c26d",
+      "installedAt": "2026-04-14T16:42:52.178Z",
+      "updatedAt": "2026-04-14T16:42:52.178Z"
+    },
+    "gh-stack": {
+      "source": "github/gh-stack",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/github/gh-stack.git",
+      "skillPath": "skills/gh-stack/SKILL.md",
+      "skillFolderHash": "c95c8b5b4dd850f3fef007b304428f5684f2fb87",
+      "installedAt": "2026-04-14T16:42:49.083Z",
+      "updatedAt": "2026-07-29T20:26:37Z"
+    },
+    "request-pr-review": {
+      "source": "local",
+      "sourceType": "local",
+      "sourceUrl": "",
+      "skillPath": "skills/request-pr-review/SKILL.md",
+      "skillFolderHash": "6ce4b42361773eee57f140c95af68f495942a029",
+      "installedAt": "2026-04-21T23:02:00.000Z",
+      "updatedAt": "2026-04-21T23:02:00.000Z"
     }
   },
   "dismissed": {
     "findSkillsPrompt": true
-  },
-  "lastSelectedAgents": [
-    "amp",
-    "antigravity",
-    "antigravity-cli",
-    "cline",
-    "codex",
-    "cursor",
-    "deepagents",
-    "gemini-cli",
-    "github-copilot",
-    "kimi-code-cli",
-    "opencode",
-    "warp",
-    "zed",
-    "claude-code"
-  ]
+  }
 }

@@ -1,6 +1,5 @@
 ---
 name: pr-review-stack
-argument-hint: "<pr-url-or-number> [more PRs in the stack...]"
 description: Review a STACK of teammate PRs - a chain where each PR's base branch is the previous PR's head branch, not the default branch. Discovers the full chain from any single member, reviews each PR's own delta, then runs the stack-level pass that per-PR review structurally cannot produce - cumulative end-state coherence, cross-PR interactions, transient breakage at each intermediate merge, and merge-order safety. Posts ONE checkbox review comment per PR attributed to the PR that introduced each finding, never the same finding twice, and recommends APPROVE or HOLD per PR with blocking findings propagating upward. Always shows every comment and asks before posting. Triggers on "review this stack", "review these stacked PRs", "review my teammate's PR stack", "these PRs are stacked", "review the stack bottom-up", or any pasted list of PRs that turns out to be a chain.
 ---
 
@@ -36,7 +35,7 @@ machinery by reference rather than restating it.
 
 ## Step 1: Discover the full chain
 
-`$ARGUMENTS` may be one PR or several, in any order, as URLs or bare numbers. You do NOT
+The request may name one PR or several, in any order, as URLs or bare numbers. You do NOT
 need the whole stack from the user - **any single member is enough to discover the rest.**
 
 For every PR given, resolve `OWNER/REPO` + number (same rules as `/pr-review`
