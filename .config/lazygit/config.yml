@@ -1,6 +1,6 @@
 git:
-  pagers:
-    - pager: delta --paging=never --syntax-theme='tokyonight_night'
+  diffRenderers:
+    - command: delta --paging=never --syntax-theme='tokyonight_night'
       useConfig: false
 gui:
   nerdFontsVersion: "3"
