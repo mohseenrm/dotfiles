@@ -38,6 +38,7 @@ github-copilot
 .crush
 
 bin/fastfetch
+bin/terrakube
 
 .config/fastfetch/config.work.jsonc
 Brewfile.work

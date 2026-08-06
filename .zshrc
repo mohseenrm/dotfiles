@@ -50,6 +50,8 @@ if [[ $(uname) == "Darwin" ]]; then
   alias update="brew update && HOMEBREW_NO_INSTALL_CLEANUP=1 brew upgrade --yes"
   # To reset lazygit config path
   export XDG_CONFIG_HOME="$HOME/.config"
+  # Rust env
+  source $HOME/.cargo/env
 # Ubuntu
 else
   alias update="sudo apt update; sudo apt upgrade -y"
