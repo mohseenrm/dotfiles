@@ -13,6 +13,9 @@ end
 -- APPEARANCE
 -- ============================================================================
 
+-- Line Height
+config.line_height = 1.15
+
 -- Tab bar
 config.enable_tab_bar = false
 config.use_fancy_tab_bar = false
