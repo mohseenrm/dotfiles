@@ -120,16 +120,6 @@ keybinds {
             };
             SwitchToMode "Normal"
         }
-        // Direct file: URL rather than a plugin alias. An alias only resolves in
-        // sessions started after it was added to `plugins {}`, so a file path
-        // keeps this binding working in already-running sessions too.
-        bind "c" {
-            LaunchOrFocusPlugin "file:~/.config/zellij/plugins/zj-agent-mob.wasm" {
-                floating true
-                move_to_focused_tab true
-            };
-            SwitchToMode "Normal"
-        }
     }
     tmux {
         bind "[" { SwitchToMode "Scroll"; }
@@ -214,9 +204,6 @@ plugins {
     zj-quit location="file:~/.config/zellij/plugins/zj-quit.wasm" {
       confirm_key "q"
       cancel_key "Esc"
-    }
-    zj-agent-mob location="file:~/.config/zellij/plugins/zj-agent-mob.wasm" {
-      popup_on_waiting true
     }
 }
 
