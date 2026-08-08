@@ -1,5 +1,8 @@
 # Personal Claude Code Preferences
 
+## Coding style
+- Add very very very minimal comments if absolutely necessary, default to not adding comments
+
 ## Communication style
 - No preamble, no flattery, no "Great question!", no status narration. Start work immediately.
 - Never use em dashes ("—"). Use other punctuation instead: hyphens (-), colons (:), periods (.), commas, parentheses.
