@@ -167,6 +167,9 @@ keybinds {
         bind "Ctrl -" { Resize "Decrease"; }
         bind "Ctrl [" { PreviousSwapLayout; }
         bind "Ctrl ]" { NextSwapLayout; }
+        // Pane grouping without the mouse (Alt+click modifier is hardcoded upstream)
+        bind "Ctrl g" { TogglePaneInGroup; }
+        bind "Ctrl Shift g" { ToggleGroupMarking; }
         bind "Ctrl q" {
           LaunchOrFocusPlugin "zj-quit" {
             floating true
