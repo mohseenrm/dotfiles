@@ -30,6 +30,8 @@ if [[ $(id -un) == "momo" ]]; then
   export PATH=/opt/homebrew/share/google-cloud-sdk/bin:"$PATH"
   # Fastfetch aliases
   alias ff='fastfetch --config "$HOME/dotfiles/.config/fastfetch/config.jsonc"'
+  # Zellij Agent mob flag
+  export ZJ_AGENT_APPROVE=1
 else
   # Work computer
   # Fastfetch aliases
