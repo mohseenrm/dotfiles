@@ -32,6 +32,21 @@
   },
   "model": "opus[1m]",
   "enableAllProjectMcpServers": false,
+  "enabledPlugins": {
+    "ruby-lsp@claude-plugins-official": true,
+    "figma@claude-plugins-official": true,
+    "rust-analyzer-lsp@claude-plugins-official": true
+  },
+  "alwaysThinkingEnabled": false,
+  "effortLevel": "medium",
+  "awaySummaryEnabled": true,
+  "autoUpdatesChannel": "stable",
+  "skipDangerousModePermissionPrompt": true,
+  "theme": "custom:brutus",
+  "editorMode": "vim",
+  "additionalDirectories": [
+    "~/Projects/plans"
+  ],
   "hooks": {
     "SessionStart": [
       {
@@ -80,44 +95,21 @@
         ]
       }
     ],
-    "Notification": [
-      {
-        "matcher": "permission_prompt|idle_prompt",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "$HOME/.config/zj-agent-mob/hook.sh",
-            "async": true
-          }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "$HOME/.config/zj-agent-mob/hook.sh",
-            "async": true
-          }
-        ]
-      }
-    ],
-    "SessionEnd": [
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "$HOME/.config/zj-agent-mob/hook.sh",
-            "async": true
-          }
-        ]
-      }
-    ],
     "PostToolUseFailure": [
       {
         "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.config/zj-agent-mob/hook.sh",
+            "async": true
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "permission_prompt|idle_prompt",
         "hooks": [
           {
             "type": "command",
@@ -209,6 +201,17 @@
         ]
       }
     ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.config/zj-agent-mob/hook.sh",
+            "async": true
+          }
+        ]
+      }
+    ],
     "StopFailure": [
       {
         "matcher": "*",
@@ -220,21 +223,18 @@
           }
         ]
       }
+    ],
+    "SessionEnd": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.config/zj-agent-mob/hook.sh",
+            "async": true
+          }
+        ]
+      }
     ]
-  },
-  "enabledPlugins": {
-    "ruby-lsp@claude-plugins-official": true,
-    "figma@claude-plugins-official": true,
-    "rust-analyzer-lsp@claude-plugins-official": true
-  },
-  "alwaysThinkingEnabled": false,
-  "effortLevel": "medium",
-  "awaySummaryEnabled": true,
-  "autoUpdatesChannel": "stable",
-  "skipDangerousModePermissionPrompt": true,
-  "theme": "custom:brutus",
-  "editorMode": "vim",
-  "additionalDirectories": [
-    "~/Projects/plans"
-  ]
+  }
 }
