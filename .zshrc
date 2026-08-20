@@ -29,13 +29,13 @@ if [[ $(id -un) == "momo" ]]; then
   # GCloud
   export PATH=/opt/homebrew/share/google-cloud-sdk/bin:"$PATH"
   # Fastfetch aliases
-  alias ff='fastfetch --config "$HOME/dotfiles/.config/fastfetch/config.jsonc"'
+  alias ff='fastfetch --pipe false --config "$HOME/dotfiles/.config/fastfetch/config.jsonc"'
   # Zellij Agent mob flag
   export ZJ_AGENT_APPROVE=1
 else
   # Work computer
   # Fastfetch aliases
-  alias ff='fastfetch --config "$HOME/dotfiles/.config/fastfetch/config.work.jsonc"'
+  alias ff='fastfetch --pipe false --config "$HOME/dotfiles/.config/fastfetch/config.work.jsonc"'
   source work.zsh
 fi
 
@@ -211,27 +211,6 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
   --color=separator:#707584 \
   --color=spinner:#00fbfb \
 "
-
-# Fastfetch function for zellij compatibility
-# This function temporarily unsets zellij environment variables to allow image logos
-fastfetch() {
-    # Store original zellij environment variables
-    local orig_zellij="$ZELLIJ"
-    local orig_pane_id="$ZELLIJ_PANE_ID"
-    local orig_session="$ZELLIJ_SESSION_NAME"
-    
-    # Temporarily unset zellij variables to bypass terminal multiplexer detection
-    unset ZELLIJ ZELLIJ_PANE_ID ZELLIJ_SESSION_NAME
-    
-    # Run fastfetch with all passed arguments and disable pipe mode
-    "$HOME/dotfiles/bin/fastfetch" "$@" --pipe false
-    
-    # Restore original environment variables
-    [[ -n "$orig_zellij" ]] && export ZELLIJ="$orig_zellij"
-    [[ -n "$orig_pane_id" ]] && export ZELLIJ_PANE_ID="$orig_pane_id"
-    [[ -n "$orig_session" ]] && export ZELLIJ_SESSION_NAME="$orig_session"
-}
-
 
 clear
 

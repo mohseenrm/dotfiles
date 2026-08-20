@@ -112,8 +112,6 @@ stow .
 ```
 dotfiles/
 ├── bin/                 # 🔧 Custom binaries and scripts
-│   ├── fastfetch        # Custom compiled fastfetch with image support
-│   └── fastfetch-zellij # Wrapper script for zellij compatibility
 ├── .config/
 │   ├── nvim/            # 🚀 Neovim configuration
 │   ├── kitty/           # 🐱 Terminal emulator
@@ -165,13 +163,13 @@ Key environment variables are configured:
 
 ## 🖼️ Custom Fastfetch Setup
 
-This dotfiles includes a custom-compiled fastfetch binary with **ImageMagick7** and **chafa** support for displaying custom images as ASCII art in your terminal.
+Fastfetch renders a custom image logo natively via the kitty graphics protocol. Uses the stock Homebrew `fastfetch` (the vendored custom-compiled binary was removed); image decoding comes from the ImageMagick support already bundled in that build.
 
 ### Features
 
-- **Custom Image Display**: Shows your custom image (`~/.config/nvim/assets/rosie.png`) instead of the default OS logo
-- **Zellij Compatibility**: Special function to work around terminal multiplexer limitations
-- **ASCII Art Conversion**: Uses chafa to convert images to beautiful terminal-compatible ASCII art
+- **Custom Image Display**: Shows your custom image (`~/.config/nvim/assets/rosie-3-brutus.png`) instead of the default OS logo
+- **Zellij Image Rendering**: Native kitty graphics protocol (zellij >= 0.45), true pixels rather than ASCII approximation
+- **`kitty-direct` transmission**: fastfetch sends the file *path* instead of base64-inlining the PNG (214 bytes vs ~4.5 MB per shell start)
 
 ### Usage
 
@@ -179,38 +177,44 @@ This dotfiles includes a custom-compiled fastfetch binary with **ImageMagick7** 
 # Quick fastfetch with your custom config
 ff
 
-# Standard fastfetch (with zellij compatibility built-in)
+# Standard fastfetch
 fastfetch --config "$HOME/dotfiles/.config/fastfetch/config.jsonc"
-
-# Use wrapper script directly
-~/dotfiles/bin/fastfetch-zellij --config "$HOME/dotfiles/.config/fastfetch/config.jsonc"
 ```
 
-### Zellij Compatibility
+### Zellij Image Rendering
 
-Fastfetch normally disables image logos when running in terminal multiplexers like zellij. This setup includes:
+Zellij 0.45.0 implements the kitty graphics protocol, so images render natively
+inside panes and survive scroll/move/resize/stack. Requirements:
 
-1. **Shell Function**: Automatically handles zellij environment variables
-2. **Wrapper Script**: `bin/fastfetch-zellij` for direct usage
-3. **Custom Binary**: Compiled with full image support
+1. **Zellij >= 0.45.0** and a host terminal that speaks the protocol (WezTerm)
+2. **fastfetch >= 2.61** - the old `getenv("ZELLIJ")` block on image logos was
+   removed upstream; only `TERM=screen` disables images now
+3. **imagemagick** - fastfetch dlopens it to decode/scale the PNG
+
+The logo type is `kitty-direct` (was `sixel`). No env-var stripping wrapper is
+needed: the previous `fastfetch()` shell function, `bin/fastfetch-zellij`, and
+the vendored fastfetch 2.60 binary were all removed.
+
+`--pipe false` is required (baked into the `ff` alias). fastfetch disables image
+logos when it thinks output is not a TTY and silently falls back to the built-in
+ASCII art; the flag forces image output.
+
+Verified against zellij 0.45 by querying the protocol directly:
+
+| Query | Zellij response | Meaning |
+| ----- | --------------- | ------- |
+| `\e[>q` (XTVERSION) | `Zellij(4500)` | identifies as zellij, not the host term |
+| `\e_Ga=q,t=d,...` | `OK` | kitty graphics supported |
+| `\e_Ga=q,t=f,...` | `OK` | file-path transmission supported (`kitty-direct`) |
+| `\e_Ga=T,U=1,...` | `ENOTSUPPORTED` | unicode placeholders **not** supported |
 
 ### Configuration
 
 Your fastfetch config (`~/.config/fastfetch/config.jsonc`) includes:
 
-- Custom image path and chafa rendering
+- Custom image path rendered via the kitty graphics protocol
 - Tokyo Night color scheme integration
 - Optimized layout for your terminal setup
-
-### Recompiling (if needed)
-
-```bash
-cd /path/to/fastfetch/source
-mkdir build && cd build
-cmake .. -DENABLE_IMAGEMAGICK7=ON -DENABLE_CHAFA=ON
-make -j$(nproc)
-cp fastfetch ~/dotfiles/bin/
-```
 
 ## 🐛 Troubleshooting
 
@@ -277,15 +281,16 @@ brew reinstall fzf  # macOS
 # Check if running in zellij (should show custom image)
 ff
 
-# Test outside terminal multiplexer
-unset ZELLIJ ZELLIJ_PANE_ID ZELLIJ_SESSION_NAME && fastfetch --config "$HOME/dotfiles/.config/fastfetch/config.jsonc"
+# Confirm versions support native kitty graphics
+zellij --version   # need >= 0.45.0
+fastfetch --version # need >= 2.61
 
 # Verify image file exists
-ls -la ~/.config/nvim/assets/rosie.png
+ls -la ~/.config/nvim/assets/rosie-3-brutus.png
 
-# Check fastfetch features
-~/dotfiles/bin/fastfetch --list-features
-# Should show: imagemagick7, chafa
+# Check fastfetch can decode images
+fastfetch --list-features
+# Should show: imagemagick7
 ```
 
 ### 🆘 Getting Help

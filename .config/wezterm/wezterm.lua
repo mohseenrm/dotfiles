@@ -246,11 +246,11 @@ config.mouse_bindings = {
 -- IMAGE PROTOCOLS
 -- ============================================================================
 
--- Wezterm supports multiple image protocols:
--- - kitty graphics protocol
--- - sixel
--- - iTerm2 inline images
--- All are enabled by default and work with multiplexers like Zellij
+-- Wezterm supports multiple image protocols (kitty graphics, sixel, iTerm2
+-- inline images), all enabled by default. This setup uses the kitty graphics
+-- protocol throughout, including through Zellij >= 0.45, which proxies it.
+-- Note: Zellij does not support kitty unicode placeholders, so consumers must
+-- use direct placement (see .config/nvim/lua/plugins/snacks.lua).
 
 -- ============================================================================
 -- KEYBINDINGS
