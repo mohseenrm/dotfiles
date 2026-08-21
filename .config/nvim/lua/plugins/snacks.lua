@@ -129,8 +129,8 @@ return {
           pane = 2,
           {
             text = string.rep("\n", 20),
-            render = rosie_image(60, 20),
-            padding = 1,
+            render = rosie_image(60, 30),
+            padding = 4,
           },
         },
       },
