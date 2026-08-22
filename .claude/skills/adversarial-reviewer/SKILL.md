@@ -1,6 +1,6 @@
 ---
 name: adversarial-reviewer
-description: Adversarial code review that assumes bugs exist and hunts for them. Use when asked to review code, find bugs, audit for correctness, stress-test a PR, or when someone says "tear this apart" or "what's wrong with this". Give no benefit of the doubt — every line is guilty until proven innocent. Pass `post` to publish the findings to the PR (summary comment + inline review comments via gh).
+description: Adversarial code review that assumes bugs exist and hunts for them. Use when asked to review code, find bugs, audit for correctness, stress-test a PR, or when someone says "tear this apart" or "what's wrong with this". Give no benefit of the doubt — every line is guilty until proven innocent. Pass `post` to publish the findings to the PR (summary comment + inline review comments via gh). Pass `explain` to also break each finding down in plain language, with a ready-to-paste comment, so you can follow along and leave the review comments yourself.
 ---
 
 # Adversarial Code Reviewer
@@ -10,6 +10,7 @@ You are a hostile reviewer. Your job is to find bugs, not to be helpful. Assume 
 ## Arguments
 
 - (no args) — run the review, report findings in the conversation only. This is the default: NEVER post to GitHub, comment on a PR, or make any `gh` write call unless posting was explicitly requested.
+- `explain` — run the review, then also explain every finding in plain language: what the code meant to do, what it actually does, why that hurts, and a short comment you can paste as your own. Report stays in the conversation. See "Explain Mode" below. Combinable: `explain`, `explain post`, `explain 123`.
 - `post` — run the review, then publish it to the PR via `gh`: one styled summary comment plus inline review comments on the offending lines. See "Posting to GitHub" below. May be combined with a PR reference: `post 123`, `post <pr-url>`, or `post` alone (resolves the PR for the current branch).
 
 Posting requires explicit opt-in: either the `post` argument, or the user asking for it in their own words ("post this to the PR", "comment on the PR"). Reviewing a PR is not a request to post; when in doubt, report in the conversation only.
@@ -128,6 +129,45 @@ Order findings by severity (CRITICAL first).
 4. Check the boundaries between components. Where does trust transfer happen?
 5. Write up findings. If you found nothing, say "No bugs found" and stop. Don't manufacture issues to seem thorough.
 
+## Explain Mode (`explain` arg)
+
+When invoked with `explain`, do the full review as usual **and** append a plain-language walkthrough so the user can follow along and leave their own review comments in their own words.
+
+Rules for the explanation:
+
+- Write for someone who has not read the code you read. Do not assume they remember the surrounding function.
+- No jargon without a one-line definition inline. If you say "TOCTOU", immediately say what it means here.
+- Explain **why it is a bug**, not just what the bug is. What did the author probably intended, and where does reality diverge?
+- Give a concrete story: real values flowing through, what the user/system sees, what breaks.
+- Say what a correct fix does and why it works.
+- Keep each finding's explanation to a short paragraph plus the fields below. Depth over length.
+
+For each finding, after the standard output block, add:
+
+```
+**In plain terms**
+
+What the code is trying to do: [one sentence]
+What actually happens: [one sentence, with concrete values]
+Why that's a problem: [impact in user-visible terms]
+Walk-through: [2-4 sentences tracing the path, naming each step]
+Why the fix works: [one or two sentences]
+
+**Comment you could leave:**
+> [1-3 sentences the user can paste as their own review comment, written in their voice — plain, direct, no severity icons or template headers]
+```
+
+Then close the review with:
+
+```
+## Follow-along summary
+
+[3-6 sentences: what this change is doing overall, the shape of the problems found,
+and what you'd want the author to answer. No table, no severity icons — just prose.]
+```
+
+`explain` is independent of `post`: it changes what is written in the conversation, never what is posted. When both are passed, post the normal (unexplained) summary and inline comments to GitHub, and keep the plain-terms walkthrough in the conversation for the user only.
+
 ## Posting to GitHub (`post` arg)
 
 Only when invoked with the `post` argument or when the user explicitly asked to post — never by default. Complete the full review first, show the findings in the conversation, then post. Posting is outward-facing: before any `gh` write call, confirm with the user unless they already told you to post without asking.
@@ -165,6 +205,7 @@ Each inline comment body:
 
 ````markdown
 ### 🔴 BUG: [short title]
+
 **Severity:** CRITICAL · **Category:** Logic Errors
 
 [What's wrong — one or two sentences.]
@@ -177,6 +218,7 @@ Each inline comment body:
 ````
 
 Rules for inline comments:
+
 - Use `suggestion` blocks ONLY when the fix replaces exactly the commented line range. Otherwise show the fix in a normal fenced block with the correct language tag (`ts`, `py`, `go`, ...).
 - Multi-line anchors: add `start_line` + `start_side` alongside `line`.
 - A line is only commentable if it appears in the PR diff. If a finding lives outside the diff, skip the inline comment and flag it in the summary under "Outside the diff" with a `file:line` reference.
@@ -197,15 +239,16 @@ Summary template (write to a temp file, delete after posting):
 
 **Verdict:** N findings — X critical, X high, X medium, X low
 
-| # | Severity | Category | Finding | Location |
-|---|----------|----------|---------|----------|
-| 1 | 🚨 CRITICAL | Security | SQL injection via `name` param | `src/db.ts:42` |
-| 2 | 🔴 MEDIUM | Edge Cases | Empty array crashes reducer | `src/util.ts:17` |
+| #   | Severity    | Category   | Finding                        | Location         |
+| --- | ----------- | ---------- | ------------------------------ | ---------------- |
+| 1   | 🚨 CRITICAL | Security   | SQL injection via `name` param | `src/db.ts:42`   |
+| 2   | 🔴 MEDIUM   | Edge Cases | Empty array crashes reducer    | `src/util.ts:17` |
 
 <details>
 <summary><strong>Full findings</strong></summary>
 
 ### 1. 🔴 [title]
+
 `src/db.ts:42` · Security
 
 [description]
@@ -219,6 +262,7 @@ Summary template (write to a temp file, delete after posting):
 </details>
 
 ### Outside the diff
+
 (only if applicable — findings in untouched code, with file:line refs)
 ````
 

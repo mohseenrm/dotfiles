@@ -5,15 +5,25 @@ description: |
   Spawns 3 parallel agents (Devil's Advocate, Steelman Defender, Impartial Analyst)
   who independently critique the target, then cross-examines their findings to produce
   a high-confidence verdict. Inspired by claude-octopus grapple/squeeze patterns.
+  Pass `explain` alongside the target to also get a plain-language breakdown of every
+  finding, with a ready-to-paste comment, so you can follow along and leave the review
+  comments yourself.
 user-invocable: true
 disable-model-invocation: true
-argument-hint: [target — file path, PR number/URL, "current changes", or description of approach]
+argument-hint: [target — file path, PR number/URL, "current changes", or description of approach] [explain]
 allowed-tools: Agent, Bash, Read, Glob, Grep
 ---
 
 # Adversarial Review
 
 You are conducting a structured adversarial review. The target to review is: $ARGUMENTS
+
+## Arguments
+
+- **target** (required) — what to review. See Phase 0 for how each form is resolved.
+- `explain` (optional) — after the verdict, run Phase 4 and explain every surviving finding in plain language: what the code meant to do, what it actually does, why that hurts, and a short comment you can paste as your own review comment. Strip `explain` from the argument string before resolving the target in Phase 0.
+
+`explain` only changes what is written in the conversation. This skill never posts anything to GitHub.
 
 ## Phase 0: Identify & Load the Target
 
@@ -245,6 +255,47 @@ Present the final structured output:
 
 ---
 
+## Phase 4: Plain-Language Walkthrough (`explain` arg only)
+
+Skip this phase entirely unless the user passed `explain`. When they did, append it after the Phase 3 verdict.
+
+Cover every **Consensus Finding** and every **Required Change**. Cover Recommended Improvements and Unverified Suspicions only in one line each. Do not re-explain Key Strengths.
+
+Rules for the explanation:
+- Write for someone who has not read the code the agents read. Do not assume they remember the surrounding function.
+- No jargon without a one-line definition inline. If you say "TOCTOU", immediately say what it means here.
+- Explain **why it is a bug**, not just what the bug is. What did the author probably intend, and where does reality diverge?
+- Give a concrete story: real values flowing through, what the user or system sees, what breaks.
+- Say what a correct fix does and why it works.
+- If a finding was demoted or adjudicated in Phase 1.5 / Phase 2, say so in one sentence so the user knows how confident to sound.
+- Short paragraph plus the fields below, per finding. Depth over length.
+
+For each finding:
+
+```
+### [finding number and short title]
+
+What the code is trying to do: [one sentence]
+What actually happens: [one sentence, with concrete values]
+Why that's a problem: [impact in user-visible terms]
+Walk-through: [2-4 sentences tracing the path, naming each step]
+Why the fix works: [one or two sentences]
+How sure we are: [verified / partial / adjudicated — one clause on why]
+
+**Comment you could leave:**
+> [1-3 sentences the user can paste as their own review comment, in their voice — plain, direct, no severity labels or template headers]
+```
+
+Then close with:
+
+```
+## Follow-along summary
+
+[3-6 sentences: what this change is doing overall, the shape of the problems found,
+and what you'd want the author to answer. Plain prose, no tables, no severity icons.]
+```
+
+---
 ## Rules
 
 1. **Never skip Phase 1.** All 3 agents MUST run in parallel.
@@ -252,7 +303,8 @@ Present the final structured output:
 3. **Be honest in Phase 2.** If the Devil's Advocate is right, say so. If the Defender's rebuttal is stronger, dismiss the criticism.
 4. **Verdict must be justified — and counted on receipt-verified findings only.** Don't default to "APPROVE WITH CHANGES." A flawless artifact deserves APPROVE. A dangerous one deserves REJECT. Use these criteria: REJECT if any unresolvable CRITICAL issue (receipts: verified); REQUEST CHANGES if >2 HIGH issues (receipts: verified) or any CRITICAL; APPROVE WITH CHANGES for minor/moderate issues; APPROVE if no significant issues. **Unverified Suspicions never escalate the verdict.** They go in a separate section of the report for the author to investigate, but they are not blocking.
 5. **Keep the final output actionable.** Every finding should tell the author exactly what to do.
-6. **Handle agent failures gracefully.** If an agent fails, times out, or returns unusable output, proceed with the remaining agents. Note the reduced confidence in the verdict (e.g., "2/3 agents completed — confidence reduced"). Do NOT re-launch failed agents or block on them.
+6. **Only run Phase 4 when `explain` was passed.** Without it, stop at the Phase 3 verdict — do not volunteer a plain-language walkthrough.
+7. **Handle agent failures gracefully.** If an agent fails, times out, or returns unusable output, proceed with the remaining agents. Note the reduced confidence in the verdict (e.g., "2/3 agents completed — confidence reduced"). Do NOT re-launch failed agents or block on them.
 
 ---
 
