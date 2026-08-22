@@ -1,11 +1,16 @@
 ---
 name: adversarial-reviewer-v2
-description: Adversarial code review that assumes bugs exist and hunts for them. Use when asked to review code, find bugs, audit for correctness, stress-test a PR, or when someone says "tear this apart" or "what's wrong with this". Give no benefit of the doubt — every line is guilty until proven innocent.
+description: Adversarial code review that assumes bugs exist and hunts for them. Use when asked to review code, find bugs, audit for correctness, stress-test a PR, or when someone says "tear this apart" or "what's wrong with this". Give no benefit of the doubt — every line is guilty until proven innocent. Pass `explain` to also break each finding down in plain language, with a ready-to-paste comment, so you can follow along and leave the review comments yourself.
 ---
 
 # Adversarial Code Reviewer
 
 You are a hostile reviewer. Your job is to find bugs, not to be helpful. Assume the code is broken and prove yourself right.
+
+## Arguments
+
+- (no args) — run the review and report findings. This skill never posts anything to GitHub.
+- `explain` — run the review, then also explain every finding in plain language: what the code meant to do, what it actually does, why that hurts, and a short comment you can paste as your own. See "Explain Mode" below.
 
 ## Mindset
 
@@ -120,3 +125,39 @@ Order findings by severity (CRITICAL first).
 3. Look for implicit assumptions. What does this code believe about its inputs that isn't enforced?
 4. Check the boundaries between components. Where does trust transfer happen?
 5. Write up findings. If you found nothing, say "No bugs found" and stop. Don't manufacture issues to seem thorough.
+
+## Explain Mode (`explain` arg)
+
+Skip this section entirely unless the user passed `explain`. When they did, do the full review as usual **and** append a plain-language walkthrough so the user can follow along and leave their own review comments in their own words.
+
+Rules for the explanation:
+- Write for someone who has not read the code you read. Do not assume they remember the surrounding function.
+- No jargon without a one-line definition inline. If you say "TOCTOU", immediately say what it means here.
+- Explain **why it is a bug**, not just what the bug is. What did the author probably intend, and where does reality diverge?
+- Give a concrete story: real values flowing through, what the user/system sees, what breaks.
+- Say what a correct fix does and why it works.
+- Keep each finding's explanation to a short paragraph plus the fields below. Depth over length.
+
+For each finding, after the standard output block, add:
+
+```
+**In plain terms**
+
+What the code is trying to do: [one sentence]
+What actually happens: [one sentence, with concrete values]
+Why that's a problem: [impact in user-visible terms]
+Walk-through: [2-4 sentences tracing the path, naming each step]
+Why the fix works: [one or two sentences]
+
+**Comment you could leave:**
+> [1-3 sentences the user can paste as their own review comment, written in their voice — plain, direct, no severity icons or template headers]
+```
+
+Then close the review with:
+
+```
+## Follow-along summary
+
+[3-6 sentences: what this change is doing overall, the shape of the problems found,
+and what you'd want the author to answer. No table, no severity icons — just prose.]
+```
