@@ -45,9 +45,35 @@
       "skillFolderHash": "6ce4b42361773eee57f140c95af68f495942a029",
       "installedAt": "2026-04-21T23:02:00.000Z",
       "updatedAt": "2026-04-21T23:02:00.000Z"
+    },
+    "webapp-testing": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/anthropics/skills.git",
+      "skillPath": "skills/webapp-testing/SKILL.md",
+      "skillFolderHash": "5ffb7dc66b9fd4c25c3e400a4c00da99a349b714",
+      "pluginName": "example-skills",
+      "installedAt": "2026-08-26T15:02:28.159Z",
+      "updatedAt": "2026-08-26T15:02:28.159Z"
     }
   },
   "dismissed": {
     "findSkillsPrompt": true
-  }
+  },
+  "lastSelectedAgents": [
+    "amp",
+    "antigravity",
+    "antigravity-cli",
+    "cline",
+    "codex",
+    "cursor",
+    "deepagents",
+    "gemini-cli",
+    "github-copilot",
+    "kimi-code-cli",
+    "opencode",
+    "warp",
+    "zed",
+    "claude-code"
+  ]
 }
