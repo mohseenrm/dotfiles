@@ -55,6 +55,16 @@
       "pluginName": "example-skills",
       "installedAt": "2026-08-26T15:02:28.159Z",
       "updatedAt": "2026-08-26T15:02:28.159Z"
+    },
+    "internal-comms": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/anthropics/skills.git",
+      "skillPath": "skills/internal-comms/SKILL.md",
+      "skillFolderHash": "9869687dcf6deb6802ca88ac11e67b6f7278017a",
+      "pluginName": "example-skills",
+      "installedAt": "2026-08-26T15:05:43.700Z",
+      "updatedAt": "2026-08-26T15:05:43.700Z"
     }
   },
   "dismissed": {
