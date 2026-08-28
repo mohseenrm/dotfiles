@@ -32,21 +32,6 @@
   },
   "model": "opus[1m]",
   "enableAllProjectMcpServers": false,
-  "enabledPlugins": {
-    "ruby-lsp@claude-plugins-official": true,
-    "figma@claude-plugins-official": true,
-    "rust-analyzer-lsp@claude-plugins-official": true
-  },
-  "alwaysThinkingEnabled": false,
-  "effortLevel": "medium",
-  "awaySummaryEnabled": true,
-  "autoUpdatesChannel": "stable",
-  "skipDangerousModePermissionPrompt": true,
-  "theme": "custom:brutus",
-  "editorMode": "vim",
-  "additionalDirectories": [
-    "~/Projects/plans"
-  ],
   "hooks": {
     "SessionStart": [
       {
@@ -236,5 +221,20 @@
         ]
       }
     ]
-  }
+  },
+  "enabledPlugins": {
+    "ruby-lsp@claude-plugins-official": true,
+    "figma@claude-plugins-official": true,
+    "rust-analyzer-lsp@claude-plugins-official": true
+  },
+  "alwaysThinkingEnabled": false,
+  "effortLevel": "medium",
+  "awaySummaryEnabled": true,
+  "autoUpdatesChannel": "stable",
+  "skipDangerousModePermissionPrompt": true,
+  "theme": "custom:brutus",
+  "editorMode": "vim",
+  "additionalDirectories": [
+    "~/Projects/plans"
+  ]
 }
