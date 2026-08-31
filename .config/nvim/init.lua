@@ -9,6 +9,12 @@ if vim.fn.isdirectory(mise_go_bin) == 1 then
   vim.env.PATH = mise_go_bin .. ":" .. vim.env.PATH
 end
 
+if vim.fn.has "mac" == 1 and #vim.fn.stdpath "run" > 60 then
+  local run_dir = vim.fn.expand "~/.nvimrun"
+  vim.fn.mkdir(run_dir, "p", 448)
+  vim.env.XDG_RUNTIME_DIR = run_dir
+end
+
 -- bootstrap lazy and all plugins
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 
