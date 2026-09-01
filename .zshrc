@@ -52,6 +52,8 @@ if [[ $(uname) == "Darwin" ]]; then
   alias update="brew update && HOMEBREW_NO_INSTALL_CLEANUP=1 brew upgrade --yes"
   # To reset lazygit config path
   export XDG_CONFIG_HOME="$HOME/.config"
+  export XDG_RUNTIME_DIR="$HOME/.nvimrun"
+  [[ -d "$XDG_RUNTIME_DIR" ]] || mkdir -m 700 -p "$XDG_RUNTIME_DIR"
   # Rust env
   source $HOME/.cargo/env
 # Ubuntu
@@ -241,3 +243,11 @@ eval "$(direnv hook zsh)"
 
 # Go user-installed binaries (air, dlv, etc.)
 export PATH="$HOME/go/bin:$PATH"
+
+######### od shell tooling #########
+# these lines added by `code/scripts/development/maybe_install_od_shell_tooling.sh`
+OD_CODE_ROOT="$HOME/Projects/growth-5"
+OD_TOOL_SOURCE_SCRIPT="$OD_CODE_ROOT/scripts/infra/sourced_on_shell_load.sh"
+[ -f "$OD_TOOL_SOURCE_SCRIPT" ] && source "$OD_TOOL_SOURCE_SCRIPT"
+######### end of od shell tooling #########
+
