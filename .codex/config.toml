@@ -144,8 +144,9 @@ url = "https://mcp.excalidraw.com"
 command = "npx"
 args = ["@playwright/mcp@latest"]
 
-[projects."$HOME/dotfiles"]
-trust_level = "trusted"
+# Project trust is machine-local state and the key must be a literal absolute
+# path, so it is intentionally not committed (it would publish the $HOME path).
+# Codex will ask once per machine; answer "trust" and it records it in ~/.codex.
 
 [projects."/private/tmp"]
 trust_level = "trusted"
