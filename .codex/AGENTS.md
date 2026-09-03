@@ -14,14 +14,26 @@ plans, look in `~/Projects/plans/` first.
 
 A "Goal" is a persistent session objective with evidence-gated completion (see
 the `/goal` prompt). Only mark a Goal complete after verifying it against
-concrete evidence — test output, benchmark numbers, a built artifact, command
+concrete evidence - test output, benchmark numbers, a built artifact, command
 output, or inspected files. Never claim completion based on intent.
 
 ## Review subagents
 
 Custom review agents are defined in `~/.codex/agents/`:
-- `code_reviewer` — best-practices review, P0–P3 rubric, T-shirt-sized feedback.
-- `adversarial_reviewer` — forced-reasoning adversarial review (must find issues).
-- `git_pick` — splits a branch into `-generated` and `-core` review branches.
+- `code_reviewer` - best-practices review, P0–P3 rubric, T-shirt-sized feedback.
+- `adversarial_reviewer` - forced-reasoning adversarial review (must find issues).
+- `git_pick` - splits a branch into `-generated` and `-core` review branches.
 
 Spawn them only when explicitly asked.
+
+## Skills
+
+All skills live in `~/dotfiles/.agents/skills/<name>/SKILL.md` - one canonical
+tree shared by Claude Code, Codex, and OpenCode. `~/.claude/skills/` and
+`~/.agents/skills/` are symlink farms pointing back to it.
+
+Before adding, editing, or porting a skill, read
+`~/dotfiles/.agents/skills/AGENTS.md`. It covers the per-tool discovery paths,
+the portable frontmatter rules, and how to verify a skill loads in all three
+tools. Never copy a skill into `~/.codex/skills/` - that shadows the canonical
+tree and makes it appear twice.

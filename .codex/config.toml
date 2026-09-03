@@ -147,6 +147,9 @@ args = ["@playwright/mcp@latest"]
 [projects."$HOME/dotfiles"]
 trust_level = "trusted"
 
+[projects."/private/tmp"]
+trust_level = "trusted"
+
 # recraft was disabled in opencode; omit (re-add with a [mcp_servers.recraft]
 # block + url = "https://mcp.recraft.ai/mcp" when needed).
 

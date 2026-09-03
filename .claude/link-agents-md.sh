@@ -43,10 +43,22 @@ for target in "${TARGETS[@]}"; do
   dir="$(dirname "$target")"
   mkdir -p "$dir"
 
-  # Already pointing at the source? Nothing to do.
-  if [[ -L "$target" && "$(readlink "$target")" == "$SRC" ]]; then
+  # Already pointing at the source? Nothing to do. Compare resolved paths so a
+  # relative link (written for stow-folded targets below) still counts.
+  if [[ -L "$target" ]] && [[ "$(readlink -f "$target" 2>/dev/null)" == "$(readlink -f "$SRC")" ]]; then
     echo "ok: $target already linked"
     continue
+  fi
+
+  # Leave stow-managed targets alone. ~/.codex/AGENTS.md is symlinked to
+  # dotfiles/.codex/AGENTS.md, which holds Codex-specific instructions (skills
+  # layout, review subagents). Replacing it with CLAUDE.md would drop them.
+  if [[ -L "$target" ]]; then
+    link="$(readlink "$target")"
+    if [[ "$link" == *"/dotfiles/"* || "$link" == ../dotfiles/* ]]; then
+      echo "skip: $target is stow-managed -> $link"
+      continue
+    fi
   fi
 
   # Back up an existing real file or wrong symlink so no content is lost.
@@ -56,6 +68,17 @@ for target in "${TARGETS[@]}"; do
     echo "backed up: $target -> $backup"
   fi
 
-  ln -s "$SRC" "$target"
-  echo "linked: $target -> $SRC"
+  # Some targets (~/.config/opencode) are stow-folded back into the repo, so an
+  # absolute link would be written into dotfiles itself. Use a relative link
+  # there to keep the repo portable.
+  real_dir="$(cd "$dir" && pwd -P)"
+  case "$real_dir" in
+    "${HOME}/dotfiles"|"${HOME}/dotfiles"/*)
+      link_target="$(python3 -c 'import os,sys; print(os.path.relpath(sys.argv[1], sys.argv[2]))' "$SRC" "$real_dir")"
+      ;;
+    *) link_target="$SRC" ;;
+  esac
+
+  ln -s "$link_target" "$target"
+  echo "linked: $target -> $link_target"
 done

@@ -50,3 +50,13 @@ When referencing files in output, use clickable links:
 - Stowed via GNU stow from `~/dotfiles/`
 - `stow .` to link, `stow -D .` to unlink
 - Work-specific configs are gitignored (Brewfile.work, work.zsh, opencode.work.jsonc, settings.work.json)
+
+## Skills
+- Canonical tree: `~/dotfiles/.agents/skills/<name>/SKILL.md`. One source, shared
+  by Claude Code, Codex and OpenCode; `~/.claude/skills/` and `~/.agents/skills/`
+  are symlink farms pointing into it.
+- Before adding, editing or porting a skill, read
+  `~/dotfiles/.agents/skills/AGENTS.md` (discovery paths per tool, portable
+  frontmatter, verification commands).
+- Never copy a skill into a per-tool dir (`~/.codex/skills/`, `.opencode/skills/`).
+  That shadows the canonical tree and the skill shows up twice.

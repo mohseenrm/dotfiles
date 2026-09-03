@@ -26,6 +26,9 @@ A collection of dotfiles symlinked via GNU stow, organized by application.
 ## Claude Code Setup
 - **Personal profile**: `.claude/settings.json` (git-managed)
 - **Work profile**: `.claude/settings.work.json` (gitignored)
+- **Skills**: canonical tree is `.agents/skills/<name>/SKILL.md`, shared by Claude Code,
+  Codex and OpenCode. `.claude/skills/*` are symlinks into it. Read
+  `.agents/skills/AGENTS.md` before adding, editing or porting a skill.
 - **Subagents**: `.claude/agents/*.md` — `code-reviewer`, `adversarial-reviewer`, `git-pick`
 - **MCP installers**: `.claude/install-mcps.sh` (personal), `.claude/install-mcps.work.sh` (gitignored)
 - **Profile switcher**: `.claude/use-profile.sh personal|work|status`

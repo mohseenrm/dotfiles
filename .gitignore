@@ -48,9 +48,15 @@ work.zsh
 .claude/install-mcps.work.sh
 .codex/work.config.toml
 
-.agents/skills/deploy-web-pr-to-stage/
-.claude/skills/deploy-web-pr-to-stage/
+# Work-specific skill: contains internal repo paths, AWS account ids, staging
+# hostnames. Match in EVERY skill tree, not just two of them.
+**/skills/deploy-web-pr-to-stage
+**/skills/deploy-web-pr-to-stage/
 
 .envrc
 
 __pycache__
+
+# Skill build artifacts (vendored SKILL.md files pollute agent skill discovery)
+.agents/skills/*/scripts/node_modules/
+.agents/skills/*/scripts/.pytest_cache/

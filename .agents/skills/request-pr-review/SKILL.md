@@ -58,7 +58,7 @@ slack login  # Follow the interactive auth flow
 
 1. **Always detect the current PR context first.** Before requesting reviews, determine the PR number. Use `gh pr view --json number` if on a PR branch, or ask the user for the PR number/URL.
 2. **Never request review from the PR author.** GitHub rejects this. Check the author first with `gh pr view --json author`.
-3. **Use `@org/team-slug` format for team reviewers.** Individual usernames are bare (e.g., `alice`), teams require the org prefix (e.g., `@opendoor/backend-team`).
+3. **Use `@org/team-slug` format for team reviewers.** Individual usernames are bare (e.g., `alice`), teams require the org prefix (e.g., `@acme/backend-team`).
 4. **Confirm before requesting reviews from large lists.** If requesting from 4+ reviewers, confirm with the user first.
 5. **Handle errors gracefully.** Common failures: user is not a collaborator (422), insufficient permissions (403), user is the PR author. Report the error clearly and suggest alternatives.
 6. **Prefer team reviewers when the user says "the team" or similar.** If the user says "request review from the backend team", use team syntax, not individual usernames.
