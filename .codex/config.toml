@@ -72,7 +72,8 @@ vim_mode_default = false
 #              approve_for_prefix deny decline cancel
 # Values: "key" or ["key1","key2"]. Unbind with [].
 
-# CC ctrl+o (toggleTranscript), ctrl+e (externalEditor), meta+o (fastMode);
+# Ctrl+t opens the transcript; ctrl+o is consumed by Zellij for tab movement.
+# CC ctrl+e (externalEditor), meta+o (fastMode);
 # opencode <leader>e (editor_open), <leader>y (messages_copy).
 # NOTE: global/chat keys are live WHILE TYPING, so they must not equal Codex's
 # default emacs-style editor keys or the TUI rejects them at startup with an
@@ -81,7 +82,7 @@ vim_mode_default = false
 # for external editor, we MOVE editor.move_line_end off ctrl-e (to End, below)
 # so the two no longer collide. copy moves off ctrl-y (= editor.yank) to alt-y.
 [tui.keymap.global]
-open_transcript = "ctrl-o"
+open_transcript = "ctrl-t"
 open_external_editor = "ctrl-e"
 toggle_fast_mode = "alt-o"
 copy = "alt-y"
@@ -113,8 +114,9 @@ submit = "enter"
 insert_newline = ["shift-enter", "ctrl-j"]
 move_line_end = "end"
 
-# Vim-like scrolling (mirrors CC Transcript/Scroll + opencode half-page).
-# User values REPLACE defaults, so home/end are restated alongside g/G.
+# Vim-like scrolling in the Ctrl+t transcript view.
+# Codex rejects plain-character chords outside editor Vim mode, so the pager
+# uses g/G instead of gg/G. User values replace defaults, so keep home/end.
 [tui.keymap.pager]
 half_page_up = "ctrl-u"
 half_page_down = "ctrl-d"
@@ -150,6 +152,44 @@ args = ["@playwright/mcp@latest"]
 
 [projects."/private/tmp"]
 trust_level = "trusted"
+
+[projects."/Users/mohseen.mukaddam@opendoor.com/dotfiles"]
+trust_level = "trusted"
+
+[hooks.state]
+
+[hooks.state."/Users/mohseen.mukaddam@opendoor.com/.codex/hooks.json:pre_tool_use:0:0"]
+trusted_hash = "sha256:de7b29984133055ebe4b2cefbaa542a3c80ba53fdf60eb787e6a4fcccde3d003"
+
+[hooks.state."/Users/mohseen.mukaddam@opendoor.com/.codex/hooks.json:permission_request:0:0"]
+trusted_hash = "sha256:0b6ec4c6fd9d8823a3a89506f91a1157ce37cb27c437af2e0f856edc4398baa8"
+
+[hooks.state."/Users/mohseen.mukaddam@opendoor.com/.codex/hooks.json:post_tool_use:0:0"]
+trusted_hash = "sha256:eb8a4fa0d8c1b086e7969f78d8a5671e8cec0192d5676b8c2408b0246b3fdef7"
+
+[hooks.state."/Users/mohseen.mukaddam@opendoor.com/.codex/hooks.json:pre_compact:0:0"]
+trusted_hash = "sha256:4116eae0401579351f9065695f98616bc67403fdb63d512253a83a6633511488"
+
+[hooks.state."/Users/mohseen.mukaddam@opendoor.com/.codex/hooks.json:post_compact:0:0"]
+trusted_hash = "sha256:c48c7d8898142969222149ec93075d2eae2a5c02918870c790ce2c0ea7ff01bd"
+
+[hooks.state."/Users/mohseen.mukaddam@opendoor.com/.codex/hooks.json:session_start:0:0"]
+trusted_hash = "sha256:184170c16db7b20ea47e497001079f0f949e65cf786a786796a9e3128ce0bb3b"
+
+[hooks.state."/Users/mohseen.mukaddam@opendoor.com/.codex/hooks.json:session_end:0:0"]
+trusted_hash = "sha256:19ed10c6d89bc300dbc1fa93c1fbdb2f1d2daecb90633b77dc7af375a482ab8c"
+
+[hooks.state."/Users/mohseen.mukaddam@opendoor.com/.codex/hooks.json:user_prompt_submit:0:0"]
+trusted_hash = "sha256:938af056b37d0cfac1025a286fb4c930bb92c8d3b4d8e07731c55498cb949dc5"
+
+[hooks.state."/Users/mohseen.mukaddam@opendoor.com/.codex/hooks.json:subagent_start:0:0"]
+trusted_hash = "sha256:3a45c0b48fc4aedea5dfdb1a1b00ec1225c61ace97548e6f918cde844709a3b2"
+
+[hooks.state."/Users/mohseen.mukaddam@opendoor.com/.codex/hooks.json:subagent_stop:0:0"]
+trusted_hash = "sha256:a91fff3cafe110e50b63de68d74dedf3104d4c29dac4e9ebd36863f0ad1789b0"
+
+[hooks.state."/Users/mohseen.mukaddam@opendoor.com/.codex/hooks.json:stop:0:0"]
+trusted_hash = "sha256:cc2893cf722ae2442b31b7db3f16e86d49d7c0b1e2832a4cab2d594fe34c2301"
 
 # recraft was disabled in opencode; omit (re-add with a [mcp_servers.recraft]
 # block + url = "https://mcp.recraft.ai/mcp" when needed).
