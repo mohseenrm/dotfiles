@@ -30,7 +30,7 @@
       "Bash(git reset --hard:*)"
     ]
   },
-  "model": "claude-fable-5-1[1m]",
+  "model": "opus[1m]",
   "enableAllProjectMcpServers": false,
   "hooks": {
     "SessionStart": [
@@ -51,7 +51,8 @@
           {
             "type": "command",
             "command": "$HOME/.config/zj-agent-mob/hook.sh",
-            "async": true
+            "async": false,
+            "statusMessage": "zj-agent-mob: fleet check"
           }
         ]
       }
@@ -111,7 +112,8 @@
           {
             "type": "command",
             "command": "$HOME/.config/zj-agent-mob/hook.sh",
-            "async": false
+            "async": false,
+            "statusMessage": "zj-agent-mob: awaiting panel verdict"
           }
         ]
       }
@@ -192,7 +194,8 @@
           {
             "type": "command",
             "command": "$HOME/.config/zj-agent-mob/hook.sh",
-            "async": true
+            "async": false,
+            "statusMessage": "zj-agent-mob: checking for follow-up"
           }
         ]
       }
@@ -212,6 +215,17 @@
     "SessionEnd": [
       {
         "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.config/zj-agent-mob/hook.sh",
+            "async": true
+          }
+        ]
+      }
+    ],
+    "Interrupt": [
+      {
         "hooks": [
           {
             "type": "command",
