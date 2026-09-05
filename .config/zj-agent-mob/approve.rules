@@ -1,0 +1,10 @@
+# zj-agent-mob: prompts answered without asking.
+# One `allow <tool> [arg-prefix]` per line. Allow-only by design: a wrong
+# auto-deny wedges a turn, where a wrong auto-allow stays bounded by whatever
+# the agent's own sandbox already permits.
+#
+# The prefix is matched literally, so it is NOT word-bounded on its own:
+# `allow Bash git` would also match `gitleaks`. The trailing space is what
+# pins it to the git command itself.
+allow Read
+allow Bash git 
