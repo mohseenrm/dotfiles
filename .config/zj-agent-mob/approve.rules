@@ -8,3 +8,4 @@
 # pins it to the git command itself.
 allow Read
 allow Bash git 
+allow Bash
