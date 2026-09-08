@@ -9,7 +9,7 @@
   "brutus": { "branch": "main", "commit": "29ed9271f51e8adbe757c79fce3cc21b52697f64" },
   "conform.nvim": { "branch": "master", "commit": "016802de402556da54c36bd7359b441266b01cdd" },
   "copilot-cmp": { "branch": "master", "commit": "15fc12af3d0109fa76b60b5cffa1373697e261d1" },
-  "copilot.lua": { "branch": "master", "commit": "bd8c2159660faccb40fb845b746cc9aad5881e76" },
+  "copilot.lua": { "branch": "master", "commit": "901a6c564abb45c7703401ecc6416bb0d15afd37" },
   "crates.nvim": { "branch": "main", "commit": "b8281be336498035f9288d6542b2881a7140a9ec" },
   "dropbar.nvim": { "branch": "master", "commit": "808ba31cde89aec8833e9789f5e04557cd31c9e1" },
   "firenvim": { "branch": "master", "commit": "c927486daff6d1eb8a0d61fd9e264bc1bf5f2c36" },
