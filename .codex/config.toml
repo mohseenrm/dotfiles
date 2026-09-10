@@ -9,7 +9,7 @@
 # --- Model -------------------------------------------------------------------
 # opencode used anthropic/claude-opus-4-8. Codex talks to OpenAI models by
 # default; pick a current Codex model. Override per-session with `codex -m`.
-model = "gpt-5.5-codex"
+model = "gpt-5.6-sol"
 
 # --- Sandbox & approvals -----------------------------------------------------
 # You chose full-access / no approval prompts (YOLO equivalent of opencode
@@ -24,6 +24,7 @@ web_search = "live"
 # --- Updates -----------------------------------------------------------------
 # opencode autoupdate=true -> Codex update check on startup.
 check_for_update_on_startup = true
+model_reasoning_effort = "medium"
 
 # --- Subagents (global caps) -------------------------------------------------
 # Individual agents are defined as TOML files in ~/.codex/agents/*.toml.
