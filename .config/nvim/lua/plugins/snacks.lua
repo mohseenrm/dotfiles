@@ -33,8 +33,14 @@ local function rosie_image(width, height)
   return function(dashboard, pos)
     local buf = vim.api.nvim_create_buf(false, true)
     local win
+    local placement
+    local destroyed = false
 
     local function close()
+      if placement then
+        placement:close()
+        placement = nil
+      end
       if win and vim.api.nvim_win_is_valid(win) then
         pcall(vim.api.nvim_win_close, win, true)
       end
@@ -42,7 +48,7 @@ local function rosie_image(width, height)
     end
 
     local function draw()
-      if not (dashboard.win and vim.api.nvim_win_is_valid(dashboard.win)) then
+      if destroyed or not (dashboard.win and vim.api.nvim_win_is_valid(dashboard.win)) then
         return close()
       end
       -- Below the 2-pane threshold the dashboard stacks panes vertically and
@@ -72,26 +78,43 @@ local function rosie_image(width, height)
         win = vim.api.nvim_open_win(buf, false, cfg)
         vim.wo[win].winblend = 0
         vim.wo[win].winhighlight = "Normal:DashboardNormal,NormalFloat:DashboardNormal"
-        pcall(function()
-          Snacks.image.placement.new(buf, rosie_path, {
+        local ok, image = pcall(function()
+          return Snacks.image.placement.new(buf, rosie_path, {
             inline = false,
             width = width,
             height = height,
             pos = { 1, 0 },
           })
         end)
+        if ok then
+          placement = image
+        end
       end
     end
 
-    draw()
-
     local group = vim.api.nvim_create_augroup("rosie_dashboard_" .. buf, { clear = true })
-    vim.api.nvim_create_autocmd("VimResized", { group = group, callback = draw })
-    vim.api.nvim_create_autocmd("BufWipeout", {
+    local function destroy()
+      destroyed = true
+      close()
+      vim.schedule(function()
+        pcall(vim.api.nvim_buf_delete, buf, { force = true })
+        pcall(vim.api.nvim_del_augroup_by_id, group)
+      end)
+    end
+    vim.api.nvim_create_autocmd("BufLeave", {
       group = group,
       buffer = dashboard.buf,
       callback = close,
     })
+    vim.api.nvim_create_autocmd("BufEnter", {
+      group = group,
+      buffer = dashboard.buf,
+      callback = draw,
+    })
+    dashboard.on("UpdatePre", destroy, group)
+    dashboard.on("Closed", destroy, group)
+
+    draw()
   end
 end
 
