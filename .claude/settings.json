@@ -223,17 +223,6 @@
           }
         ]
       }
-    ],
-    "Interrupt": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "$HOME/.config/zj-agent-mob/hook.sh",
-            "async": true
-          }
-        ]
-      }
     ]
   },
   "enabledPlugins": {
