@@ -180,7 +180,7 @@ alias oc="opencode"
 alias ocw="OPENCODE_CONFIG=$HOME/.config/opencode/opencode.work.jsonc opencode"
 # Codex
 alias cop="codex --yolo"
-alias cow="codex --profile work --yolo"
+alias cow="codex --profile od-ai --yolo"
 # Plans symlink (Styx)
 alias lnp="link-plans"
 # Weather
