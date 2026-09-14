@@ -90,6 +90,24 @@ Work through these categories in order. Skip a category only when it genuinely d
 
 ## Output Format
 
+Start every review with navigation context. When the target is hosted on GitHub, resolve these with read-only `gh` calls rather than constructing URLs by hand:
+
+```sh
+gh pr view <number|url> --json number,title,url
+gh repo view [<owner/repo>] --json nameWithOwner,url
+```
+
+Use the explicit PR reference when the user supplied one; otherwise try the PR for the current branch. When a PR resolves, use the owner/repository identified by its returned URL for `gh repo view` so an explicit PR from another repository cannot be mislabeled as the current checkout. Without a PR, resolve the current repository. A missing PR must not block a local or branch review. Include both entries so the user can immediately tell what was reviewed:
+
+```markdown
+## Review context
+
+- Repository: [owner/repo](https://github.com/owner/repo)
+- Pull request: [#123 — PR title](https://github.com/owner/repo/pull/123)
+```
+
+If the repository is not on GitHub or no PR applies, write `Repository: Not available` or `Pull request: Not available for this review` instead of inventing a link. These links belong in the conversational response in every mode, including `explain`; they do not authorize any GitHub write.
+
 For each bug found:
 
 ```
@@ -163,7 +181,9 @@ Then close the review with:
 ## Follow-along summary
 
 [3-6 sentences: what this change is doing overall, the shape of the problems found,
-and what you'd want the author to answer. No table, no severity icons — just prose.]
+and what you'd want the author to answer. Refer back to the linked repository and pull
+request from Review context when directing the user where to inspect the change. No
+table, no severity icons — just prose.]
 ```
 
 `explain` is independent of `post`: it changes what is written in the conversation, never what is posted. When both are passed, post the normal (unexplained) summary and inline comments to GitHub, and keep the plain-terms walkthrough in the conversation for the user only.
@@ -175,8 +195,9 @@ Only when invoked with the `post` argument or when the user explicitly asked to 
 ### 1. Resolve the PR
 
 ```sh
-gh pr view --json number,headRefOid,url,baseRefName   # current branch
-# or: gh pr view <number|url> --json number,headRefOid,url,baseRefName
+gh pr view --json number,title,headRefOid,url,baseRefName   # current branch
+# or: gh pr view <number|url> --json number,title,headRefOid,url,baseRefName
+gh repo view <owner/repo> --json nameWithOwner,url
 ```
 
 If no PR exists, stop and say so. Do not create one.
@@ -237,6 +258,9 @@ Summary template (write to a temp file, delete after posting):
 
 > Assumes bugs exist and hunts for them. Silence on a line means it survived.
 
+- **Repository:** [owner/repo](https://github.com/owner/repo)
+- **Pull request:** [#123 — PR title](https://github.com/owner/repo/pull/123)
+
 **Verdict:** N findings — X critical, X high, X medium, X low
 
 | #   | Severity    | Category   | Finding                        | Location         |
@@ -268,8 +292,8 @@ Summary template (write to a temp file, delete after posting):
 
 Make `Location` cells clickable: link to `<pr-url>/files` blob anchors or use GitHub's automatic `path#L42` linking where possible; plain `file:line` in backticks is the fallback.
 
-If the review found nothing, post only a summary comment saying "No bugs found" with the verdict line — no inline review, no manufactured findings.
+If the review found nothing, post only a summary comment containing the repository and PR links, "No bugs found," and the verdict line — no inline review, no manufactured findings.
 
 ### 4. Report back
 
-Tell the user what was posted: summary comment URL and how many inline comments landed (and which findings were skipped as outside the diff).
+Tell the user what was posted: link the repository, pull request, and summary comment, then state how many inline comments landed (and which findings were skipped as outside the diff).
