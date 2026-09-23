@@ -90,29 +90,47 @@ Work through these categories in order. Skip a category only when it genuinely d
 
 ## Output Format
 
-Start every review with navigation context. When the target is hosted on GitHub, resolve these with read-only `gh` calls rather than constructing URLs by hand:
+Start every review with navigation context. When the target is hosted on GitHub, resolve these with read-only `gh` calls rather than constructing repository or PR URLs by hand:
 
 ```sh
-gh pr view <number|url> --json number,title,url
+gh pr view <number|url> --json number,title,url,headRefName,headRefOid
 gh repo view [<owner/repo>] --json nameWithOwner,url
 ```
 
-Use the explicit PR reference when the user supplied one; otherwise try the PR for the current branch. When a PR resolves, use the owner/repository identified by its returned URL for `gh repo view` so an explicit PR from another repository cannot be mislabeled as the current checkout. Without a PR, resolve the current repository. A missing PR must not block a local or branch review. Include both entries so the user can immediately tell what was reviewed:
+Use the explicit PR reference when the user supplied one; otherwise try the PR for the current branch. When a PR resolves, use the owner/repository identified by its returned URL for `gh repo view` so an explicit PR from another repository cannot be mislabeled as the current checkout. Treat the returned `headRefOid` as the source of truth for both the review and every source link. Do not substitute the local branch SHA, working tree, base branch, or default branch.
+
+Without a PR, resolve the current repository. A missing PR must not block a local or branch review. Include both entries so the user can immediately tell what was reviewed:
 
 ```markdown
 ## Review context
 
 - Repository: [owner/repo](https://github.com/owner/repo)
 - Pull request: [#123 — PR title](https://github.com/owner/repo/pull/123)
+- Revision: [`feature-branch` at `abcdef0`](https://github.com/owner/repo/tree/<headRefOid>)
 ```
 
 If the repository is not on GitHub or no PR applies, write `Repository: Not available` or `Pull request: Not available for this review` instead of inventing a link. These links belong in the conversational response in every mode, including `explain`; they do not authorize any GitHub write.
 
+### Finding source links
+
+Every finding against a GitHub PR must include at least one fully qualified drill-down link to the exact code that proves the claim. Build links from the repository URL and the PR's `headRefOid`:
+
+```text
+https://github.com/<owner>/<repo>/blob/<headRefOid>/<url-encoded-path>#L<start>-L<end>
+```
+
+Use a single `#L<line>` anchor for one line. Use the smallest line range that establishes the claim, and add a `Related sources` list when the finding depends on multiple locations. Link labels should be readable locations such as `src/auth.ts:42-48`; never expose a raw URL as the label.
+
+These are source links, not links to the PR Files tab, the default branch, a local `file://` path, or an unqualified `path#L42` reference. Verify each path and line anchor against the file at `headRefOid` on GitHub before publishing the finding. If the PR head changes while reviewing, resolve the new `headRefOid`, re-check the affected claims, and rebuild all source links so one review never mixes revisions.
+
+For a local review with no GitHub PR, keep the normal `path:line` location and state that a GitHub source link is unavailable. Never fabricate a link.
+
 For each bug found:
 
-```
+```markdown
 **BUG: [short title]**
-File: path/to/file.ts:42
+Source: [path/to/file.ts:42-48](https://github.com/owner/repo/blob/<headRefOid>/path/to/file.ts#L42-L48)
+Related sources: [path/to/caller.ts:10-14](https://github.com/owner/repo/blob/<headRefOid>/path/to/caller.ts#L10-L14) (only when needed)
 Category: [from checklist above]
 Severity: 🚨 CRITICAL | 🔴 HIGH | 🟡 MEDIUM | ⚪ LOW
 
@@ -175,6 +193,8 @@ Why the fix works: [one or two sentences]
 > [1-3 sentences the user can paste as their own review comment, written in their voice — plain, direct, no severity icons or template headers]
 ```
 
+Keep the standard finding's `Source` and `Related sources` links immediately above this explanation. The walkthrough may add source links when it introduces a separate code location, but it must not replace the evidence links with plain `file:line` text.
+
 Then close the review with:
 
 ```
@@ -195,14 +215,14 @@ Only when invoked with the `post` argument or when the user explicitly asked to 
 ### 1. Resolve the PR
 
 ```sh
-gh pr view --json number,title,headRefOid,url,baseRefName   # current branch
-# or: gh pr view <number|url> --json number,title,headRefOid,url,baseRefName
+gh pr view --json number,title,headRefName,headRefOid,url,baseRefName   # current branch
+# or: gh pr view <number|url> --json number,title,headRefName,headRefOid,url,baseRefName
 gh repo view <owner/repo> --json nameWithOwner,url
 ```
 
 If no PR exists, stop and say so. Do not create one.
 
-Review the PR's diff, not just local files: `gh pr diff <number>` defines which lines are commentable.
+Review the PR's diff, not just local files: `gh pr diff <number>` defines which lines are commentable. Read and verify claimed code at the returned `headRefOid`; the local checkout may be stale or on another branch.
 
 ### 2. Post inline comments on the offending lines
 
@@ -233,6 +253,8 @@ Each inline comment body:
 
 **Trigger:** [concrete scenario]
 
+**Source:** [src/foo.ts:42-48](https://github.com/owner/repo/blob/<headRefOid>/src/foo.ts#L42-L48)
+
 ```suggestion
 [the fixed line(s) — only when the fix is a drop-in replacement for the commented lines]
 ```
@@ -242,7 +264,7 @@ Rules for inline comments:
 
 - Use `suggestion` blocks ONLY when the fix replaces exactly the commented line range. Otherwise show the fix in a normal fenced block with the correct language tag (`ts`, `py`, `go`, ...).
 - Multi-line anchors: add `start_line` + `start_side` alongside `line`.
-- A line is only commentable if it appears in the PR diff. If a finding lives outside the diff, skip the inline comment and flag it in the summary under "Outside the diff" with a `file:line` reference.
+- A line is only commentable if it appears in the PR diff. If a finding lives outside the diff, skip the inline comment and flag it in the summary under "Outside the diff" with the same fully qualified `headRefOid` source link.
 - Severity icons: 🚨 CRITICAL, 🔴 HIGH, 🟡 MEDIUM, ⚪ LOW
 
 ### 3. Post the summary comment
@@ -260,20 +282,21 @@ Summary template (write to a temp file, delete after posting):
 
 - **Repository:** [owner/repo](https://github.com/owner/repo)
 - **Pull request:** [#123 — PR title](https://github.com/owner/repo/pull/123)
+- **Revision:** [`feature-branch` at `abcdef0`](https://github.com/owner/repo/tree/<headRefOid>)
 
 **Verdict:** N findings — X critical, X high, X medium, X low
 
 | #   | Severity    | Category   | Finding                        | Location         |
 | --- | ----------- | ---------- | ------------------------------ | ---------------- |
-| 1   | 🚨 CRITICAL | Security   | SQL injection via `name` param | `src/db.ts:42`   |
-| 2   | 🔴 MEDIUM   | Edge Cases | Empty array crashes reducer    | `src/util.ts:17` |
+| 1   | 🚨 CRITICAL | Security   | SQL injection via `name` param | [src/db.ts:42](https://github.com/owner/repo/blob/<headRefOid>/src/db.ts#L42)   |
+| 2   | 🔴 MEDIUM   | Edge Cases | Empty array crashes reducer    | [src/util.ts:17-20](https://github.com/owner/repo/blob/<headRefOid>/src/util.ts#L17-L20) |
 
 <details>
 <summary><strong>Full findings</strong></summary>
 
 ### 1. 🔴 [title]
 
-`src/db.ts:42` · Security
+[src/db.ts:42](https://github.com/owner/repo/blob/<headRefOid>/src/db.ts#L42) · Security
 
 [description]
 
@@ -287,10 +310,10 @@ Summary template (write to a temp file, delete after posting):
 
 ### Outside the diff
 
-(only if applicable — findings in untouched code, with file:line refs)
+(only if applicable — findings in untouched code, with fully qualified `headRefOid` source links)
 ````
 
-Make `Location` cells clickable: link to `<pr-url>/files` blob anchors or use GitHub's automatic `path#L42` linking where possible; plain `file:line` in backticks is the fallback.
+Every `Location`, full finding, and outside-the-diff entry must use the same fully qualified `https://github.com/<owner>/<repo>/blob/<headRefOid>/...#L...` source links as the conversational review. Do not fall back to the PR Files tab, GitHub's automatic relative linking, or plain `file:line` text when a PR was resolved.
 
 If the review found nothing, post only a summary comment containing the repository and PR links, "No bugs found," and the verdict line — no inline review, no manufactured findings.
 
