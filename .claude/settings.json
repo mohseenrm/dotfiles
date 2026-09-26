@@ -51,8 +51,8 @@
           {
             "type": "command",
             "command": "$HOME/.config/zj-agent-mob/hook.sh",
-            "async": false,
-            "statusMessage": "zj-agent-mob: fleet check"
+            "statusMessage": "zj-agent-mob: fleet check",
+            "async": false
           }
         ]
       }
@@ -112,8 +112,8 @@
           {
             "type": "command",
             "command": "$HOME/.config/zj-agent-mob/hook.sh",
-            "async": false,
-            "statusMessage": "zj-agent-mob: awaiting panel verdict"
+            "statusMessage": "zj-agent-mob: awaiting panel verdict",
+            "async": false
           }
         ]
       }
@@ -194,8 +194,8 @@
           {
             "type": "command",
             "command": "$HOME/.config/zj-agent-mob/hook.sh",
-            "async": false,
-            "statusMessage": "zj-agent-mob: checking for follow-up"
+            "statusMessage": "zj-agent-mob: checking for follow-up",
+            "async": false
           }
         ]
       }
