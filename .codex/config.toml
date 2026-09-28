@@ -38,7 +38,7 @@ max_depth = 1
 # browse options and change `theme` below.
 [tui]
 theme = "dark"
-vim_mode_default = false
+vim_mode_default = true
 
 # Keymap ported from .config/opencode/tui.json + ~/.claude/keybindings.json.
 #
