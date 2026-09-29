@@ -39,6 +39,8 @@ max_depth = 1
 [tui]
 theme = "dark"
 vim_mode_default = true
+alternate_screen = "never"
+screen_reader_detection_done = true
 
 # Keymap ported from .config/opencode/tui.json + ~/.claude/keybindings.json.
 #
