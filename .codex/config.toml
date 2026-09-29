@@ -83,7 +83,7 @@ vim_mode_default = true
 # for external editor, we MOVE editor.move_line_end off ctrl-e (to End, below)
 # so the two no longer collide. copy moves off ctrl-y (= editor.yank) to alt-y.
 [tui.keymap.global]
-open_transcript = "ctrl-t"
+open_transcript = "ctrl-x"
 open_external_editor = "ctrl-e"
 toggle_fast_mode = "alt-o"
 copy = "alt-y"
@@ -115,7 +115,7 @@ submit = "enter"
 insert_newline = ["shift-enter", "ctrl-j"]
 move_line_end = "end"
 
-# Vim-like scrolling in the Ctrl+t transcript view.
+# Vim-like scrolling in the Ctrl+x transcript view.
 # Codex rejects plain-character chords outside editor Vim mode, so the pager
 # uses g/G instead of gg/G. User values replace defaults, so keep home/end.
 [tui.keymap.pager]
