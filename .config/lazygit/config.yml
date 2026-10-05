@@ -25,5 +25,5 @@ gui:
       - "#e0e5f6"
     searchingActiveBorderColor:
       - "#ffd866"
-  authorColors:
-    "*": "#00d9d9"
+    authorColors:
+      "*": "#00d9d9"
