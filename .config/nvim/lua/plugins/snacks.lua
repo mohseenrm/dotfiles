@@ -122,6 +122,10 @@ return {
   "folke/snacks.nvim",
   priority = 1000,
   lazy = false,
+  config = function(_, opts)
+    require("snacks").setup(opts)
+    require("configs.image").setup()
+  end,
   opts = {
     -- your configuration comes here
     -- or leave it empty to use the default settings
