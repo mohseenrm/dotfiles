@@ -1,6 +1,8 @@
 git:
   autoFetch: false
   autoDetectExternalChanges: false
+  log:
+    order: default
   diffRenderers:
     - command: delta --paging=never --syntax-theme='tokyonight_night'
       useConfig: false
