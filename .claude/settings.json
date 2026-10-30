@@ -43,6 +43,16 @@
             "async": true
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ ! -f '/Users/mohseen.mukaddam@opendoor.com/.claude/skills/impeccable/scripts/impeccable' ] || '/Users/mohseen.mukaddam@opendoor.com/.claude/skills/impeccable/scripts/impeccable' hook",
+            "timeout": 5,
+            "statusMessage": "Preparing build session"
+          }
+        ]
       }
     ],
     "UserPromptSubmit": [
@@ -77,6 +87,17 @@
             "type": "command",
             "command": "$HOME/.config/zj-agent-mob/hook.sh",
             "async": true
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ ! -f '/Users/mohseen.mukaddam@opendoor.com/.claude/skills/impeccable/scripts/impeccable' ] || '/Users/mohseen.mukaddam@opendoor.com/.claude/skills/impeccable/scripts/impeccable' hook",
+            "timeout": 5,
+            "statusMessage": "Checking UI changes"
           }
         ]
       }
@@ -198,6 +219,16 @@
             "statusMessage": "zj-agent-mob: checking for follow-up"
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ ! -f '/Users/mohseen.mukaddam@opendoor.com/.claude/skills/impeccable/scripts/impeccable' ] || '/Users/mohseen.mukaddam@opendoor.com/.claude/skills/impeccable/scripts/impeccable' hook",
+            "timeout": 30,
+            "statusMessage": "Design deep pass"
+          }
+        ]
       }
     ],
     "StopFailure": [
@@ -239,5 +270,6 @@
   "editorMode": "vim",
   "additionalDirectories": [
     "~/Projects/plans"
-  ]
+  ],
+  "description": "Impeccable design detector: immediate-tier checks after Edit/Write on UI files, full-rule deep pass on Stop."
 }
