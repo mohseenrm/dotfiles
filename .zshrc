@@ -160,6 +160,7 @@ precmd() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 alias cd="z"
 alias gc="git gc"
+alias lz="nice -n 10 lazygit"
 # eza
 alias ls="eza --long --all --icons=\"always\" --show-symlinks"
 alias tree="eza --tree --all --icons=\"always\" --show-symlinks"
