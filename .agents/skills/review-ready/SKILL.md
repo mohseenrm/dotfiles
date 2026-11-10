@@ -1,6 +1,6 @@
 ---
 name: review-ready
-description: Prepare your pull request or PR stack for review by investigating findings, fixing only confirmed issues within PR scope, enforcing one commit and size limits per PR, verifying, rebasing, pushing, and updating descriptions. Post a concise change summary when a previously reviewed PR changes during the run.
+description: Prepare your pull request or PR stack for review by investigating findings, fixing only confirmed issues within PR scope, enforcing one commit and size limits per PR, verifying, rebasing, pushing, and updating descriptions. After verified rebase and push, reply to open review threads, resolve addressed requests, and summarize changes on previously reviewed PRs.
 ---
 
 # Review Ready
@@ -10,15 +10,19 @@ branch's open PR.
 
 ## Arguments
 
-- No arguments: prepare the PR or stack, push it, and update each PR description. For each
-  PR that already had a review and receives file changes during this run, post one concise
-  post-review update as described in section 8. Invoking this skill authorizes that comment.
+- No arguments: prepare the PR or stack, push it, and update each PR description. After
+  verified rebase and push, reply to investigated open review threads and resolve fully
+  addressed requests as described in section 8. Invoking this skill authorizes those replies
+  and resolutions. For each PR that already had a review and receives file changes during
+  this run, post one concise post-review update as described in section 9. Invoking this
+  skill authorizes that comment.
 - `post`: explicitly request the same post-review update. The existing-review and file-change
   conditions still apply; this does not add a second comment or enable comments on unreviewed PRs.
 - A PR number or URL may appear with either mode.
 
-Neither mode authorizes resolving threads, dismissing reviews, merging, changing draft
-state, or requesting reviewers. Never post a summary to an unreviewed PR.
+Neither mode authorizes dismissing reviews, merging, changing draft state, or requesting
+reviewers. Never post a summary to an unreviewed PR. Thread replies and resolutions follow
+section 8 independently of summary eligibility.
 
 ## Completion contract
 
@@ -37,13 +41,15 @@ Do not call the work review-ready until every PR in scope satisfies all of these
 - Every unresolved review thread has been read and investigated against current code.
   Confirmed issues within PR scope are fixed; out-of-scope, already-fixed, incorrect, and
   ambiguous items are reported with evidence. A blocking item that cannot be fixed within
-  scope prevents readiness; it does not authorize expanding the PR. Never resolve a thread
-  or silently overrule a human.
+  scope prevents readiness; it does not authorize expanding the PR. Resolve only fully
+  addressed requests under section 8; never silently overrule a human.
 - The relevant tests, type checks, linters, and builds pass for each independently
   mergeable PR.
 - A fresh adversarial review reports no CRITICAL, HIGH, or MEDIUM findings.
 - Each branch is rebased onto its current base, pushed, and its PR description accurately
   describes the final delta.
+- Investigated open threads have concise outcome replies; fully addressed requests are
+  resolved only after verified rebase and push. Deferred or disputed requests remain open.
 - Each previously reviewed PR with file changes from this run has one post-review update
   describing those changes.
 
@@ -130,10 +136,10 @@ query($owner:String!,$repo:String!,$pr:Int!,$endCursor:String){
       reviewThreads(first:50,after:$endCursor){
         pageInfo{hasNextPage endCursor}
         nodes{
-          id isResolved isOutdated path line
+          id isResolved isOutdated viewerCanResolve path line
           comments(first:50){
             pageInfo{hasNextPage endCursor}
-            nodes{author{login} createdAt body}
+            nodes{id url author{login} createdAt body}
           }
         }
       }
@@ -162,7 +168,7 @@ gh api --paginate repos/OWNER/REPO/issues/<PR>/comments
 ```
 
 Freeze this flag for the run. An adversarial pass performed during this run does not turn
-an unreviewed PR into a previously reviewed PR for section 8.
+an unreviewed PR into a previously reviewed PR for section 9.
 
 For each item, verify the claim by reading current code, callers, tests, and relevant
 contracts. Reproduce the failure or establish a concrete failing path when practical;
@@ -177,13 +183,17 @@ whether this PR owns it before adding it to the fix set. Classify it as:
 - `NEEDS_HUMAN`: use for design choices, ambiguous requests, conflicting feedback, and any
   human feedback that appears incorrect. Provide a concise suggested reply.
 
+For review threads, retain the thread ID, comment IDs/URLs, and the requests covered by the
+assessment so the post-push reply goes to the original thread, including outdated threads.
+
 Record a concise assessment with the source, verdict, evidence, scope rationale, and proposed
 fix and validation where applicable. Complete it for the gathered findings before making
 edits. Investigate uncertain claims further; if they remain unproven, report the uncertainty
 without treating them as confirmed fixes. Apply this assessment to new findings throughout
 the run, including CI failures and adversarial findings.
 
-Never mutate, reply to, or resolve review threads as part of this skill.
+Do not reply to or resolve threads during investigation or editing. Defer both to section 8,
+after the rebase, validation, and push have succeeded and the remote heads are verified.
 
 ## 4. Make the diff reviewable
 
@@ -260,7 +270,81 @@ Render the complete body in a temporary Markdown file, inspect it, then use
 `gh pr edit <PR> -R OWNER/REPO --body-file <file>`. Updating descriptions is part of normal
 mode and needs no additional prompt. Delete temporary files after use.
 
-## 8. Post-review update
+## 8. Reply to review threads and resolve addressed requests
+
+Run this step only after section 6's rebase, validation, push, and remote-head checks succeed
+for every PR in scope. Never announce an unpushed fix or resolve a request against a local
+or pre-rebase commit. If any prerequisite fails, report the blocker without replying or
+resolving. This step does not require file changes during this run or `HAD_EXISTING_REVIEW`.
+
+Refresh unresolved threads and all replies with section 3's pagination before posting. Recheck
+each assessment against the verified pushed head and any new feedback. Investigate new
+requests before acting; if they require edits, return to the fix/verify/rebase/push workflow.
+Skip threads that are now resolved. An outdated diff anchor alone does not prove a fix.
+
+Reply in each investigated open thread, not as a new top-level PR comment. Explain what
+changed, why it addresses the request, and relevant validation actually run. For
+`ALREADY_FIXED`, cite the existing pushed code. For `OUT_OF_SCOPE`, `FALSE_POSITIVE`, or
+`NEEDS_HUMAN`, briefly explain the evidence and follow-up or question, without claiming a fix
+or reviewer agreement. Keep those threads open.
+
+Use simple, styled Markdown, normally under 100 words: a bold outcome, inline code for paths
+and symbols, and a link to the final pushed code or commit. Omit empty fields. For example:
+
+````markdown
+**Addressed**
+
+Added the empty-input guard in `src/parser.ts` so an empty value returns no results.
+
+```typescript
+if (input.length === 0) return [];
+```
+
+**Verified:** `pnpm test parser` - passed.
+
+**Code:** [View fix](<final-pushed-code-or-commit-url>)
+````
+
+Adapt the example to actual evidence. Use **Already addressed**, **Follow-up needed**, or
+**Needs clarification** when appropriate. Include only a short snippet that clarifies the
+change, fenced with its real language tag (`typescript`, `ruby`, `diff`, etc.) for syntax
+highlighting. Do not paste full patches, tool logs, or a generic "fixed" reply.
+
+Write each reply to a temporary Markdown file and inspect it, then post to the recorded
+thread node ID with GitHub GraphQL:
+
+```bash
+gh api graphql -f threadId='<THREAD_NODE_ID>' -F body=@/absolute/path/to/reply.md -f query='
+mutation($threadId:ID!,$body:String!){
+  addPullRequestReviewThreadReply(input:{pullRequestReviewThreadId:$threadId,body:$body}){
+    comment{id url body}
+  }
+}'
+```
+
+Confirm the reply exists and capture its URL before resolving. Resolve only `FIX_IN_SCOPE`
+or `ALREADY_FIXED` threads where every actionable request is demonstrably addressed in the
+verified pushed code and no outstanding reviewer objection or unanswered question remains.
+Re-read the latest replies immediately before resolving. This applies to human and bot
+threads; bot `FALSE_POSITIVE` and disputed human requests stay open.
+Check `viewerCanResolve`, then resolve the eligible thread:
+
+```bash
+gh api graphql -f threadId='<THREAD_NODE_ID>' -f query='
+mutation($threadId:ID!){
+  resolveReviewThread(input:{threadId:$threadId}){thread{id isResolved}}
+}'
+```
+
+Check GraphQL errors and re-read the thread to verify the reply and `isResolved` state.
+Before retrying an uncertain result or repeating this workflow, read the full thread: reuse
+an existing equivalent reply for the same outcome and code evidence instead of posting it
+again. If the reply exists but resolution failed, retry only resolution after rechecking
+eligibility. Stop on permission or persistent API failures and report the affected thread;
+never claim it was resolved. Delete temporary reply files after use. Include reply URLs,
+resolution results, and reasons for leaving threads open in the final report.
+
+## 9. Post-review update
 
 After pushing and verifying the final result, post one short update on each PR whose
 recorded `HAD_EXISTING_REVIEW` is true and whose files changed during this run, including
@@ -295,7 +379,7 @@ the invoked workflow and needs no additional prompt. Capture its URL; if a post 
 has an uncertain outcome, check PR comments before retrying to avoid duplicates. Delete
 temporary files after use.
 
-## 9. Final evidence
+## 10. Final evidence
 
 Report per PR:
 
@@ -304,11 +388,13 @@ Report per PR:
   exception;
 - validation commands and their actual results;
 - findings assessment, including unresolved feedback and out-of-scope follow-ups;
+- thread reply URLs, verified resolution results, and reasons any threads remain open;
 - adversarial pass count and remaining LOW findings;
 - rebase and push result;
 - PR description update result;
 - whether a post-review update was published, with its URL, or why it was skipped.
 
 Also report pending or failing remote checks. Do not wait indefinitely for CI unless the
-user separately asks for monitoring. Do not mark a draft PR ready, request reviewers,
-resolve threads, or merge it unless explicitly asked.
+user separately asks for monitoring. Do not mark a draft PR ready, request reviewers, or
+merge it unless explicitly asked. Thread replies and resolutions are authorized only under
+section 8's conditions.
