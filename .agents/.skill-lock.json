@@ -124,6 +124,15 @@
       "pluginName": "mattpocock-skills",
       "installedAt": "2026-10-01T18:40:55.880Z",
       "updatedAt": "2026-10-01T18:40:55.880Z"
+    },
+    "modern-web-guidance": {
+      "source": "GoogleChrome/modern-web-guidance",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/GoogleChrome/modern-web-guidance.git",
+      "skillPath": "skills/modern-web-guidance/SKILL.md",
+      "skillFolderHash": "2bafd62db079eae1a4b6c34d0af4f9c3490266a2",
+      "installedAt": "2026-11-12T23:10:52.801Z",
+      "updatedAt": "2026-11-12T23:10:52.801Z"
     }
   },
   "dismissed": {
@@ -135,11 +144,13 @@
     "codex",
     "cursor",
     "droid",
+    "fx",
     "gemini-cli",
     "github-copilot",
     "kilo",
     "kimi-code-cli",
     "opencode",
+    "pi",
     "warp",
     "zed",
     "claude-code"
