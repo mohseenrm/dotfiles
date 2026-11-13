@@ -132,7 +132,7 @@ return {
     -- refer to the configuration section below
     scratch = { enabled = true },
     bigfile = { enabled = true },
-    image = { enabled = true },
+    image = { enabled = true, doc = { enabled = false } },
     notifier = { enabled = true },
     dashboard = {
       width = 85,
