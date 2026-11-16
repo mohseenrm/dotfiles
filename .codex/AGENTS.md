@@ -20,6 +20,7 @@ output, or inspected files. Never claim completion based on intent.
 ## Review subagents
 
 Custom review agents are defined in `~/.codex/agents/`:
+
 - `code_reviewer` - best-practices review, P0–P3 rubric, T-shirt-sized feedback.
 - `adversarial_reviewer` - forced-reasoning adversarial review (must find issues).
 - `git_pick` - splits a branch into `-generated` and `-core` review branches.
@@ -37,3 +38,19 @@ Before adding, editing, or porting a skill, read
 the portable frontmatter rules, and how to verify a skill loads in all three
 tools. Never copy a skill into `~/.codex/skills/` - that shadows the canonical
 tree and makes it appear twice.
+
+## Tools
+
+Prefer to use glean cli v/s mcp.
+
+## Browser automation
+
+Prefer `agent-browser` for browser automation. Load its workflow with
+`agent-browser skills get core` before use. Use a named session for each task,
+take snapshots with `snapshot -i`, and re-snapshot after page changes.
+
+## Desktop automation
+
+Use `agent-desktop` for native desktop apps. Before use, run
+`agent-desktop status`, `agent-desktop skills get desktop`, and
+`agent-desktop skills get platform`. Follow the version-matched guides.
