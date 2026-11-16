@@ -253,3 +253,4 @@ OD_TOOL_SOURCE_SCRIPT="$OD_CODE_ROOT/scripts/infra/sourced_on_shell_load.sh"
 [ -f "$OD_TOOL_SOURCE_SCRIPT" ] && source "$OD_TOOL_SOURCE_SCRIPT"
 ######### end of od shell tooling #########
 
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
