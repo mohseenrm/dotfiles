@@ -2,6 +2,8 @@ tap "charmbracelet/tap"
 tap "modem-dev/tap"
 tap "supabase/tap"
 tap "tw93/tap"
+brew "agent-browser"
+brew "agent-desktop"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # Implementation of the DNS protocols
