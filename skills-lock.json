@@ -1,0 +1,26 @@
+{
+  "version": 2,
+  "skills": {
+    "agent-browser": {
+      "source": "vercel-labs/agent-browser",
+      "commit": "b06e2533ba9b3823b8a96c859d455cb55f4d7893",
+      "sourceType": "github",
+      "skillPath": "skills/agent-browser/SKILL.md",
+      "computedHash": "a0dfac7503f69bcf529b2660fc79964064c4f179eb65695904ddc45fc0d99d20"
+    },
+    "agent-desktop": {
+      "source": "vercel-labs/agent-desktop",
+      "commit": "8ffecc1d3d088727f8d84baf4dde0224aab2e8ad",
+      "sourceType": "github",
+      "skillPath": "skills/agent-desktop/SKILL.md",
+      "computedHash": "241993fe8465bd04f7ed582387b5f0d7ef1795355907c588ad553a8e98a88386"
+    },
+    "agent-desktop-macos": {
+      "source": "vercel-labs/agent-desktop",
+      "commit": "8ffecc1d3d088727f8d84baf4dde0224aab2e8ad",
+      "sourceType": "github",
+      "skillPath": "skills/agent-desktop-macos/SKILL.md",
+      "computedHash": "64ab1381961ff29c9d64d476a4b2b063d33519a8b6075883b314ddc03455302e"
+    }
+  }
+}
